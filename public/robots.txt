@@ -1,0 +1,37 @@
+# OHB Asesorías y Consultorías - robots.txt
+# https://www.robotstxt.org/
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+Allow: /_next/static/
+
+# Block private/admin areas
+Disallow: /dashboard/
+Disallow: /api/
+
+# Block dev artifacts
+Disallow: /node_modules/
+Disallow: /_next/data/
+
+# Google-specific directives
+User-agent: Googlebot
+Allow: /
+Allow: /_next/static/css/
+Allow: /_next/static/js/
+Allow: /_next/static/media/
+Disallow: /dashboard/
+Disallow: /api/
+
+# Google Ads Bot
+User-agent: AdsBot-Google
+Allow: /
+Disallow: /dashboard/
+
+# Google Ads Mobile Bot
+User-agent: AdsBot-Google-Mobile
+Allow: /
+Disallow: /dashboard/
+
+# Sitemap
+Sitemap: https://www.ohbasesores.com/sitemap.xml

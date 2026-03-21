@@ -1,0 +1,147 @@
+.main {
+  padding: 100px 5% 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.heroSection {
+  text-align: center;
+  margin-bottom: 5rem;
+  padding: 4rem 2rem;
+  background: radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, transparent 60%);
+}
+
+.title {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.missionVision {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  margin-bottom: 6rem;
+}
+
+.mvCard {
+  padding: 3rem;
+  text-align: center;
+  border-top: 3px solid var(--accent-silver);
+}
+
+.mvCard h3 {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.mvCard p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.teamSection {
+  text-align: center;
+}
+
+.sectionTitle {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.sectionSub {
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.teamCard {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.teamCard:hover {
+  transform: translateY(-8px);
+}
+
+.teamImageWrapper {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid var(--accent-silver);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  background: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatarPlaceholder {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--accent-silver);
+}
+
+.teamInfo h4 {
+  font-size: 1.3rem;
+  margin-bottom: 0.2rem;
+}
+
+.role {
+  display: block;
+  color: var(--accent-silver);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.strength {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.strength strong {
+  color: var(--text-primary);
+}
+
+.contactBtn {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--glass-border);
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  width: 100%;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.contactBtn:hover {
+  background: var(--accent-silver);
+  color: #0B0F19;
+  border-color: var(--accent-silver);
+}
