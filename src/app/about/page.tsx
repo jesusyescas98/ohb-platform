@@ -2,22 +2,18 @@
 
 import Header from '@/components/Header';
 import styles from './AboutPage.module.css';
-import Image from 'next/image';
-
-const team = [
-  { id: 1, name: "Roberto Villarreal", role: "CEO & Asesor Principal", strength: "Experto en Cap Rate y negociaciones B2B. +15 años de experiencia.", img: "/ohb-logo.png" },
-  { id: 2, name: "Ana Lucía Garza", role: "Directora de Créditos Infonavit", strength: "Especialista en Cofinavit y estructuración de deuda.", img: "/ohb-logo.png" },
-  { id: 3, name: "Maximiliano Torres", role: "Asesor Premium Comercial", strength: "Conocimiento profundo del desarrollo comercial en Cd. Juárez.", img: "/ohb-logo.png" },
-  { id: 4, name: "Valeria Montes", role: "Asesora de Inversiones", strength: "Análisis de riesgo y rendimientos para portafolios diversificados.", img: "/ohb-logo.png" },
-  { id: 5, name: "Jorge Ramírez", role: "Especialista en Compra-Venta", strength: "Cierres rápidos y estrategias de valuación de mercado.", img: "/ohb-logo.png" },
-  { id: 6, name: "Sofía Medina", role: "Coordinadora de Arrendamientos", strength: "Gestión de inquilinos y optimización de rentas a largo plazo.", img: "/ohb-logo.png" },
-  { id: 7, name: "Luis Cervantes", role: "Asesor Legal Inmobiliario", strength: "Trámites notariales, contratos y regularización de tierra.", img: "/ohb-logo.png" },
-  { id: 8, name: "Elena Rojas", role: "Asesora de Primera Vivienda", strength: "Acompañamiento a jóvenes familias en el uso de créditos y ahorros.", img: "/ohb-logo.png" },
-  { id: 9, name: "Ricardo Silva", role: "Especialista Industrial", strength: "Bodegas, naves industriales y terrenos comerciales.", img: "/ohb-logo.png" },
-  { id: 10, name: "Carmen Vega", role: "Gestora Patrimonial", strength: "Sucesiones, fideicomisos y protección del patrimonio familiar.", img: "/ohb-logo.png" },
-];
+import { useState, useEffect } from 'react';
+import { AboutDB, type AboutContent } from '../../lib/database';
 
 export default function AboutPage() {
+  const [about, setAbout] = useState<AboutContent | null>(null);
+
+  useEffect(() => {
+    setAbout(AboutDB.get());
+  }, []);
+
+  if (!about) return null;
+
   return (
     <>
       <Header />
@@ -32,19 +28,18 @@ export default function AboutPage() {
         <section className={styles.missionVision}>
           <div className={`glass-panel ${styles.mvCard}`}>
             <h3>Nuestra Misión</h3>
-            <p>Empoderar a inversionistas y familias a través de educación financiera, tecnología de IA y acceso a propiedades de alta rentabilidad, simplificando procesos complejos como créditos e hipotecas.</p>
+            <p>{about.mission}</p>
           </div>
           <div className={`glass-panel ${styles.mvCard}`}>
             <h3>Nuestra Visión</h3>
-            <p>Consolidarnos como la firma inmobiliaria y financiera más avanzada e inteligente del país, redefiniendo la experiencia de inversión con modelos predictivos y el portafolio premium más exclusivo.</p>
+            <p>{about.vision}</p>
           </div>
           <div className={`glass-panel ${styles.mvCard}`}>
             <h3>Nuestros Valores</h3>
             <ul style={{ listStyleType: 'none', padding: 0, marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-               <li><strong>Transparencia:</strong> Claridad total en cada transacción y comisión.</li>
-               <li><strong>Innovación:</strong> Uso de IA y tecnología para resultados precisos.</li>
-               <li><strong>Excelencia:</strong> Servicio premium para clientes exigentes.</li>
-               <li><strong>Integridad:</strong> Protegemos tu patrimonio como si fuera nuestro.</li>
+              {about.values.map((val, idx) => (
+                <li key={idx}><strong>{val.title}:</strong> {val.description}</li>
+              ))}
             </ul>
           </div>
         </section>
@@ -54,10 +49,9 @@ export default function AboutPage() {
           <p className={styles.sectionSub}>Expertos certificados con una única meta: tu éxito financiero.</p>
           
           <div className={styles.teamGrid}>
-            {team.map(member => (
+            {about.team.map(member => (
               <div key={member.id} className={`glass-panel ${styles.teamCard}`}>
                 <div className={styles.teamImageWrapper}>
-                  {/* Avatar fallback */}
                   <div className={styles.avatarPlaceholder}>
                      {member.name.charAt(0)}
                   </div>
@@ -83,7 +77,6 @@ export default function AboutPage() {
             <input type="email" placeholder="Correo Electrónico" required style={{ padding: '0.8rem', borderRadius: '8px', border: 'none', background: 'rgba(255,255,255,0.05)', color: 'white' }} />
             <input type="tel" placeholder="Teléfono" required style={{ padding: '0.8rem', borderRadius: '8px', border: 'none', background: 'rgba(255,255,255,0.05)', color: 'white' }} />
             <textarea placeholder="Descripción y detalles de la propiedad (Metros, ubicación, precio esperado)" required rows={4} style={{ padding: '0.8rem', borderRadius: '8px', border: 'none', background: 'rgba(255,255,255,0.05)', color: 'white', resize: 'vertical' }}></textarea>
-            {/* Hidden field to mark source as Platform directly for admins */}
             <input type="hidden" name="source" value="platform_direct" />
             <button type="submit" className={styles.contactBtn} style={{ marginTop: '1rem', width: '100%', border: 'none', cursor: 'pointer' }}>Registrar Propiedad</button>
           </form>

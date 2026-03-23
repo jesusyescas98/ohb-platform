@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import styles from './LoginModal.module.css';
 import { useAuth, validatePasswordStrength, validateEmail } from '../context/AuthContext';
+import { UsersDB } from '../lib/database';
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -10,7 +11,7 @@ interface LoginModalProps {
 }
 
 export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
-  const { login, checkLoginAttempts, incrementLoginAttempts } = useAuth();
+  const { loginWithPassword, register, checkLoginAttempts, incrementLoginAttempts } = useAuth();
   const [mode, setMode] = useState<'login' | 'register' | 'recovery'>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -30,6 +31,15 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
   // Password strength
   const passwordStrength = validatePasswordStrength(password);
   const isEmailValid = validateEmail(email);
+
+  // Pre-fill remembered email
+  useEffect(() => {
+    const remembered = UsersDB.getRememberedEmail();
+    if (remembered) {
+      setEmail(remembered);
+      setRememberMe(true);
+    }
+  }, []);
 
   // Phone mask
   const handlePhoneChange = (value: string) => {
@@ -74,7 +84,6 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
     // Validate password
     if (!password || password.length < 6) {
       setErrorMessage('La contraseña debe tener al menos 6 caracteres.');
-      incrementLoginAttempts();
       return;
     }
 
@@ -104,29 +113,76 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
 
     setIsLoading(true);
 
-    // Simulated auth process
+    // Simulated delay for UX
     setTimeout(() => {
-      setIsLoading(false);
-      setStep('success');
-      
-      setTimeout(() => {
-        login(email, role, fullName || undefined, phone || undefined);
-        onClose();
-        setStep('form');
-        setEmail('');
-        setPassword('');
-        setConfirmPassword('');
-        setFullName('');
-        setPhone('');
-        setAcceptTerms(false);
-        setEmailTouched(false);
-        setPasswordTouched(false);
-        if (role === 'asesor' || role === 'admin') {
-          window.location.href = '/dashboard';
+      if (mode === 'register') {
+        // ===== REGISTER =====
+        const result = register(email, password, role, fullName, phone);
+        setIsLoading(false);
+
+        if (!result.success) {
+          setErrorMessage(result.error || 'Error al registrar. Intenta de nuevo.');
+          setStep('form');
+          return;
         }
-      }, 2000);
-    }, 1500);
-  }, [email, password, confirmPassword, fullName, phone, role, mode, acceptTerms, passwordStrength.score, login, onClose, checkLoginAttempts, incrementLoginAttempts]);
+
+        setStep('success');
+        setTimeout(() => {
+          onClose();
+          setStep('form');
+          resetForm();
+          if (role === 'asesor' || role === 'admin') {
+            window.location.href = '/dashboard';
+          }
+        }, 2000);
+
+      } else if (mode === 'login') {
+        // ===== LOGIN =====
+        const result = loginWithPassword(email, password, rememberMe);
+        setIsLoading(false);
+
+        if (!result.success) {
+          setErrorMessage(result.error || 'Credenciales inválidas.');
+          setStep('form');
+          incrementLoginAttempts();
+          return;
+        }
+
+        setStep('success');
+        setTimeout(() => {
+          onClose();
+          setStep('form');
+          resetForm();
+          // Get the role from DB to redirect properly
+          const user = UsersDB.getByEmail(email);
+          if (user && (user.role === 'asesor' || user.role === 'admin')) {
+            window.location.href = '/dashboard';
+          }
+        }, 2000);
+
+      } else {
+        // Recovery mode
+        setIsLoading(false);
+        setStep('success');
+        setTimeout(() => {
+          onClose();
+          setStep('form');
+        }, 2000);
+      }
+    }, 1200);
+  }, [email, password, confirmPassword, fullName, phone, role, mode, acceptTerms, rememberMe, passwordStrength.score, loginWithPassword, register, onClose, checkLoginAttempts, incrementLoginAttempts]);
+
+  const resetForm = () => {
+    setPassword('');
+    setConfirmPassword('');
+    setFullName('');
+    setPhone('');
+    setAcceptTerms(false);
+    setEmailTouched(false);
+    setPasswordTouched(false);
+    // Don't reset email if rememberMe is on
+    if (!rememberMe) setEmail('');
+  };
 
   if (!isOpen) return null;
 
@@ -159,7 +215,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
             </h2>
             <p className={styles.subtitle}>
               {mode === 'login' 
-                ? 'Accede a tus inversiones y paneles predictivos.' 
+                ? 'Ingresa con tu correo y contraseña registrados.' 
                 : mode === 'register'
                 ? 'Crea tu cuenta para acceder a métricas, CRM y herramientas IA.'
                 : 'Ingresa tu correo para recibir instrucciones de recuperación.'}
@@ -267,7 +323,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                       onChange={e => { setEmail(e.target.value); if (!emailTouched) setEmailTouched(true); }}
                       onBlur={() => setEmailTouched(true)}
                       className={styles.input}
-                      autoComplete="new-password"
+                      autoComplete="email"
                       style={emailTouched && email && !isEmailValid ? { borderColor: '#f87171' } : emailTouched && isEmailValid ? { borderColor: '#4ade80' } : {}}
                     />
                     {emailTouched && email && !isEmailValid && (
@@ -285,7 +341,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                         value={password}
                         onChange={e => { setPassword(e.target.value); if (!passwordTouched) setPasswordTouched(true); }}
                         className={styles.input}
-                        autoComplete="new-password"
+                        autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
                         minLength={6}
                         style={{ paddingRight: '3rem' }}
                       />
@@ -370,7 +426,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                           onChange={e => setRememberMe(e.target.checked)}
                           style={{ accentColor: 'var(--accent-silver)' }}
                         />
-                        Recordar mi sesión
+                        Recordar mi usuario
                       </label>
                     )}
                   </div>
@@ -409,8 +465,13 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
         {step === 'success' && (
           <div className={styles.successState}>
             <div className={styles.aiVerification}></div>
-            <h3>✅ Verificación Exitosa</h3>
-            <p>Configurando tu entorno {role.toUpperCase()}...</p>
+            <h3>✅ {mode === 'register' ? 'Registro Exitoso' : mode === 'login' ? 'Bienvenido de Vuelta' : 'Enlace Enviado'}</h3>
+            <p>{mode === 'register' 
+              ? `Tu cuenta ${role.toUpperCase()} ha sido creada.`
+              : mode === 'login'
+              ? 'Verificación completada. Redirigiendo...'
+              : 'Revisa tu correo para el enlace de recuperación.'
+            }</p>
             <div style={{ marginTop: '1rem', padding: '1rem', background: 'rgba(74, 222, 128, 0.1)', borderRadius: '8px', border: '1px solid rgba(74, 222, 128, 0.2)' }}>
               <p style={{ fontSize: '0.8rem', color: '#4ade80' }}>
                 🔒 Sesión segura establecida • Token generado • Encriptación activa
