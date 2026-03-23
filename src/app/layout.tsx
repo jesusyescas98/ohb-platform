@@ -17,7 +17,7 @@ const outfit = Outfit({
 });
 
 const SITE_URL = "https://www.ohbasesores.com";
-const SITE_NAME = "OHB Asesorías y Consultorías";
+const SITE_NAME = "OHB Inmobiliaria | Asesorías y Consultorías";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -29,12 +29,15 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   // === Core Metadata ===
   title: {
-    default: "OHB Asesorías y Consultorías | Bienes Raíces, Inversiones e IA en Ciudad Juárez",
-    template: "%s | OHB Asesorías y Consultorías",
+    default: "OHB Inmobiliaria | Bienes Raíces, Inversiones e IA en Ciudad Juárez",
+    template: "%s | OHB Inmobiliaria",
   },
   description:
     "Plataforma premium de bienes raíces, finanzas e inversiones en Ciudad Juárez, Chihuahua. Asesoría inmobiliaria personalizada con Inteligencia Artificial, calculadoras de hipoteca, análisis de ROI, portafolio de propiedades exclusivas y cursos especializados en inversión.",
   keywords: [
+    "OHB",
+    "OHB Inmobiliaria",
+    "inmobiliaria Juárez",
     "bienes raíces Ciudad Juárez",
     "inversiones inmobiliarias",
     "asesoría inmobiliaria Juárez",
@@ -52,9 +55,9 @@ export const metadata: Metadata = {
     "crédito hipotecario Juárez",
     "consultoría financiera inmobiliaria",
   ],
-  authors: [{ name: "OHB Asesorías y Consultorías", url: SITE_URL }],
-  creator: "OHB Asesorías y Consultorías",
-  publisher: "OHB Asesorías y Consultorías",
+  authors: [{ name: "OHB Inmobiliaria", url: SITE_URL }],
+  creator: "OHB Inmobiliaria",
+  publisher: "OHB Inmobiliaria",
 
   // === Robots & Indexing ===
   robots: {
@@ -81,7 +84,7 @@ export const metadata: Metadata = {
 
   // === Open Graph (Facebook, LinkedIn, WhatsApp) ===
   openGraph: {
-    title: "OHB Asesorías y Consultorías | Bienes Raíces, Inversiones e IA",
+    title: "OHB Inmobiliaria | Bienes Raíces, Inversiones e IA",
     description:
       "Plataforma premium de bienes raíces e inversiones con IA predictiva en Ciudad Juárez. Portafolio exclusivo, calculadoras financieras y asesoría personalizada.",
     url: SITE_URL,
@@ -155,7 +158,7 @@ const jsonLd = {
     {
       "@type": ["RealEstateAgent", "FinancialService", "LocalBusiness"],
       "@id": `${SITE_URL}/#organization`,
-      "name": "OHB Asesorías y Consultorías",
+      "name": "OHB Inmobiliaria | Asesorías y Consultorías",
       "alternateName": "OHB Asesores",
       "url": SITE_URL,
       "logo": {

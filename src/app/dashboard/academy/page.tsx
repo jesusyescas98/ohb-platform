@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import styles from '../Dashboard.module.css';
-import { ArticlesDB, InfographicsDB, CoursesDB, ActivityLogDB, type ArticleRecord, type InfographicRecord, type CourseRecord } from '../../../lib/database';
+import { ArticlesDB, InfographicsDB, CoursesDB, ActivityLogDB, type ArticleRecord, type InfographicRecord, type CourseRecord, type CourseAttachment } from '../../../lib/database';
 import { useAuth } from '../../../context/AuthContext';
 
 type Tab = 'articles' | 'infographics' | 'courses';
@@ -97,12 +97,60 @@ export default function AcademyCMSPage() {
 
   // ========== COURSES ==========
   const openCourseEdit = (course?: CourseRecord) => {
-    setEditingItem(course ? { ...course, _type: 'course', _topicsText: (course.topics || []).join(', ') } : {
+    setEditingItem(course ? { ...course, _type: 'course', _topicsText: (course.topics || []).join(', '), price: course.price || 0, attachments: course.attachments || [] } : {
       _type: 'course', id: `CRS-${Date.now().toString(36).toUpperCase()}`,
       title: '', description: '', instructor: '', duration: '', level: 'basico',
       topics: [], _topicsText: '', imageUrl: '', createdBy: userEmail || '',
+      price: 0, attachments: [],
     });
     setIsModalOpen(true);
+  };
+
+  const handleCourseAttachment = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > 10 * 1024 * 1024) { alert('Máximo 10MB por archivo adjunto en este demo'); return; }
+    
+    let type: CourseAttachment['type'] = 'file';
+    if (file.type.startsWith('image/')) type = 'image';
+    else if (file.type.startsWith('video/')) type = 'video';
+    
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const newAttachment: CourseAttachment = {
+        name: file.name,
+        type,
+        url: ev.target?.result as string,
+      };
+      setEditingItem(prev => {
+        const past = (prev.attachments as CourseAttachment[]) || [];
+        return { ...prev, attachments: [...past, newAttachment] };
+      });
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const removeCourseAttachment = (index: number) => {
+    setEditingItem(prev => {
+      const past = [...((prev.attachments as CourseAttachment[]) || [])];
+      past.splice(index, 1);
+      return { ...prev, attachments: past };
+    });
+  };
+
+  const handleLinkAttachment = () => {
+    const link = prompt('Ingresa el enlace (URL):');
+    if (!link) return;
+    const name = prompt('Nombre del enlace:') || 'Enlace Externo';
+    const newAttachment: CourseAttachment = {
+      name,
+      type: 'link',
+      url: link,
+    };
+    setEditingItem(prev => {
+      const past = (prev.attachments as CourseAttachment[]) || [];
+      return { ...prev, attachments: [...past, newAttachment] };
+    });
   };
 
   const saveCourse = () => {
@@ -226,6 +274,11 @@ export default function AcademyCMSPage() {
               <h4 style={{ fontSize: '1rem' }}>{course.title}</h4>
               <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>{course.description}</p>
               <p style={{ fontSize: '0.75rem', color: 'var(--accent-silver)' }}>👨‍🏫 {course.instructor}</p>
+              {course.price ? (
+                <p style={{ fontSize: '0.8rem', fontWeight: 'bold', color: 'var(--accent-gold)' }}>💵 Costo: ${course.price.toLocaleString()}</p>
+              ) : (
+                <p style={{ fontSize: '0.8rem', fontWeight: 'bold', color: '#4ade80' }}>🎁 Gratis</p>
+              )}
               {course.topics && course.topics.length > 0 && (
                 <div style={{ display: 'flex', gap: '0.2rem', flexWrap: 'wrap' }}>
                   {course.topics.map(t => (
@@ -311,6 +364,29 @@ export default function AcademyCMSPage() {
                   <div className={styles.formGroup}>
                     <label className={styles.formLabel}>Temas (separados por coma)</label>
                     <input className={styles.formInput} value={(editingItem._topicsText as string) || ''} onChange={e => setEditingItem({...editingItem, _topicsText: e.target.value})} placeholder="ROI, Cap Rate, Apalancamiento" />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label className={styles.formLabel}>Costo del curso (0 para gratuito)</label>
+                    <input type="number" min="0" className={styles.formInput} value={(editingItem.price as number) || 0} onChange={e => setEditingItem({...editingItem, price: parseFloat(e.target.value) || 0})} placeholder="0" />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label className={styles.formLabel}>Contenidos / Archivos Adjuntos</label>
+                    <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                      <input type="file" id="course_file_upload" style={{ display: 'none' }} onChange={handleCourseAttachment} />
+                      <button type="button" onClick={() => document.getElementById('course_file_upload')?.click()} className={styles.secondaryBtn} style={{ padding: '0.3rem 0.6rem', fontSize: '0.8rem' }}>📎 Subir Archivo/Video</button>
+                      <button type="button" onClick={handleLinkAttachment} className={styles.secondaryBtn} style={{ padding: '0.3rem 0.6rem', fontSize: '0.8rem' }}>🔗 Agregar Enlace</button>
+                    </div>
+                    {((editingItem.attachments as any[]) || []).map((att, idx) => (
+                      <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255,255,255,0.05)', padding: '0.4rem 0.8rem', borderRadius: '4px', marginBottom: '0.3rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          <span style={{ fontSize: '1.2rem' }}>
+                            {att.type === 'file' ? '📄' : att.type === 'image' ? '🖼️' : att.type === 'video' ? '🎬' : '🔗'}
+                          </span>
+                          <span style={{ fontSize: '0.85rem' }}>{att.name}</span>
+                        </div>
+                        <button type="button" onClick={() => removeCourseAttachment(idx)} style={{ background: 'none', border: 'none', color: '#ef4444', cursor: 'pointer', fontSize: '1.2rem', padding: '0 0.5rem' }}>×</button>
+                      </div>
+                    ))}
                   </div>
                 </>
               )}

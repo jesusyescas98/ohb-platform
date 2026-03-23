@@ -140,6 +140,12 @@ export interface InfographicRecord {
   updatedAt: number;
 }
 
+export interface CourseAttachment {
+  name: string;
+  type: 'file' | 'image' | 'video' | 'link';
+  url: string; // for link or base64
+}
+
 export interface CourseRecord {
   id: string;
   title: string;
@@ -149,6 +155,8 @@ export interface CourseRecord {
   level: 'basico' | 'intermedio' | 'avanzado';
   topics: string[];
   imageUrl: string;
+  price?: number;
+  attachments?: CourseAttachment[];
   createdBy: string;
   createdAt: number;
   updatedAt: number;
@@ -542,9 +550,9 @@ export const CoursesDB = {
   initDefaults: (): void => {
     if (getCollection<CourseRecord>(DB_KEYS.COURSES).length === 0) {
       setCollection(DB_KEYS.COURSES, [
-        { id: 'CRS-001', title: 'Fundamentos de Inversión Inmobiliaria', description: 'Aprende las bases de la inversión inmobiliaria desde cero.', instructor: 'Roberto Villarreal', duration: '4 horas', level: 'basico', topics: ['ROI', 'Cap Rate', 'Apalancamiento'], imageUrl: '', createdBy: 'sistema', createdAt: Date.now(), updatedAt: Date.now() },
-        { id: 'CRS-002', title: 'Créditos Infonavit Avanzado', description: 'Domina los esquemas de cofinanciamiento y subcuenta de vivienda.', instructor: 'Ana Lucía Garza', duration: '6 horas', level: 'avanzado', topics: ['Cofinavit', 'Subcuenta', 'Precalificación'], imageUrl: '', createdBy: 'sistema', createdAt: Date.now(), updatedAt: Date.now() },
-        { id: 'CRS-003', title: 'Técnicas de Cierre Inmobiliario', description: 'Estrategias probadas para cerrar tratos con eficacia.', instructor: 'Maximiliano Torres', duration: '3 horas', level: 'intermedio', topics: ['Negociación', 'Objeciones', 'Cierre'], imageUrl: '', createdBy: 'sistema', createdAt: Date.now(), updatedAt: Date.now() },
+        { id: 'CRS-001', title: 'Fundamentos de Inversión Inmobiliaria', description: 'Aprende las bases de la inversión inmobiliaria desde cero.', instructor: 'Roberto Villarreal', duration: '4 horas', level: 'basico', topics: ['ROI', 'Cap Rate', 'Apalancamiento'], imageUrl: '', price: 0, attachments: [], createdBy: 'sistema', createdAt: Date.now(), updatedAt: Date.now() },
+        { id: 'CRS-002', title: 'Créditos Infonavit Avanzado', description: 'Domina los esquemas de cofinanciamiento y subcuenta de vivienda.', instructor: 'Ana Lucía Garza', duration: '6 horas', level: 'avanzado', topics: ['Cofinavit', 'Subcuenta', 'Precalificación'], imageUrl: '', price: 500, attachments: [], createdBy: 'sistema', createdAt: Date.now(), updatedAt: Date.now() },
+        { id: 'CRS-003', title: 'Técnicas de Cierre Inmobiliario', description: 'Estrategias probadas para cerrar tratos con eficacia.', instructor: 'Maximiliano Torres', duration: '3 horas', level: 'intermedio', topics: ['Negociación', 'Objeciones', 'Cierre'], imageUrl: '', price: 0, attachments: [], createdBy: 'sistema', createdAt: Date.now(), updatedAt: Date.now() },
       ]);
     }
   }
