@@ -74,6 +74,8 @@ export default function AVACopilotPage() {
       } else if (lowerInput.includes('prospecto') || lowerInput.includes('lead') || lowerInput.includes('contacto')) {
         responseText = "Detecté métricas activas en nuestra base. Te recomiendo monitorearlo de cerca para ganar la venta. Te preparé un embudo en el Pipeline de Leads para darle seguimiento inmediato.";
         detectedLink = { text: "Ir al Pipeline de Leads →", url: "/dashboard/leads" };
+      } else if (lowerInput.includes('imagen') || lowerInput.includes('foto') || lowerInput.includes('valorar') || lowerInput.includes('precio') || lowerInput.includes('avaluo') || lowerInput.includes('estimacion')) {
+        responseText = "Analizando la imagen de la propiedad... Considerando la dirección detectada en los metadatos, el estado de conservación de la vivienda y sus características principales (3 habitaciones, jardín, acabados modernos), mi valoración estimada es de $3,500,000 MXN. Comparando con la zona, el rango sugerido es de $3.2M a $3.7M MXN (Ej. Propiedad en Calle Olmos vendida por $3.4M; Casa en Av. Principal enlistada en $3.6M).";
       } else if (lowerInput.includes('propiedad') || lowerInput.includes('inventario') || lowerInput.includes('catalogo')) {
         responseText = "Excelente, he cargado las estadísticas del catálogo actual. Contamos con propiedades 'En Renta' y 'Disponibles'. Te sugiero visitar la Gestión de Propiedades para actualizar precios.";
         detectedLink = { text: "Gestionar Propiedades →", url: "/dashboard/properties" };
@@ -99,7 +101,7 @@ export default function AVACopilotPage() {
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const newFile = e.target.files[0];
-      const type = newFile.name.endsWith('.pdf') ? 'PDF' : newFile.name.includes('.xls') ? 'Excel' : 'Documento';
+      const type = newFile.name.endsWith('.pdf') ? 'PDF' : newFile.name.includes('.xls') ? 'Excel' : newFile.type.startsWith('image/') ? 'Imagen' : 'Documento';
       
       const fileRecord: UploadedFile = {
         id: Date.now().toString(),
@@ -241,21 +243,21 @@ export default function AVACopilotPage() {
         {/* --- DOCS TAB --- */}
         {activeTab === 'docs' && (
           <div style={{ padding: '1rem', overflowY: 'auto' }}>
-            <h3 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>Alimentar Base de Conocimiento (PDF/Excel)</h3>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>Carga archivos para que la IA "AVA" pueda leer su contenido, comprender los reportes de ventas, leer reglamentos o sacar métricas de Excels. Esto optimizará el soporte para tu equipo.</p>
+            <h3 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>Alimentar Base de Conocimiento (PDF/Excel/Imágenes)</h3>
+            <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>Carga archivos para que la IA "AVA" pueda leer su contenido, comprender los reportes de ventas, extraer métricas o analizar imágenes de propiedades para valuación.</p>
             
             <div 
               style={{ border: '2px dashed var(--accent-silver)', padding: '3rem', textAlign: 'center', borderRadius: '12px', cursor: 'pointer', background: 'rgba(255,255,255,0.02)', marginBottom: '2rem' }}
               onClick={() => fileInputRef.current?.click()}
             >
-              <span style={{ fontSize: '3rem', display: 'block', marginBottom: '1rem' }}>📄</span>
-              <p style={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--text-primary)' }}>Haz clic para cargar documentos</p>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Soporta .pdf, .xls, .xlsx (Máx 20MB)</p>
+              <span style={{ fontSize: '3rem', display: 'block', marginBottom: '1rem' }}>📄🖼️</span>
+              <p style={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--text-primary)' }}>Haz clic para cargar documentos o imágenes</p>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Soporta .pdf, .xls, .xlsx, imágenes (Máx 20MB)</p>
               <input 
                 type="file" 
                 ref={fileInputRef} 
                 onChange={handleFileUpload}
-                accept=".pdf, .xls, .xlsx" 
+                accept=".pdf, .xls, .xlsx, image/*" 
                 style={{ display: 'none' }} 
               />
             </div>
@@ -265,7 +267,7 @@ export default function AVACopilotPage() {
               {files.map(file => (
                 <div key={file.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem', background: 'rgba(255,255,255,0.05)', borderRadius: '8px', border: '1px solid var(--glass-border)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    <span style={{ fontSize: '1.5rem' }}>{file.type === 'PDF' ? '📕' : '📗'}</span>
+                    <span style={{ fontSize: '1.5rem' }}>{file.type === 'Imagen' ? '🖼️' : file.type === 'PDF' ? '📕' : '📗'}</span>
                     <div>
                       <div style={{ fontWeight: 'bold', color: 'var(--text-primary)' }}>{file.name}</div>
                       <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Formato: {file.type}</div>

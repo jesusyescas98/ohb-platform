@@ -18,7 +18,6 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
-  const [role, setRole] = useState('cliente');
   const [step, setStep] = useState<'form' | 'success' | 'error' | 'locked'>('form');
   const [errorMessage, setErrorMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -117,7 +116,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
     setTimeout(() => {
       if (mode === 'register') {
         // ===== REGISTER =====
-        const result = register(email, password, role, fullName, phone);
+        const result = register(email, password, 'cliente', fullName, phone);
         setIsLoading(false);
 
         if (!result.success) {
@@ -131,9 +130,6 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
           onClose();
           setStep('form');
           resetForm();
-          if (role === 'asesor' || role === 'admin') {
-            window.location.href = '/dashboard';
-          }
         }, 2000);
 
       } else if (mode === 'login') {
@@ -170,7 +166,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
         }, 2000);
       }
     }, 1200);
-  }, [email, password, confirmPassword, fullName, phone, role, mode, acceptTerms, rememberMe, passwordStrength.score, loginWithPassword, register, onClose, checkLoginAttempts, incrementLoginAttempts]);
+  }, [email, password, confirmPassword, fullName, phone, mode, acceptTerms, rememberMe, passwordStrength.score, loginWithPassword, register, onClose, checkLoginAttempts, incrementLoginAttempts]);
 
   const resetForm = () => {
     setPassword('');
@@ -271,19 +267,6 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                 <>
                   {mode === 'register' && (
                     <>
-                      <div className={styles.inputGroup}>
-                        <label>Tipo de Cuenta <span style={{ color: '#f87171' }}>*</span></label>
-                        <select 
-                          value={role} 
-                          onChange={e => setRole(e.target.value)}
-                          className={styles.input}
-                        >
-                          <option value="cliente">Cliente / Inversionista</option>
-                          <option value="asesor">Asesor Inmobiliario</option>
-                          <option value="admin">Administrador / Personal Confianza</option>
-                        </select>
-                      </div>
-
                       <div className={styles.inputGroup}>
                         <label>Nombre Completo <span style={{ color: '#f87171' }}>*</span></label>
                         <input 
@@ -467,7 +450,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
             <div className={styles.aiVerification}></div>
             <h3>✅ {mode === 'register' ? 'Registro Exitoso' : mode === 'login' ? 'Bienvenido de Vuelta' : 'Enlace Enviado'}</h3>
             <p>{mode === 'register' 
-              ? `Tu cuenta ${role.toUpperCase()} ha sido creada.`
+              ? `Tu cuenta ha sido creada exitosamente.`
               : mode === 'login'
               ? 'Verificación completada. Redirigiendo...'
               : 'Revisa tu correo para el enlace de recuperación.'

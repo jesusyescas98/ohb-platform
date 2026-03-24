@@ -27,7 +27,7 @@
 
 .brandLogo {
   border-radius: 50%;
-  border: 1px solid var(--accent-gold);
+  border: 1px solid var(--accent-silver);
 }
 
 .logoText {
@@ -61,9 +61,9 @@
 }
 
 .socialIcons a:hover {
-  background: var(--accent-gold);
+  background: var(--accent-silver);
   color: #000;
-  border-color: var(--accent-gold);
+  border-color: var(--accent-silver);
 }
 
 .nav {
@@ -108,8 +108,9 @@
   min-height: 90vh;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(to bottom, rgba(11, 15, 25, 0.4), var(--bg-color)), url('/hero-bg.png');
-  background-size: cover;
+  background-image: linear-gradient(to bottom, rgba(11, 15, 25, 0.4), var(--bg-color)), url('/ohb-logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
 }
@@ -148,15 +149,15 @@
 }
 
 .btnPrimary {
-  background: var(--accent-gold);
+  background: var(--accent-silver);
   color: #000;
   border: none;
 }
 
 .btnPrimary:hover {
-  background: var(--accent-gold-hover);
+  background: var(--accent-silver-hover);
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 4px 15px rgba(192, 198, 204, 0.4);
 }
 
 .btnSecondary {
@@ -213,7 +214,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(212,175,55,0.08) 100%);
+  background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(192, 198, 204, 0.08) 100%);
 }
 
 .toolPromoContent {

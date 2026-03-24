@@ -12,6 +12,8 @@ export default function EducationSection() {
 
   const { role, email, fullName, isLoggedIn } = useAuth();
   const [selectedCourse, setSelectedCourse] = useState<CourseRecord | null>(null);
+  const [selectedArticle, setSelectedArticle] = useState<ArticleRecord | null>(null);
+  const [paymentCourse, setPaymentCourse] = useState<string | null>(null);
   const [userPrefs, setUserPrefs] = useState<any>({});
 
   const reloadPrefs = () => {
@@ -37,13 +39,16 @@ export default function EducationSection() {
     return completed.includes(courseId);
   };
 
+  const handlePurchaseButtonClick = (courseId: string) => {
+    setPaymentCourse(courseId);
+  };
+
   const handlePurchase = (courseId: string) => {
-    if (window.confirm('¿Confirmas el pago simulado para acceder al curso?')) {
-      const purchased = userPrefs.purchasedCourses || [];
-      UserPrefsDB.set(email || '', { purchasedCourses: [...purchased, courseId] });
-      reloadPrefs();
-      alert('¡Pago exitoso! Tienes acceso al curso.');
-    }
+    const purchased = userPrefs.purchasedCourses || [];
+    UserPrefsDB.set(email || '', { purchasedCourses: [...purchased, courseId] });
+    reloadPrefs();
+    setPaymentCourse(null);
+    alert('¡Pago exitoso! Tienes acceso al curso.');
   };
 
   const markAsCompleted = (courseId: string) => {
@@ -220,7 +225,7 @@ export default function EducationSection() {
                     <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1rem' }}>Para acceder a los materiales de este curso, necesitas realizar el pago.</p>
                     <p style={{ fontSize: '1.2rem', color: 'var(--accent-gold)', fontWeight: 'bold', marginBottom: '1rem' }}>Costo: ${selectedCourse.price?.toLocaleString()}</p>
                     {isLoggedIn ? (
-                      <button onClick={() => handlePurchase(selectedCourse.id)} style={{ padding: '0.7rem 1.5rem', background: 'linear-gradient(135deg, var(--accent-gold), #b89020)', color: '#000', border: 'none', borderRadius: '4px', fontWeight: 'bold', cursor: 'pointer' }}>Realizar Pago Seguro</button>
+                      <button onClick={() => handlePurchaseButtonClick(selectedCourse.id)} style={{ padding: '0.7rem 1.5rem', background: 'linear-gradient(135deg, var(--accent-gold), #b89020)', color: '#000', border: 'none', borderRadius: '4px', fontWeight: 'bold', cursor: 'pointer' }}>Realizar Pago Seguro</button>
                     ) : (
                       <p style={{ color: 'var(--accent-silver)' }}>Inicia sesión para comprar.</p>
                     )}
@@ -294,7 +299,7 @@ export default function EducationSection() {
                 </div>
                 <h3 className={styles.articleTitle}>{article.title}</h3>
                 <p className={styles.description}>{article.description}</p>
-                <button className={styles.readMoreBtn}>
+                <button className={styles.readMoreBtn} onClick={() => setSelectedArticle(article)}>
                   Leer Artículo <span className={styles.arrow}>→</span>
                 </button>
               </div>
@@ -306,6 +311,81 @@ export default function EducationSection() {
           </article>
         )}
       </div>
+
+      {/* ARTICLE MODAL */}
+      {selectedArticle && (
+        <div className={styles.modalOverlay} onClick={(e) => { if(e.target === e.currentTarget) setSelectedArticle(null) }} style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.8)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+          <div className="glass-panel" style={{ width: '100%', maxWidth: '800px', maxHeight: '90vh', overflowY: 'auto', padding: '2rem', position: 'relative' }}>
+            <button onClick={() => setSelectedArticle(null)} style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'none', border: 'none', color: 'var(--text-secondary)', fontSize: '1.5rem', cursor: 'pointer' }}>×</button>
+            <div style={{ marginBottom: '1rem' }}>
+              <span className={styles.categoryBadge} style={{ position: 'static', display: 'inline-block', marginBottom: '1rem' }}>{selectedArticle.category}</span>
+            </div>
+            <h2 style={{ fontSize: '2rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>{selectedArticle.title}</h2>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2rem', color: 'var(--text-secondary)', fontSize: '0.9rem', borderBottom: '1px solid var(--glass-border)', paddingBottom: '1rem' }}>
+              <span>✍️ {selectedArticle.createdBy === 'sistema' ? 'Equipo Editorial OHB' : selectedArticle.createdBy}</span>
+              <span>⏱ {selectedArticle.readTime}</span>
+            </div>
+            
+            {selectedArticle.imageUrl && (
+              <img src={selectedArticle.imageUrl} alt={selectedArticle.title} style={{ width: '100%', maxHeight: '400px', objectFit: 'cover', borderRadius: '8px', marginBottom: '2rem' }} />
+            )}
+            
+            <div style={{ color: 'var(--text-primary)', lineHeight: 1.8, fontSize: '1.05rem', whiteSpace: 'pre-wrap' }}>
+              {selectedArticle.content ? selectedArticle.content : (
+                <div style={{ padding: '3rem', textAlign: 'center', background: 'rgba(255,255,255,0.02)', borderRadius: '8px' }}>
+                  <p style={{ color: 'var(--text-secondary)', fontStyle: 'italic', marginBottom: '1rem' }}>El contenido completo de este artículo no está disponible actualmente.</p>
+                  <p style={{ color: 'var(--text-primary)' }}>{selectedArticle.description}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* PAYMENT MODAL */}
+      {paymentCourse && (
+        <div className={styles.modalOverlay} style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.8)', zIndex: 1100, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+          <div className="glass-panel" style={{ width: '100%', maxWidth: '450px', padding: '2rem', position: 'relative' }}>
+            <button onClick={() => setPaymentCourse(null)} style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'none', border: 'none', color: 'var(--text-secondary)', fontSize: '1.5rem', cursor: 'pointer' }}>×</button>
+            <h2 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: 'var(--text-primary)', textAlign: 'center' }}>Proceso de Pago</h2>
+            <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '8px', marginBottom: '1.5rem' }}>
+               <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '0.5rem' }}>Curso a desbloquear:</p>
+               <p style={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--accent-silver)' }}>{courses.find(c => c.id === paymentCourse)?.title}</p>
+               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '1rem' }}>
+                 <span>Total a pagar:</span>
+                 <span style={{ fontWeight: 'bold', color: 'var(--accent-gold)' }}>
+                   ${courses.find(c => c.id === paymentCourse)?.price?.toLocaleString()} MXN
+                 </span>
+               </div>
+            </div>
+
+            <form onSubmit={(e) => { e.preventDefault(); handlePurchase(paymentCourse); }}>
+              <div style={{ marginBottom: '1rem' }}>
+                <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>Nombre en la tarjeta</label>
+                <input required type="text" placeholder="Ej. Juan Pérez" style={{ width: '100%', padding: '0.8rem', borderRadius: '4px', border: '1px solid var(--glass-border)', background: 'rgba(255,255,255,0.05)', color: 'white' }} />
+              </div>
+              <div style={{ marginBottom: '1rem' }}>
+                <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>Número de tarjeta</label>
+                <input required type="text" placeholder="0000 0000 0000 0000" maxLength={19} style={{ width: '100%', padding: '0.8rem', borderRadius: '4px', border: '1px solid var(--glass-border)', background: 'rgba(255,255,255,0.05)', color: 'white', letterSpacing: '2px' }} />
+              </div>
+              <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
+                <div style={{ flex: 1 }}>
+                  <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>Vencimiento (MM/AA)</label>
+                  <input required type="text" placeholder="12/28" maxLength={5} style={{ width: '100%', padding: '0.8rem', borderRadius: '4px', border: '1px solid var(--glass-border)', background: 'rgba(255,255,255,0.05)', color: 'white' }} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>CVC</label>
+                  <input required type="text" placeholder="123" maxLength={4} style={{ width: '100%', padding: '0.8rem', borderRadius: '4px', border: '1px solid var(--glass-border)', background: 'rgba(255,255,255,0.05)', color: 'white' }} />
+                </div>
+              </div>
+
+              <button type="submit" style={{ width: '100%', padding: '1rem', background: 'linear-gradient(135deg, var(--accent-gold), #b89020)', color: '#000', border: 'none', borderRadius: '4px', fontWeight: 'bold', cursor: 'pointer', fontSize: '1.1rem' }}>
+                Pagar y Desbloquear Curso
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
