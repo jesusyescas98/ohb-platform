@@ -164,6 +164,27 @@ export interface CourseRecord {
   updatedAt: number;
 }
 
+export interface KeyRecord {
+  id: string;
+  property: string;
+  type: string;
+  assignedTo: string;
+  status: string;
+  dateOut: string;
+  createdAt?: number;
+  updatedAt?: number;
+}
+
+export interface AdvisorStatRecord {
+  id: string; // user email or name
+  ventas: number;
+  rentas: number;
+  captaciones: number;
+  inversiones: number;
+  salidas: number;
+  updatedAt: number;
+}
+
 export interface AppointmentRecord {
   id: string;
   title: string;
@@ -225,6 +246,8 @@ export interface WeeklyReport {
 
 // ========== DB KEYS ==========
 const DB_KEYS = {
+  ADVISOR_STATS: 'ohb_db_advisor_stats',
+  KEYS: 'ohb_db_keys',
   USERS: 'ohb_db_users',
   PROPERTIES: 'ohb_db_properties',
   LEADS: 'ohb_db_leads',
@@ -257,6 +280,7 @@ function setCollection<T>(key: string, data: T[]): void {
   if (typeof window === 'undefined') return;
   try {
     localStorage.setItem(key, JSON.stringify(data));
+    window.dispatchEvent(new Event('db_updated'));
     // Background sync to Supabase
     supabase.from('app_data').upsert({ id: key, data }, { onConflict: 'id' }).then(({ error }) => {
       if (error) console.warn(error);
@@ -280,6 +304,7 @@ function setSingle<T>(key: string, data: T): void {
   if (typeof window === 'undefined') return;
   try {
     localStorage.setItem(key, JSON.stringify(data));
+    window.dispatchEvent(new Event('db_updated'));
     // Background sync to Supabase
     supabase.from('app_data').upsert({ id: key, data }, { onConflict: 'id' }).then(({ error }) => {
       if (error) console.warn(error);
@@ -818,6 +843,47 @@ export const FoldersDB = {
   }
 };
 
+// ========== ADVISOR STATS ==========
+export const AdvisorStatsDB = {
+  getAll: (): AdvisorStatRecord[] => getCollection<AdvisorStatRecord>(DB_KEYS.ADVISOR_STATS),
+  getById: (id: string): AdvisorStatRecord | undefined => {
+    return getCollection<AdvisorStatRecord>(DB_KEYS.ADVISOR_STATS).find(s => s.id === id);
+  },
+  upsert: (item: AdvisorStatRecord): void => {
+    const items = getCollection<AdvisorStatRecord>(DB_KEYS.ADVISOR_STATS);
+    const idx = items.findIndex(s => s.id === item.id);
+    if (idx >= 0) { items[idx] = { ...item, updatedAt: Date.now() }; }
+    else { items.push({ ...item, updatedAt: Date.now() }); }
+    setCollection(DB_KEYS.ADVISOR_STATS, items);
+  }
+};
+
+// ========== KEYS ==========
+export const KeysDB = {
+  getAll: (): KeyRecord[] => getCollection<KeyRecord>(DB_KEYS.KEYS),
+  upsert: (item: KeyRecord): void => {
+    const items = getCollection<KeyRecord>(DB_KEYS.KEYS);
+    const idx = items.findIndex(k => k.id === item.id);
+    if (idx >= 0) { items[idx] = { ...item, updatedAt: Date.now() }; }
+    else { items.push({ ...item, createdAt: Date.now(), updatedAt: Date.now() }); }
+    setCollection(DB_KEYS.KEYS, items);
+  },
+  delete: (id: string): void => {
+    setCollection(DB_KEYS.KEYS, getCollection<KeyRecord>(DB_KEYS.KEYS).filter(k => k.id !== id));
+  },
+  initDefaults: (): void => {
+    if (getCollection<KeyRecord>(DB_KEYS.KEYS).length === 0) {
+      setCollection(DB_KEYS.KEYS, [
+        { id: 'K001', property: 'Paseo de las Lomas #442', type: 'Casa', assignedTo: 'Maximiliano Torres', status: 'En uso', dateOut: '2026-03-05', createdAt: Date.now(), updatedAt: Date.now() },
+        { id: 'K002', property: 'Península Residencial', type: 'Departamento', assignedTo: 'Disponible', status: 'En oficina', dateOut: '-', createdAt: Date.now(), updatedAt: Date.now() },
+        { id: 'K003', property: 'Bodega Industrial 4', type: 'Comercial', assignedTo: 'Ricardo Silva', status: 'En uso', dateOut: '2026-03-01', createdAt: Date.now(), updatedAt: Date.now() },
+        { id: 'K004', property: 'Valle del Sol #120', type: 'Casa', assignedTo: 'Jorge Ramírez', status: 'En uso', dateOut: '2026-03-06', createdAt: Date.now(), updatedAt: Date.now() },
+        { id: 'K005', property: 'Torre Vértice Of. 7', type: 'Oficina', assignedTo: 'Disponible', status: 'En oficina', dateOut: '-', createdAt: Date.now(), updatedAt: Date.now() },
+      ]);
+    }
+  }
+};
+
 // ========== INITIALIZE ALL DEFAULTS ==========
 export function initializeDatabase(): void {
   if (typeof window === 'undefined') return;
@@ -829,6 +895,7 @@ export function initializeDatabase(): void {
   CoursesDB.initDefaults();
   AppointmentsDB.initDefaults();
   FoldersDB.initDefaults();
+  KeysDB.initDefaults();
   
   // Pull remote data
   syncFromSupabase();

@@ -1,34 +1,32 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from '../Dashboard.module.css';
-
-interface KeyRecord {
-  id: string;
-  property: string;
-  type: string;
-  assignedTo: string;
-  status: string;
-  dateOut: string;
-}
-
-const initialKeys: KeyRecord[] = [
-  { id: 'K001', property: 'Paseo de las Lomas #442', type: 'Casa', assignedTo: 'Maximiliano Torres', status: 'En uso', dateOut: '2026-03-05' },
-  { id: 'K002', property: 'Península Residencial', type: 'Departamento', assignedTo: 'Disponible', status: 'En oficina', dateOut: '-' },
-  { id: 'K003', property: 'Bodega Industrial 4', type: 'Comercial', assignedTo: 'Ricardo Silva', status: 'En uso', dateOut: '2026-03-01' },
-  { id: 'K004', property: 'Valle del Sol #120', type: 'Casa', assignedTo: 'Jorge Ramírez', status: 'En uso', dateOut: '2026-03-06' },
-  { id: 'K005', property: 'Torre Vértice Of. 7', type: 'Oficina', assignedTo: 'Disponible', status: 'En oficina', dateOut: '-' },
-];
+import { KeysDB, type KeyRecord } from '../../../lib/database';
 
 export default function KeysControlPage() {
-  const [keys, setKeys] = useState<KeyRecord[]>(initialKeys);
+  const [keys, setKeys] = useState<KeyRecord[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [isLendModalOpen, setLendModalOpen] = useState(false);
+
+  useEffect(() => {
+    setKeys(KeysDB.getAll());
+    setIsLoaded(true);
+
+    const handleDbUpdate = () => { setKeys(KeysDB.getAll()); };
+    window.addEventListener('db_updated', handleDbUpdate);
+    return () => window.removeEventListener('db_updated', handleDbUpdate);
+  }, []);
   const [editingKey, setEditingKey] = useState<Partial<KeyRecord>>({});
   const [lendingKey, setLendingKey] = useState<KeyRecord | null>(null);
 
   const handleReturnKey = (id: string) => {
-    setKeys(keys.map(k => k.id === id ? { ...k, status: 'En oficina', assignedTo: 'Disponible', dateOut: '-' } : k));
+    const k = keys.find(k => k.id === id);
+    if (k) {
+      KeysDB.upsert({ ...k, status: 'En oficina', assignedTo: 'Disponible', dateOut: '-' });
+      setKeys(KeysDB.getAll());
+    }
   };
 
   const handleOpenEdit = (key?: KeyRecord) => {
@@ -44,12 +42,8 @@ export default function KeysControlPage() {
     e.preventDefault();
     if (!editingKey.id || !editingKey.property) return;
     
-    const exists = keys.some(k => k.id === editingKey.id);
-    if (exists) {
-      setKeys(keys.map(k => k.id === editingKey.id ? { ...k, ...editingKey } : k));
-    } else {
-      setKeys([...keys, editingKey as KeyRecord]);
-    }
+    KeysDB.upsert(editingKey as KeyRecord);
+    setKeys(KeysDB.getAll());
     setEditModalOpen(false);
   };
 
@@ -65,7 +59,8 @@ export default function KeysControlPage() {
     const assignedTo = (form.elements.namedItem('assignedTo') as HTMLInputElement).value;
     const dateOut = (form.elements.namedItem('dateOut') as HTMLInputElement).value;
     
-    setKeys(keys.map(k => k.id === lendingKey.id ? { ...k, status: 'En uso', assignedTo, dateOut } : k));
+    KeysDB.upsert({ ...lendingKey, status: 'En uso', assignedTo, dateOut });
+    setKeys(KeysDB.getAll());
     setLendModalOpen(false);
   };
 

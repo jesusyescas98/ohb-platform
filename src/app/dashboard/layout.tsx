@@ -38,6 +38,12 @@ const navSections = [
       { href: '/dashboard/keys', label: 'Control de Llaves', sublabel: 'Préstamos y devoluciones', icon: '🔑', badge: null },
       { href: '/dashboard/ai-chat', label: 'Asistente AVA', sublabel: 'IA Copilot para asesores', icon: '🧠', badge: null },
     ]
+  },
+  {
+    label: 'EQUIPO',
+    items: [
+      { href: '/dashboard/asesores', label: 'Asesores', sublabel: 'Control de KPIs', icon: '👔', badge: null },
+    ]
   }
 ];
 
@@ -135,7 +141,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         {navSections.map((section, sectionIdx) => {
           // Filter admin-only items
           const filteredItems = section.items.filter(item => {
-            if (item.href === '/dashboard/about-editor' && !isAdmin) return false;
+            if ((item.href === '/dashboard/about-editor' || item.href === '/dashboard/asesores') && !isAdmin) return false;
             return true;
           });
           if (filteredItems.length === 0) return null;

@@ -21,10 +21,20 @@ export default function EducationSection() {
   };
 
   useEffect(() => {
-    setArticles(ArticlesDB.getAll());
-    setInfographics(InfographicsDB.getAll());
-    setCourses(CoursesDB.getAll());
-    reloadPrefs();
+    const loadData = () => {
+      setArticles(ArticlesDB.getAll());
+      setInfographics(InfographicsDB.getAll());
+      setCourses(CoursesDB.getAll());
+      reloadPrefs();
+    };
+
+    loadData();
+    window.addEventListener('db_updated', loadData);
+    window.addEventListener('storage', loadData);
+    return () => {
+      window.removeEventListener('db_updated', loadData);
+      window.removeEventListener('storage', loadData);
+    };
   }, [email]);
 
   const hasAccessToCourse = (course: CourseRecord) => {

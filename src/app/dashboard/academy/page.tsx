@@ -18,9 +18,19 @@ export default function AcademyCMSPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    setArticles(ArticlesDB.getAll());
-    setInfographics(InfographicsDB.getAll());
-    setCourses(CoursesDB.getAll());
+    const loadData = () => {
+      setArticles(ArticlesDB.getAll());
+      setInfographics(InfographicsDB.getAll());
+      setCourses(CoursesDB.getAll());
+    };
+
+    loadData();
+    window.addEventListener('db_updated', loadData);
+    window.addEventListener('storage', loadData);
+    return () => {
+      window.removeEventListener('db_updated', loadData);
+      window.removeEventListener('storage', loadData);
+    };
   }, []);
 
   const reload = () => {
