@@ -68,20 +68,20 @@ export default function EducationSection() {
     // Background and border
     ctx.fillStyle = '#0f172a'; // dark slate
     ctx.fillRect(0,0,800,600);
-    ctx.strokeStyle = '#d4af37'; // gold
+    ctx.strokeStyle = '#1D3D8F'; // logo dark blue
     ctx.lineWidth = 12;
     ctx.strokeRect(20,20,760,560);
-    ctx.strokeStyle = '#c0c6cc'; // silver inner
+    ctx.strokeStyle = '#00AEEF'; // logo cyan inner
     ctx.lineWidth = 2;
     ctx.strokeRect(36,36,728,528);
 
     // Text
-    ctx.fillStyle = '#d4af37';
+    ctx.fillStyle = '#1D3D8F';
     ctx.textAlign = 'center';
     ctx.font = 'bold 36px "Outfit", sans-serif';
     ctx.fillText('CERTIFICADO DE COMPLETACIÓN', 400, 140);
     
-    ctx.fillStyle = '#c0c6cc';
+    ctx.fillStyle = '#00AEEF';
     ctx.font = '22px "Inter", sans-serif';
     ctx.fillText('OTORGADO A:', 400, 240);
     
@@ -128,7 +128,7 @@ export default function EducationSection() {
            <span className={styles.sparkle}>✨</span> Curado por AVA AI
         </div>
         <h2 className={styles.title}>
-          Academia <span className="text-gradient-silver">OHB</span>
+          Academia <span className="text-gradient-primary">OHB</span>
         </h2>
         <p className={styles.subtitle}>
           Formación premium en finanzas, estrategias inmobiliarias y optimización de créditos Infonavit. Toma decisiones informadas.
@@ -183,9 +183,9 @@ export default function EducationSection() {
                   </div>
                   <h3 className={styles.articleTitle}>{course.title}</h3>
                   <p className={styles.description}>{course.description}</p>
-                  <p style={{ fontSize: '0.8rem', color: 'var(--accent-silver)', marginBottom: '0.5rem' }}>👨‍🏫 {course.instructor}</p>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--accent-secondary)', marginBottom: '0.5rem' }}>👨‍🏫 {course.instructor}</p>
                   {course.price ? (
-                    <p style={{ fontSize: '0.85rem', fontWeight: 'bold', color: 'var(--accent-gold)', marginBottom: '0.5rem' }}>💵 Costo: ${course.price.toLocaleString()}</p>
+                    <p style={{ fontSize: '0.85rem', fontWeight: 'bold', color: 'var(--accent-primary)', marginBottom: '0.5rem' }}>💵 Costo: ${course.price.toLocaleString()}</p>
                   ) : (
                     <p style={{ fontSize: '0.85rem', fontWeight: 'bold', color: '#4ade80', marginBottom: '0.5rem' }}>🎁 Gratis</p>
                   )}
@@ -212,7 +212,7 @@ export default function EducationSection() {
                 
                 <h2 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', color: 'var(--text-primary)' }}>{selectedCourse.title}</h2>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
-                  <span style={{ fontSize: '0.85rem', color: 'var(--accent-silver)' }}>👨‍🏫 {selectedCourse.instructor}</span>
+                  <span style={{ fontSize: '0.85rem', color: 'var(--accent-secondary)' }}>👨‍🏫 {selectedCourse.instructor}</span>
                   <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>⏱ {selectedCourse.duration}</span>
                 </div>
                 
@@ -223,11 +223,11 @@ export default function EducationSection() {
                     <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>🔒</div>
                     <h3 style={{ color: '#ef4444', marginBottom: '0.5rem' }}>Curso Bloqueado</h3>
                     <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1rem' }}>Para acceder a los materiales de este curso, necesitas realizar el pago.</p>
-                    <p style={{ fontSize: '1.2rem', color: 'var(--accent-gold)', fontWeight: 'bold', marginBottom: '1rem' }}>Costo: ${selectedCourse.price?.toLocaleString()}</p>
+                    <p style={{ fontSize: '1.2rem', color: 'var(--accent-primary)', fontWeight: 'bold', marginBottom: '1rem' }}>Costo: ${selectedCourse.price?.toLocaleString()}</p>
                     {isLoggedIn ? (
-                      <button onClick={() => handlePurchaseButtonClick(selectedCourse.id)} style={{ padding: '0.7rem 1.5rem', background: 'linear-gradient(135deg, var(--accent-gold), #b89020)', color: '#000', border: 'none', borderRadius: '4px', fontWeight: 'bold', cursor: 'pointer' }}>Realizar Pago Seguro</button>
+                      <button onClick={() => handlePurchaseButtonClick(selectedCourse.id)} style={{ padding: '0.7rem 1.5rem', background: 'linear-gradient(135deg, var(--accent-primary), var(--accent-primary-hover))', color: '#fff', border: 'none', borderRadius: '4px', fontWeight: 'bold', cursor: 'pointer' }}>Realizar Pago Seguro</button>
                     ) : (
-                      <p style={{ color: 'var(--accent-silver)' }}>Inicia sesión para comprar.</p>
+                      <p style={{ color: 'var(--accent-secondary)' }}>Inicia sesión para comprar.</p>
                     )}
                   </div>
                 ) : (
@@ -260,7 +260,7 @@ export default function EducationSection() {
                       {isCourseCompleted(selectedCourse.id) ? (
                         <div>
                           <p style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '1rem', fontSize: '1.1rem' }}>🎉 ¡Curso Completado al 100%!</p>
-                          <button onClick={() => downloadCertificate(selectedCourse.title)} style={{ padding: '0.8rem 1.5rem', background: 'linear-gradient(135deg, var(--accent-silver), #8f9aa6)', color: '#000', border: 'none', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', fontSize: '1rem' }}>
+                          <button onClick={() => downloadCertificate(selectedCourse.title)} style={{ padding: '0.8rem 1.5rem', background: 'linear-gradient(135deg, var(--accent-secondary), var(--accent-secondary-hover))', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', fontSize: '1rem' }}>
                             🎓 Descargar Certificado
                           </button>
                         </div>
@@ -350,10 +350,10 @@ export default function EducationSection() {
             <h2 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: 'var(--text-primary)', textAlign: 'center' }}>Proceso de Pago</h2>
             <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '8px', marginBottom: '1.5rem' }}>
                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '0.5rem' }}>Curso a desbloquear:</p>
-               <p style={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--accent-silver)' }}>{courses.find(c => c.id === paymentCourse)?.title}</p>
+               <p style={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--accent-secondary)' }}>{courses.find(c => c.id === paymentCourse)?.title}</p>
                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '1rem' }}>
                  <span>Total a pagar:</span>
-                 <span style={{ fontWeight: 'bold', color: 'var(--accent-gold)' }}>
+                 <span style={{ fontWeight: 'bold', color: 'var(--accent-primary)' }}>
                    ${courses.find(c => c.id === paymentCourse)?.price?.toLocaleString()} MXN
                  </span>
                </div>
@@ -379,7 +379,7 @@ export default function EducationSection() {
                 </div>
               </div>
 
-              <button type="submit" style={{ width: '100%', padding: '1rem', background: 'linear-gradient(135deg, var(--accent-gold), #b89020)', color: '#000', border: 'none', borderRadius: '4px', fontWeight: 'bold', cursor: 'pointer', fontSize: '1.1rem' }}>
+              <button type="submit" style={{ width: '100%', padding: '1rem', background: 'linear-gradient(135deg, var(--accent-primary), var(--accent-primary-hover))', color: '#fff', border: 'none', borderRadius: '4px', fontWeight: 'bold', cursor: 'pointer', fontSize: '1.1rem' }}>
                 Pagar y Desbloquear Curso
               </button>
             </form>
