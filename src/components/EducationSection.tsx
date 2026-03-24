@@ -61,65 +61,120 @@ export default function EducationSection() {
 
   const downloadCertificate = (courseTitle: string) => {
     const canvas = document.createElement('canvas');
-    canvas.width = 800;
-    canvas.height = 600;
+    canvas.width = 1000;
+    canvas.height = 700;
     const ctx = canvas.getContext('2d');
     if(!ctx) return;
     
-    // Background and border
-    ctx.fillStyle = '#0f172a'; // dark slate
-    ctx.fillRect(0,0,800,600);
-    ctx.strokeStyle = '#1D3D8F'; // logo dark blue
-    ctx.lineWidth = 12;
-    ctx.strokeRect(20,20,760,560);
-    ctx.strokeStyle = '#00AEEF'; // logo cyan inner
-    ctx.lineWidth = 2;
-    ctx.strokeRect(36,36,728,528);
+    const logoImg = new Image();
+    logoImg.src = '/logo-ohb.png';
+    logoImg.onload = () => {
+      // 1. Background
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, 1000, 700);
 
-    // Text
-    ctx.fillStyle = '#1D3D8F';
-    ctx.textAlign = 'center';
-    ctx.font = 'bold 36px "Outfit", sans-serif';
-    ctx.fillText('CERTIFICADO DE COMPLETACIÓN', 400, 140);
-    
-    ctx.fillStyle = '#00AEEF';
-    ctx.font = '22px "Inter", sans-serif';
-    ctx.fillText('OTORGADO A:', 400, 240);
-    
-    ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 42px "Outfit", sans-serif';
-    ctx.fillText((fullName || email || 'Estudiante').toUpperCase(), 400, 310);
-    
-    ctx.fillStyle = '#c0c6cc';
-    ctx.font = '20px "Inter", sans-serif';
-    ctx.fillText('Por haber completado con éxito al 100% el curso:', 400, 390);
-    
-    ctx.fillStyle = '#4ade80';
-    ctx.font = 'italic bold 28px "Inter", sans-serif';
-    // Wrap title if too long
-    const words = courseTitle.split(' ');
-    let line = '';
-    let y = 450;
-    words.forEach(word => {
-      const test = line + word + ' ';
-      if (ctx.measureText(test).width > 600) {
-        ctx.fillText(line, 400, y);
-        line = word + ' ';
-        y += 40;
-      } else {
-        line = test;
-      }
-    });
-    ctx.fillText(line, 400, y);
-    
-    ctx.font = '16px "Inter", sans-serif';
-    ctx.fillStyle = '#64748b';
-    ctx.fillText(`Academia OHB - Fecha: ${new Date().toLocaleDateString()}`, 400, y + 60);
+      // 2. Elegant border
+      ctx.strokeStyle = '#1D3D8F';
+      ctx.lineWidth = 4;
+      ctx.strokeRect(30, 30, 940, 640);
+      
+      ctx.strokeStyle = '#00AEEF';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(40, 40, 920, 620);
+      
+      // 3. Subtle abstract lines for minimalist look
+      ctx.beginPath();
+      ctx.moveTo(40, 660);
+      ctx.lineTo(200, 660);
+      ctx.lineTo(250, 610);
+      ctx.lineTo(960, 610);
+      ctx.strokeStyle = 'rgba(0, 174, 239, 0.2)';
+      ctx.lineWidth = 20;
+      ctx.stroke();
 
-    const link = document.createElement('a');
-    link.download = `Certificado_${courseTitle.replace(/\s+/g, '_')}.png`;
-    link.href = canvas.toDataURL('image/png');
-    link.click();
+      ctx.imageSmoothingEnabled = true;
+
+      // 4. Logo inside the canvas (top center)
+      const drawWidth = 220;
+      const aspect = logoImg.height / logoImg.width;
+      const drawHeight = drawWidth * aspect;
+      const logoY = 70;
+      ctx.drawImage(logoImg, (1000 - drawWidth) / 2, logoY, drawWidth, drawHeight);
+
+      // 5. Typography
+      const startY = logoY + drawHeight + 60; // Dynamic spacing to avoid logo overlap
+
+      ctx.fillStyle = '#1D3D8F';
+      ctx.textAlign = 'center';
+      
+      // Main Title
+      ctx.font = 'bold 42px "Outfit", Arial, sans-serif';
+      ctx.letterSpacing = '4px';
+      ctx.fillText('CERTIFICADO DE COMPLETACIÓN', 500, startY);
+      
+      // Subtitle
+      ctx.fillStyle = '#64748b';
+      ctx.font = '20px "Inter", Arial, sans-serif';
+      ctx.letterSpacing = '1px';
+      ctx.fillText('SE OTORGA EL PRESENTE RECONOCIMIENTO A:', 500, startY + 50);
+
+      // Student Name
+      ctx.fillStyle = '#1D3D8F';
+      ctx.font = 'bold 48px "Outfit", Arial, sans-serif';
+      ctx.letterSpacing = '0px';
+      const nameStr = (fullName || email || 'Estudiante').toUpperCase();
+      ctx.fillText(nameStr, 500, startY + 110);
+      
+      // Divider line
+      ctx.beginPath();
+      ctx.moveTo(300, startY + 130);
+      ctx.lineTo(700, startY + 130);
+      ctx.strokeStyle = 'rgba(29, 61, 143, 0.3)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // Certificate context
+      ctx.fillStyle = '#64748b';
+      ctx.font = '20px "Inter", Arial, sans-serif';
+      ctx.fillText('Por haber completado satisfactoriamente los requisitos del programa:', 500, startY + 190);
+
+      // Course Name
+      ctx.fillStyle = '#00AEEF';
+      ctx.font = 'bold 30px "Inter", Arial, sans-serif';
+      
+      // Word wrap for long course titles
+      const words = courseTitle.split(' ');
+      let line = '';
+      let y = startY + 240;
+      words.forEach(word => {
+        const test = line + word + ' ';
+        if (ctx.measureText(test).width > 800) {
+          ctx.fillText(line, 500, y);
+          line = word + ' ';
+          y += 40;
+        } else {
+          line = test;
+        }
+      });
+      ctx.fillText(line, 500, y);
+
+      // Date and Signature placeholders
+      ctx.fillStyle = '#1D3D8F';
+      ctx.font = '18px "Inter", Arial, sans-serif';
+      
+      const today = new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
+      ctx.fillText(`Ciudad Juárez, Chih. — ${today}`, 500, y + 80);
+      
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '14px "Inter", Arial, sans-serif';
+      ctx.fillText('Academia OHB Asesorías y Consultorías', 500, y + 110);
+
+      // Generate the download locally
+      const link = document.createElement('a');
+      link.download = `Certificado_${courseTitle.replace(/\s+/g, '_')}.png`;
+      link.href = canvas.toDataURL('image/png', 1.0);
+      link.click();
+    };
   };
 
   return (
