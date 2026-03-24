@@ -108,7 +108,7 @@
   min-height: 90vh;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(to bottom, rgba(11, 15, 25, 0.4), var(--bg-color)), url('/ohb-logo.png');
+  background-image: linear-gradient(to bottom, rgba(11, 15, 25, 0.4), var(--bg-color)), url('/logo-ohb.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

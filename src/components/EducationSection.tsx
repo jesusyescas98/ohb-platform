@@ -51,11 +51,12 @@ export default function EducationSection() {
     alert('¡Pago exitoso! Tienes acceso al curso.');
   };
 
-  const markAsCompleted = (courseId: string) => {
+  const markAsCompleted = (courseId: string, courseTitle: string) => {
     const completed = userPrefs.completedCourses || [];
     UserPrefsDB.set(email || '', { completedCourses: [...completed, courseId] });
     reloadPrefs();
-    alert('¡Felicidades! Has completado el curso marcado como 100%.');
+    alert('¡Felicidades! Has completado el curso al 100%. Se generará tu certificado automáticamente.');
+    downloadCertificate(courseTitle);
   };
 
   const downloadCertificate = (courseTitle: string) => {
@@ -267,7 +268,7 @@ export default function EducationSection() {
                       ) : (
                         <div>
                           <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1rem' }}>Al finalizar de revisar todos los materiales, marca este curso como completado.</p>
-                          <button onClick={() => markAsCompleted(selectedCourse.id)} style={{ padding: '0.7rem 1.5rem', background: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8', border: '1px solid rgba(56, 189, 248, 0.3)', borderRadius: '4px', fontWeight: 'bold', cursor: 'pointer', transition: 'all 0.3s' }}>
+                          <button onClick={() => markAsCompleted(selectedCourse.id, selectedCourse.title)} style={{ padding: '0.7rem 1.5rem', background: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8', border: '1px solid rgba(56, 189, 248, 0.3)', borderRadius: '4px', fontWeight: 'bold', cursor: 'pointer', transition: 'all 0.3s' }}>
                             ✓ Marcar Curso como Completado (100%)
                           </button>
                         </div>
