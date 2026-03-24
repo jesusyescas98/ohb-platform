@@ -5,6 +5,8 @@
    All data survives page reloads and browser sessions.
    ============================================================================ */
 
+import { supabase } from './supabaseClient';
+
 // ========== TYPE DEFINITIONS ==========
 
 export interface UserProfile {
@@ -255,6 +257,10 @@ function setCollection<T>(key: string, data: T[]): void {
   if (typeof window === 'undefined') return;
   try {
     localStorage.setItem(key, JSON.stringify(data));
+    // Background sync to Supabase
+    supabase.from('app_data').upsert({ id: key, data }, { onConflict: 'id' }).then(({ error }) => {
+      if (error) console.warn(error);
+    });
   } catch (e) {
     console.warn('localStorage write failed:', e);
   }
@@ -274,8 +280,29 @@ function setSingle<T>(key: string, data: T): void {
   if (typeof window === 'undefined') return;
   try {
     localStorage.setItem(key, JSON.stringify(data));
+    // Background sync to Supabase
+    supabase.from('app_data').upsert({ id: key, data }, { onConflict: 'id' }).then(({ error }) => {
+      if (error) console.warn(error);
+    });
   } catch (e) {
     console.warn('localStorage write failed:', e);
+  }
+}
+
+// ========== GLOBAL INIT AND SYNC ==========
+export async function syncFromSupabase() {
+  if (typeof window === 'undefined') return;
+  try {
+    const { data: rows, error } = await supabase.from('app_data').select('*');
+    if (error || !rows) return;
+    let updated = false;
+    for (const row of rows) {
+       localStorage.setItem(row.id, JSON.stringify(row.data));
+       updated = true;
+    }
+    if (updated) window.dispatchEvent(new Event('db_updated'));
+  } catch (e) {
+    console.warn("Error fetching from supabase", e);
   }
 }
 
@@ -802,6 +829,9 @@ export function initializeDatabase(): void {
   CoursesDB.initDefaults();
   AppointmentsDB.initDefaults();
   FoldersDB.initDefaults();
+  
+  // Pull remote data
+  syncFromSupabase();
 }
 
 // ========== CSV EXPORT UTILITY ==========
