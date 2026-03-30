@@ -149,9 +149,10 @@
 }
 
 .btnPrimary {
-  background: var(--accent-silver);
-  color: #000;
-  border: none;
+  background: var(--accent-secondary);
+  color: #0B0F19;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 4px 15px rgba(0, 174, 239, 0.3);
 }
 
 .btnPrimary:hover {
@@ -161,9 +162,9 @@
 }
 
 .btnSecondary {
-  background: transparent;
+  background: rgba(0, 174, 239, 0.15);
   color: var(--text-primary);
-  border: 1px solid var(--text-secondary);
+  border: 1px solid var(--accent-secondary);
 }
 
 .btnSecondary:hover {

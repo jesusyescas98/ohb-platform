@@ -10,6 +10,11 @@
   --glass-bg: rgba(29, 61, 143, 0.1);
   --glass-border: rgba(0, 174, 239, 0.3);
   --glass-highlight: rgba(0, 174, 239, 0.2);
+  
+  /* Retain silver variable aliases mapping to our cyan rebrand so old components do not break */
+  --accent-silver: var(--accent-secondary);
+  --accent-silver-hover: var(--accent-secondary-hover);
+  --accent-gold: var(--accent-primary);
 }
 
 html, body {

@@ -67,18 +67,7 @@ export default function DashboardHome() {
   return (
     <div className={styles.container}>
       {/* Welcome Banner */}
-      <div style={{
-        padding: '1.5rem 2rem',
-        borderRadius: '16px',
-        background: 'linear-gradient(135deg, rgba(42, 75, 130, 0.3) 0%, rgba(192, 198, 204, 0.08) 100%)',
-        border: '1px solid rgba(192, 198, 204, 0.15)',
-        marginBottom: '2rem',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        gap: '1rem',
-      }}>
+      <div className={styles.welcomeBanner}>
         <div>
           <h1 style={{ fontSize: '1.6rem', marginBottom: '0.3rem', fontFamily: 'var(--font-outfit)' }}>
             {getGreeting()}, <span className="text-gradient-silver">{fullName?.split(' ')[0] || 'Asesor'}</span> 👋

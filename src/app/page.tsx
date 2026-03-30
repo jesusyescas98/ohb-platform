@@ -33,7 +33,7 @@ export default function Home() {
             <div className={styles.heroActions}>
               <a href="/portfolio" className={`${styles.btn} ${styles.btnPrimary}`}>🏢 Ver Portafolio</a>
               <a href="/#calculadora" className={`${styles.btn} ${styles.btnSecondary}`}>🧮 Calculadoras</a>
-              <a href="/academy" className={`${styles.btn} ${styles.btnSecondary}`} style={{ borderColor: 'rgba(255,255,255,0.2)' }}>🎓 Academia</a>
+              <a href="/academy" className={`${styles.btn} ${styles.btnSecondary}`}>🎓 Academia</a>
             </div>
             {/* Trust indicators */}
             <div style={{ 

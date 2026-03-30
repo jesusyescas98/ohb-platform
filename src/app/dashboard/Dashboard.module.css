@@ -320,6 +320,9 @@
   z-index: 100 !important;
   transform: translateX(0);
   transition: transform 0.3s ease;
+  background: var(--bg-color) !important;
+  border-right: 1px solid var(--glass-border);
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.6);
 }
 
 .sidebarMobileHidden {
@@ -331,6 +334,7 @@
   z-index: 100 !important;
   transform: translateX(-100%);
   transition: transform 0.3s ease;
+  background: var(--bg-color) !important;
 }
 
 /* ═══════════════════════════════════════════
@@ -402,12 +406,26 @@
 .welcomeInfo h1 { font-size: 2.2rem; }
 .subtitle { color: var(--text-secondary); margin-top: 0.3rem; font-size: 0.92rem; }
 
+.welcomeBanner {
+  padding: 1.5rem 2rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(42, 75, 130, 0.3) 0%, rgba(192, 198, 204, 0.08) 100%);
+  border: 1px solid rgba(192, 198, 204, 0.15);
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.subtitle { color: var(--text-secondary); margin-top: 0.3rem; font-size: 0.92rem; }
+
 /* Primary action button */
 .primaryBtn {
   padding: 0.7rem 1.4rem;
   background: var(--accent-silver);
   color: #0B0F19;
-  border: none;
+  border: 2px solid #FFFFFF;
   border-radius: 10px;
   font-weight: 700;
   cursor: pointer;
@@ -417,6 +435,7 @@
   align-items: center;
   gap: 0.4rem;
   white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(0, 174, 239, 0.3);
 }
 
 .primaryBtn:hover {
@@ -427,9 +446,9 @@
 
 .secondaryBtn {
   padding: 0.6rem 1.2rem;
-  background: rgba(255,255,255,0.05);
+  background: rgba(0, 174, 239, 0.15);
   color: var(--text-primary);
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--accent-silver);
   border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
@@ -919,6 +938,12 @@
   
   .pageToolbar { flex-direction: column; }
   .toolbarSearch { min-width: auto; width: 100%; }
+  
+  .welcomeBanner {
+    padding: 1.2rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 @media (max-width: 480px) {

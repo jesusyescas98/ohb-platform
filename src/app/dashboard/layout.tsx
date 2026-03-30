@@ -180,7 +180,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </nav>
 
       {/* Keyboard shortcuts hint */}
-      {(!isSidebarCollapsed || isMobile) && (
+      {!isSidebarCollapsed && !isMobile && (
         <div className={styles.shortcutsHint}>
           ⌨️ Ctrl+L Leads • Ctrl+P Propiedades
         </div>

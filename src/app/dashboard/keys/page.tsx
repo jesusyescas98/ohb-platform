@@ -108,14 +108,14 @@ export default function KeysControlPage() {
                   </td>
                   <td style={{ padding: '1rem', color: key.status === 'En oficina' ? 'var(--text-secondary)' : '#fff' }}>{key.assignedTo}</td>
                   <td style={{ padding: '1rem' }}>{key.dateOut}</td>
-                  <td style={{ padding: '1rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                    {key.status === 'En uso' ? (
-                      <button onClick={() => handleReturnKey(key.id)} style={{ background: 'var(--glass-bg)', color: '#fff', border: '1px solid var(--glass-border)', padding: '0.4rem 0.8rem', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem' }}>Marcar Devolución</button>
-                    ) : (
-                      <button onClick={() => handleOpenLend(key)} style={{ background: 'var(--accent-silver)', color: '#0B0F19', border: 'none', padding: '0.4rem 0.8rem', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 'bold' }}>Prestar Llave</button>
-                    )}
-                    <button onClick={() => handleOpenEdit(key)} style={{ background: 'transparent', color: 'var(--text-secondary)', border: '1px solid var(--glass-border)', padding: '0.4rem 0.8rem', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem' }}>Editar</button>
-                  </td>
+                    <td style={{ padding: '1rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                      {key.status === 'En uso' ? (
+                        <button onClick={() => handleReturnKey(key.id)} style={{ background: 'rgba(0,174,239,0.15)', color: '#fff', border: '1px solid var(--accent-silver)', padding: '0.4rem 0.8rem', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem' }}>Marcar Devolución</button>
+                      ) : (
+                        <button onClick={() => handleOpenLend(key)} style={{ background: 'var(--accent-silver)', color: '#0B0F19', border: '2px solid #FFFFFF', padding: '0.4rem 0.8rem', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 'bold', boxShadow: '0 4px 10px rgba(0,174,239,0.2)' }}>Prestar Llave</button>
+                      )}
+                      <button onClick={() => handleOpenEdit(key)} style={{ background: 'transparent', color: 'var(--text-secondary)', border: '1px solid var(--accent-silver)', padding: '0.4rem 0.8rem', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem' }}>Editar</button>
+                    </td>
                 </tr>
               ))}
               {keys.length === 0 && (
@@ -151,8 +151,8 @@ export default function KeysControlPage() {
                 </select>
               </div>
               <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
-                <button type="button" onClick={() => setEditModalOpen(false)} style={{ flex: 1, background: 'transparent', color: 'var(--text-primary)', border: '1px solid var(--glass-border)', padding: '0.8rem', borderRadius: '8px', cursor: 'pointer' }}>Cancelar</button>
-                <button type="submit" style={{ flex: 1, background: 'var(--accent-silver)', color: '#0B0F19', border: 'none', padding: '0.8rem', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold' }}>Guardar</button>
+                <button type="button" onClick={() => setEditModalOpen(false)} style={{ flex: 1, background: 'rgba(0,174,239,0.15)', color: 'var(--text-primary)', border: '1px solid var(--accent-silver)', padding: '0.8rem', borderRadius: '8px', cursor: 'pointer' }}>Cancelar</button>
+                <button type="submit" style={{ flex: 1, background: 'var(--accent-silver)', color: '#0B0F19', border: '2px solid #FFFFFF', padding: '0.8rem', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold', boxShadow: '0 4px 10px rgba(0,174,239,0.2)' }}>Guardar</button>
               </div>
             </form>
           </div>
@@ -174,8 +174,8 @@ export default function KeysControlPage() {
                 <input required name="dateOut" type="date" defaultValue={new Date().toISOString().split('T')[0]} style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid var(--glass-border)', background: 'rgba(255,255,255,0.05)', color: '#fff' }} />
               </div>
               <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
-                <button type="button" onClick={() => setLendModalOpen(false)} style={{ flex: 1, background: 'transparent', color: 'var(--text-primary)', border: '1px solid var(--glass-border)', padding: '0.8rem', borderRadius: '8px', cursor: 'pointer' }}>Cancelar</button>
-                <button type="submit" style={{ flex: 1, background: 'var(--accent-silver)', color: '#0B0F19', border: 'none', padding: '0.8rem', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold' }}>Prestar y Guardar</button>
+                <button type="button" onClick={() => setLendModalOpen(false)} style={{ flex: 1, background: 'rgba(0,174,239,0.15)', color: 'var(--text-primary)', border: '1px solid var(--accent-silver)', padding: '0.8rem', borderRadius: '8px', cursor: 'pointer' }}>Cancelar</button>
+                <button type="submit" style={{ flex: 1, background: 'var(--accent-silver)', color: '#0B0F19', border: '2px solid #FFFFFF', padding: '0.8rem', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold', boxShadow: '0 4px 10px rgba(0,174,239,0.2)' }}>Prestar y Guardar</button>
               </div>
             </form>
           </div>
