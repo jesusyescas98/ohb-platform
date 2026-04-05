@@ -8,7 +8,9 @@
       "mcp__Desktop_Commander__write_file",
       "mcp__Desktop_Commander__create_directory",
       "Bash(curl -s http://localhost:3000)",
-      "Bash(curl -s http://localhost:3000/checkout)"
+      "Bash(curl -s http://localhost:3000/checkout)",
+      "Bash(taskkill /F /IM node.exe)",
+      "Bash(powershell -Command \"Remove-Item -Path ''''.next'''' -Recurse -Force -ErrorAction SilentlyContinue; Write-Host ''''.next folder cleaned''''\")"
     ]
   }
 }
