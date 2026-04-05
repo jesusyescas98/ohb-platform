@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "Bash(netstat -ano)",
+      "Bash(npm run:*)",
+      "Bash(npm install:*)",
+      "mcp__Desktop_Commander__write_file",
+      "mcp__Desktop_Commander__create_directory",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(curl -s http://localhost:3000/checkout)"
+    ]
+  }
+}

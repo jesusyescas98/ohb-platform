@@ -1,0 +1,262 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg-color);
+}
+
+.successContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+}
+
+.successCard {
+  background: var(--bg-surface);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+
+.successIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  animation: bounceIn 0.6s ease-out;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--accent-primary);
+  margin-bottom: 1rem;
+}
+
+.message {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* Details Box */
+.detailsBox {
+  background: var(--accent-primary-glow);
+  border: 1px solid rgba(27, 58, 107, 0.2);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(27, 58, 107, 0.1);
+}
+
+.detailRow:last-child {
+  border-bottom: none;
+}
+
+.detailLabel {
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.detailValue {
+  color: var(--accent-primary);
+  font-weight: 700;
+  font-size: 0.95rem;
+  font-family: 'Courier New', monospace;
+}
+
+/* Next Steps */
+.nextSteps {
+  background: var(--glass-bg);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.nextSteps h2 {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.nextSteps ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nextSteps li {
+  color: var(--text-secondary);
+  margin-bottom: 0.6rem;
+  padding-left: 0.5rem;
+}
+
+.nextSteps li:last-child {
+  margin-bottom: 0;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.btnPrimary,
+.btnSecondary {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btnPrimary {
+  background: linear-gradient(135deg, var(--accent-primary), #2D5AA0);
+  color: white;
+  box-shadow: 0 4px 15px rgba(27, 58, 107, 0.2);
+}
+
+.btnPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(27, 58, 107, 0.3);
+}
+
+.btnSecondary {
+  background: var(--glass-bg);
+  color: var(--accent-primary);
+  border: 2px solid var(--accent-primary);
+}
+
+.btnSecondary:hover {
+  background: var(--accent-primary-glow);
+}
+
+/* Support */
+.support {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.support a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.support a:hover {
+  color: #2D5AA0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .successCard {
+    padding: 2rem;
+  }
+
+  .successIcon {
+    font-size: 3rem;
+  }
+
+  .title {
+    font-size: 1.7rem;
+  }
+
+  .message {
+    font-size: 1rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .successContainer {
+    padding: 1.5rem 1rem;
+  }
+
+  .successCard {
+    padding: 1.5rem;
+  }
+
+  .successIcon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .message {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .detailsBox,
+  .nextSteps {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .nextSteps h2 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .nextSteps li {
+    font-size: 0.9rem;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    padding: 0.85rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .support {
+    font-size: 0.85rem;
+  }
+}

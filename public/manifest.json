@@ -1,0 +1,26 @@
+{
+  "name": "OHB Asesorías y Consultorías",
+  "short_name": "OHB Asesorías",
+  "description": "Plataforma premium de bienes raíces, inversiones e Inteligencia Artificial en Ciudad Juárez, Chihuahua.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B0F19",
+  "theme_color": "#0B0F19",
+  "orientation": "portrait-primary",
+  "lang": "es-MX",
+  "dir": "ltr",
+  "categories": ["business", "finance", "real estate"],
+  "icons": [
+    {
+      "src": "/ohb-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ]
+}

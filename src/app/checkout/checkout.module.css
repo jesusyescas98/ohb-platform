@@ -1,0 +1,360 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg-color);
+}
+
+.header {
+  background: var(--bg-gradient);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 3rem 1rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.header .container {
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 1rem 0 0;
+}
+
+.header p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin: 0.5rem 0 0;
+}
+
+/* Main checkout grid */
+.checkoutGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin: 3rem 0;
+}
+
+/* Cart Summary Section */
+.cartSection {
+  background: var(--bg-surface);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  height: fit-content;
+  position: sticky;
+  top: 2rem;
+}
+
+.cartSection h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--glass-border);
+}
+
+/* Cart Items */
+.cartItems {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.cartItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.cartItem span:first-child {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.cartItem span:last-child {
+  color: var(--accent-primary);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Totals */
+.totals {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.totalRow span:first-child {
+  font-weight: 500;
+}
+
+.totalRow span:last-child {
+  color: var(--text-primary);
+}
+
+.totalRowFinal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin-top: 1rem;
+  background: var(--accent-primary-glow);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--accent-primary);
+}
+
+.totalRowFinal span:first-child {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.totalRowFinal span:last-child {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--accent-primary);
+}
+
+/* Payment Section */
+.paymentSection {
+  background: var(--bg-surface);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+}
+
+.paymentSection h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--glass-border);
+}
+
+/* Form Group */
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  background: var(--glass-bg);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0 3px rgba(27, 58, 107, 0.1);
+}
+/* Form Row (for expiry and CVC side by side) */
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.formRow .formGroup {
+  margin-bottom: 0;
+}
+
+/* Checkout Button */
+.btnCheckout {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  border: none;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--accent-primary), #2D5AA0);
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(27, 58, 107, 0.2);
+}
+
+.btnCheckout:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(27, 58, 107, 0.3);
+}
+
+.btnCheckout:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btnCheckout:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Disclaimer */
+.disclaimer {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: var(--glass-highlight);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  border-left: 3px solid var(--accent-primary);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .checkoutGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .cartSection {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 2rem 1rem;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .checkoutGrid {
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .cartSection,
+  .paymentSection {
+    padding: 1.5rem;
+  }
+
+  .cartSection h2,
+  .paymentSection h2 {
+    font-size: 1.3rem;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 1.5rem 1rem;
+  }
+
+  .header h1 {
+    font-size: 1.6rem;
+  }
+
+  .header p {
+    font-size: 0.95rem;
+  }
+
+  .container {
+    padding: 0 0.75rem;
+  }
+
+  .checkoutGrid {
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .cartSection,
+  .paymentSection {
+    padding: 1rem;
+  }
+
+  .cartSection h2,
+  .paymentSection h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .cartItem {
+    padding: 0.75rem 0;
+    font-size: 0.9rem;
+  }
+
+  .totalRow {
+    padding: 0.6rem 0;
+    font-size: 0.85rem;
+  }
+
+  .totalRowFinal {
+    padding: 0.8rem;
+  }
+
+  .totalRowFinal span:first-child {
+    font-size: 1rem;
+  }
+
+  .totalRowFinal span:last-child {
+    font-size: 1.1rem;
+  }
+
+  .formGroup {
+    margin-bottom: 1rem;
+  }
+
+  .input {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+
+  .btnCheckout {
+    padding: 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  .disclaimer {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    font-size: 0.8rem;
+  }
+}

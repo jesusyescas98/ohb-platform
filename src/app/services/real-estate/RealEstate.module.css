@@ -1,0 +1,689 @@
+/* ===== REAL ESTATE PAGE ===== */
+.main {
+  padding: 80px 5% 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 3rem 0 1rem;
+  position: relative;
+}
+
+.heroGlow {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(42, 75, 130, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1.2rem;
+  border-radius: 20px;
+  margin-bottom: 1.5rem;
+  background: rgba(192, 198, 204, 0.08);
+  border: 1px solid rgba(192, 198, 204, 0.2);
+  font-size: 0.85rem;
+  color: var(--accent-silver);
+  font-weight: 600;
+}
+
+.title {
+  font-family: var(--font-outfit);
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1.15rem;
+  max-width: 750px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ===== OPTIONS GRID ===== */
+.optionsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.optionCard {
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.optionCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  border-color: rgba(192, 198, 204, 0.2);
+}
+
+.optionGlow {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 300px;
+  pointer-events: none;
+}
+
+.optionIcon {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  background: rgba(42, 75, 130, 0.15);
+  color: #5a9cf5;
+  position: relative;
+  z-index: 1;
+}
+
+.optionIconSell {
+  background: rgba(212, 175, 55, 0.12);
+  color: #D4AF37;
+}
+
+.optionTitle {
+  font-family: var(--font-outfit);
+  font-size: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.optionDesc {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
+}
+
+.optionFeatures {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.optionFeature {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.optionFeature svg {
+  color: #4ade80;
+  flex-shrink: 0;
+}
+
+.optionCta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--accent-silver);
+  position: relative;
+  z-index: 1;
+}
+
+.arrowIcon {
+  transition: transform 0.3s ease;
+}
+
+.optionCard:hover .arrowIcon {
+  transform: translateX(6px);
+}
+
+/* ===== COMMISSION BANNER ===== */
+.commissionBanner {
+  margin-top: 1rem;
+}
+
+.commissionCard {
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.commissionTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-family: var(--font-outfit);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.commissionSubtitle {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.tiersGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.tierItem {
+  padding: 1.5rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.3s ease;
+}
+
+.tierItem:hover {
+  border-color: rgba(74, 222, 128, 0.3);
+  background: rgba(74, 222, 128, 0.03);
+}
+
+.tierRate {
+  font-family: var(--font-outfit);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #4ade80;
+  margin-bottom: 0.5rem;
+}
+
+.tierLabel {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+/* ===== SELL FORM ===== */
+.sellFormSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formTopBar {
+  display: flex;
+  align-items: center;
+}
+
+.backBtn {
+  padding: 0.6rem 1.2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.backBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+.formCard {
+  padding: 2.5rem;
+}
+
+.formHeader {
+  margin-bottom: 2rem;
+}
+
+.formHeader h2 {
+  font-family: var(--font-outfit);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.formHeader p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.sellForm {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.formSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formSectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.1rem;
+  color: var(--accent-silver);
+  font-family: var(--font-outfit);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.formGrid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.formGrid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.formGrid4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formGroup label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: var(--font-inter);
+  outline: none;
+  transition: border-color 0.2s ease;
+  width: 100%;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+  border-color: var(--accent-silver);
+}
+
+.formGroup select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ABB3C6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.formGroup select option {
+  background: #141824;
+}
+
+.formGroup textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.formGroup input::-webkit-outer-spin-button,
+.formGroup input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+/* Commission Preview */
+.commissionPreview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem;
+  border-radius: 12px;
+  background: rgba(74, 222, 128, 0.05);
+  border: 1px solid rgba(74, 222, 128, 0.15);
+  gap: 0.3rem;
+}
+
+.commissionPreviewLabel {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.commissionPreviewRate {
+  font-family: var(--font-outfit);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #4ade80;
+}
+
+.commissionPreviewAmount {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Terms */
+.termsSection {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.termsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 1.5rem;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.02);
+  transition: background 0.2s ease;
+}
+
+.termsHeader:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.termsHeader h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1rem;
+  font-family: var(--font-outfit);
+  color: var(--text-primary);
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+
+.termsContent {
+  padding: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; max-height: 0; }
+  to { opacity: 1; max-height: 1000px; }
+}
+
+.termsCard {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.termsCard h4 {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.termsCard p {
+  margin-bottom: 1rem;
+}
+
+.termsTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.termsTable th,
+.termsTable td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.termsTable th {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.termsList {
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.termsList li::marker {
+  color: var(--accent-silver);
+}
+
+.acceptTerms {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.acceptTerms input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #4ade80;
+  margin-top: 0.1rem;
+  flex-shrink: 0;
+}
+
+.termsLink {
+  background: none;
+  border: none;
+  color: #5a9cf5;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: inherit;
+  padding: 0;
+}
+
+.submitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--accent-silver), #E2E8F0);
+  color: #0B0F19;
+  font-weight: 800;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(192, 198, 204, 0.2);
+}
+
+.submitBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(192, 198, 204, 0.3);
+}
+
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ===== SUCCESS STATE ===== */
+.successSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+}
+
+.successCard {
+  padding: 4rem 3rem;
+  text-align: center;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.successIcon {
+  color: #4ade80;
+  animation: scaleIn 0.4s ease;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.successCard h2 {
+  font-family: var(--font-outfit);
+  font-size: 2rem;
+}
+
+.successCard p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.successActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.successBtnPrimary {
+  padding: 0.8rem 1.5rem;
+  background: var(--accent-silver);
+  color: #0B0F19;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.successBtnPrimary:hover {
+  background: var(--accent-silver-hover);
+}
+
+.successBtnSecondary {
+  padding: 0.8rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.successBtnSecondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .optionsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .tiersGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 80px 4% 3rem;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .optionCard {
+    padding: 2rem;
+  }
+
+  .formCard {
+    padding: 1.5rem;
+  }
+
+  .formGrid2,
+  .formGrid3,
+  .formGrid4 {
+    grid-template-columns: 1fr;
+  }
+
+  .successCard {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .successActions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .successBtnPrimary,
+  .successBtnSecondary {
+    text-align: center;
+    width: 100%;
+  }
+}
