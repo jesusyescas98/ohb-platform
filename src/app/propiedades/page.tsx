@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import Header from '../../components/Header';
 import PropertyCard from '../../components/properties/PropertyCard';
+import PropertyMap from '../../components/PropertyMap';
 import { getWhatsAppLink } from '../../lib/propertyData';
 import { PROPERTY_TYPE_LABELS, COLONIAS_JUAREZ } from '../../lib/types';
 import type { Property, PropertyType } from '../../lib/types';
@@ -140,6 +141,28 @@ export default function PropiedadesPage() {
         )}
       </div>
 
+      {/* Interactive Map Section */}
+      <div style={{ padding: '0 1.5rem', marginBottom: '2rem' }}>
+        <h2 style={{ marginBottom: '0.5rem', fontSize: '1.4rem', color: 'white' }}>
+          Ubicación de Propiedades en <span className="text-gradient">Juárez</span>
+        </h2>
+        <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
+          Explora nuestro portafolio de manera interactiva. Haz clic en los marcadores para ver los detalles de cada propiedad.
+        </p>
+        {mounted && (
+          <PropertyMap
+            properties={activeProperties}
+            onPropertyClick={(property) => {
+              // Smooth scroll to property details
+              const element = document.getElementById(`property-${property.id}`);
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }}
+          />
+        )}
+      </div>
+
       {/* Filters */}
       <div className={styles.filtersBar}>
         {/* Mobile toggle */}
@@ -258,7 +281,9 @@ export default function PropiedadesPage() {
         <div className={styles.grid}>
           {filtered.length > 0 ? (
             filtered.map((property) => (
-              <PropertyCard key={property.id} property={property} />
+              <div key={property.id} id={`property-${property.id}`}>
+                <PropertyCard property={property} />
+              </div>
             ))
           ) : (
             <div className={styles.emptyState}>
