@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Servicios de inversión inmobiliaria de OHB">
+  <title>Inversiones Inmobiliarias | OHB</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/design.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/pages.css">
+</head>
+<body>
+  <!-- Header -->
+  
+  <!-- Hero -->
+  <section class="hero" style="min-height: 300px;">
+    <div class="hero-content">
+      <h1>Inversión Inmobiliaria Segura</h1>
+      <p>Oportunidades analizadas para maximizar tu ROI</p>
+    </div>
+  </section>
+  
+  <!-- Investment Types -->
+  <section style="padding: var(--spacing-3xl) 0;">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 2rem;">Tipos de Inversión</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🏠</div>
+          <h3>Compra-Venta</h3>
+          <p>Compra propiedades con potencial y vende a mayor precio. ROI típico: 15-20%</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🏘️</div>
+          <h3>Renta de Largo Plazo</h3>
+          <p>Genera ingresos mensuales pasivos. ROI típico: 10-12% anual</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🏗️</div>
+          <h3>Desarrollo Inmobiliario</h3>
+          <p>Participa en proyectos de construcción. ROI típico: 25-35%</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">💼</div>
+          <h3>Propiedades Comerciales</h3>
+          <p>Invierte en locales y oficinas. ROI típico: 12-18%</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📊</div>
+          <h3>Análisis y Asesoría</h3>
+          <p>Estudios detallados de mercado y oportunidades de inversión.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🎯</div>
+          <h3>Gestión de Cartera</h3>
+          <p>Administración profesional de tus inversiones inmobiliarias.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ROI Table -->
+  <section style="padding: var(--spacing-3xl) 0; background: var(--color-surface);">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 2rem;">ROI Esperado por Tipo</h2>
+      <div style="max-width: 600px; margin: 0 auto;">
+        <table style="width: 100%;">
+          <thead>
+            <tr style="background: var(--color-surface-light);">
+              <th style="padding: 1rem; text-align: left;">Tipo de Inversión</th>
+              <th style="padding: 1rem; text-align: right;">ROI Esperado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--color-surface-light);">
+              <td style="padding: 1rem;">Compra-Venta</td>
+              <td style="padding: 1rem; text-align: right; color: var(--color-success); font-weight: 600;">15-20%</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-surface-light);">
+              <td style="padding: 1rem;">Renta de Largo Plazo</td>
+              <td style="padding: 1rem; text-align: right; color: var(--color-success); font-weight: 600;">10-12% anual</td>
+            </tr>
+            <tr>
+              <td style="padding: 1rem;">Desarrollo Inmobiliario</td>
+              <td style="padding: 1rem; text-align: right; color: var(--color-success); font-weight: 600;">25-35%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Calculator -->
+  <section style="padding: var(--spacing-3xl) 0;">
+    <div class="container">
+      <div id="investment-calc-container"></div>
+    </div>
+  </section>
+  
+  <!-- CTA -->
+  <section style="padding: var(--spacing-3xl) 0; text-align: center; background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);">
+    <div class="container">
+      <h2 style="color: var(--color-text-primary); margin-bottom: 1rem;">¿Listo para Invertir?</h2>
+      <p style="color: var(--color-text-secondary); margin-bottom: 2rem;">Déjanos analizar tus opciones de inversión</p>
+      <a href="/contacto.html" class="btn btn-secondary">Solicitar Análisis</a>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  
+  <!-- WhatsApp -->
+  <a href="https://wa.me/526561327685" target="_blank" class="whatsapp-button">💬</a>
+  
+  <!-- Scripts -->
+  <script src="/assets/js/data.js"></script>
+  <script src="/assets/js/utils.js"></script>
+  <script src="/assets/js/storage.js"></script>
+  <script src="/assets/js/header.js"></script>
+  <script src="/assets/js/footer.js"></script>
+  <script src="/assets/js/cookie-consent.js"></script>
+  <script src="/assets/js/chatbot.js"></script>
+  <script src="/assets/js/investment-calc.js"></script>
+  <script>
+    OHB_INVESTMENT.renderInvestmentCalc('investment-calc-container');
+  </script>
+</body>
+</html>

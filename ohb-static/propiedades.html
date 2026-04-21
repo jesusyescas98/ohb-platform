@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propiedades — OHB</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="/assets/css/design.css">
+  <link rel="stylesheet" href="/assets/css/pages.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/properties.css">
+</head>
+<body>
+<!-- Back Button -->
+<div style="max-width: 1200px; margin: 0 auto; padding: 2rem 1rem 0;">
+  <a href="/index.html" class="btn-detail-back" aria-label="Regresar al Inicio">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    <span>Inicio</span>
+  </a>
+</div>
+
+
+<!-- Property Map Section -->
+<div id="propertyMapContainer" style="margin: 2rem 0;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+    <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: #D4A843;">Mapa Interactivo de Propiedades</h2>
+    <p style="color: rgba(255,255,255,0.7); margin-bottom: 1.5rem;">Explore nuestras propiedades en el mapa. Haga clic en los marcadores para ver más detalles.</p>
+
+    <div id="propertyMap" style="
+      width: 100%;
+      height: 500px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    "></div>
+
+    <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);">
+      <h3 style="margin-top: 0; margin-bottom: 1rem;">Leyenda de Propiedades</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+        <div style="display: flex; align-items: center; gap: 0.8rem;">
+          <div style="width: 24px; height: 24px; background: #FF4444; border-radius: 50%; border: 2px solid white;"></div>
+          <span>Casa / Departamento / Terreno</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.8rem;">
+          <div style="width: 24px; height: 24px; background: #44FF44; border-radius: 50%; border: 2px solid white;"></div>
+          <span>Propiedad Comercial</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.8rem;">
+          <div style="width: 24px; height: 24px; background: #4444FF; border-radius: 50%; border: 2px solid white;"></div>
+          <span>Propiedad de Inversión</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Properties Catalog Section -->
+<div style="max-width: 1400px; margin: 0 auto; padding: 2rem 1rem;">
+  <h2 style="margin-top: 2rem; margin-bottom: 2rem; color: #D4A843;">Catálogo de Propiedades</h2>
+
+  <!-- Dual View Toggle & Results Counter -->
+  <div class="properties-toolbar">
+    <div class="view-toggle-group">
+      <button id="gridViewBtn" class="view-toggle active" title="Vista Grid">
+        <span>☷</span> Grid
+      </button>
+      <button id="listViewBtn" class="view-toggle" title="Vista Lista">
+        <span>≡</span> Lista
+      </button>
+    </div>
+    <div id="resultsCount" class="results-count">
+      Mostrando 12 de 12 propiedades
+    </div>
+  </div>
+
+  <!-- Multi-Filter Panel -->
+  <div class="filter-panel">
+    <div class="filter-header">
+      <h3>Filtros</h3>
+      <button id="clearFiltersBtn" class="btn-clear-filters">✕ Limpiar Filtros</button>
+    </div>
+
+    <div class="filter-grid">
+      <!-- Type Filter -->
+      <div class="filter-item">
+        <label for="filterType">Tipo de Propiedad</label>
+        <select id="filterType" class="filter-input">
+          <option value="">Todos</option>
+          <option value="casa">Casa</option>
+          <option value="departamento">Departamento</option>
+          <option value="terreno">Terreno</option>
+          <option value="comercial">Comercial</option>
+          <option value="inversion">Inversión</option>
+        </select>
+      </div>
+
+      <!-- Location Filter -->
+      <div class="filter-item">
+        <label for="filterLocation">Ubicación</label>
+        <select id="filterLocation" class="filter-input">
+          <option value="">Todas las ubicaciones</option>
+          <option value="juarez">Ciudad Juárez</option>
+          <option value="alrededores">Alrededores</option>
+        </select>
+      </div>
+
+      <!-- Bedrooms Filter -->
+      <div class="filter-item">
+        <label for="filterBedrooms">Recámaras</label>
+        <select id="filterBedrooms" class="filter-input">
+          <option value="">Todas</option>
+          <option value="0">Estudio (0)</option>
+          <option value="1">1 Recámara</option>
+          <option value="2">2 Recámaras</option>
+          <option value="3">3 Recámaras</option>
+          <option value="4">4 o más</option>
+        </select>
+      </div>
+
+      <!-- Bathrooms Filter -->
+      <div class="filter-item">
+        <label for="filterBathrooms">Baños</label>
+        <select id="filterBathrooms" class="filter-input">
+          <option value="">Todos</option>
+          <option value="1">1 Baño</option>
+          <option value="2">2 Baños</option>
+          <option value="3">3 o más</option>
+        </select>
+      </div>
+
+      <!-- Price Range Filter -->
+      <div class="filter-item filter-item-full">
+        <label>Rango de Precio</label>
+        <div class="price-range-inputs">
+          <div class="price-input-group">
+            <label for="filterPriceMin" style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Mínimo</label>
+            <input type="number" id="filterPriceMin" placeholder="Min" class="filter-input price-input" min="0">
+          </div>
+          <span class="price-separator">—</span>
+          <div class="price-input-group">
+            <label for="filterPriceMax" style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Máximo</label>
+            <input type="number" id="filterPriceMax" placeholder="Max" class="filter-input price-input" min="0">
+          </div>
+        </div>
+      </div>
+
+      <!-- Size Range Filter -->
+      <div class="filter-item filter-item-full">
+        <label>Tamaño (m²)</label>
+        <div class="size-range-inputs">
+          <div class="size-input-group">
+            <label for="filterSizeMin" style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Mínimo</label>
+            <input type="number" id="filterSizeMin" placeholder="Min m²" class="filter-input size-input" min="0">
+          </div>
+          <span class="size-separator">—</span>
+          <div class="size-input-group">
+            <label for="filterSizeMax" style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Máximo</label>
+            <input type="number" id="filterSizeMax" placeholder="Max m²" class="filter-input size-input" min="0">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Properties Grid/List Container -->
+  <div id="propertiesContainer" class="properties-grid">
+    <!-- Properties will be loaded here -->
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="/assets/js/data.js"></script>
+<script src="/assets/js/storage.js"></script>
+<script src="/assets/js/property-map.js"></script>
+<script src="/assets/js/property-filter.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Initialize properties
+  const properties = getStoredProperties();
+  if (properties.length === 0 && typeof PROPERTIES !== 'undefined') {
+    PROPERTIES.forEach(p => saveProperty(p));
+  }
+
+  // Initialize property catalog
+  initPropertyCatalog();
+
+  // Initialize map
+  setTimeout(() => {
+    if (window.L && document.getElementById('propertyMap')) {
+      initPropertyMap('propertyMap');
+    }
+  }, 500);
+});
+</script>
+
+<div id="footer-placeholder"></div>
+<script src="/assets/js/storage.js"></script>
+<script src="/assets/js/footer.js"></script>
+</body>
+</html>

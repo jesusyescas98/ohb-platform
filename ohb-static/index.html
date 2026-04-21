@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="OHB Asesorías y Consultorías - Expertos en bienes raíces e inversión inmobiliaria en Juárez, Chihuahua">
+  <meta name="theme-color" content="#1B3A6B">
+  <title>OHB Asesorías y Consultorías | Bienes Raíces & Inversión</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/design.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/pages.css">
+  <link rel="icon" href="/assets/images/logo-ohb.png">
+</head>
+<body>
+  <!-- Header (initialized by header.js) -->
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Invierte en tu Futuro Inmobiliario</h1>
+      <p>Asesoría profesional, propiedades premium y oportunidades de inversión comprobadas</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary" onclick="OHB_UTILS.scrollToElement('#properties-listing')">Ver Propiedades</button>
+        <button class="btn btn-secondary" onclick="OHB_CONTACT.showContactFormSuccess()">Agendar Consulta</button>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number" data-counter="250" data-duration="2000" data-suffix="M">250M</div>
+        <div class="stat-label">en transacciones</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" data-counter="15" data-duration="1500" data-suffix="+">15+</div>
+        <div class="stat-label">años de experiencia</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" data-counter="500" data-duration="2000">500</div>
+        <div class="stat-label">clientes satisfechos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" data-counter="98" data-duration="1800" data-suffix="%">98%</div>
+        <div class="stat-label">tasa de éxito</div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Featured Properties -->
+  <section style="padding: var(--spacing-3xl) 0;">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 3rem;">Propiedades Destacadas</h2>
+      <div id="featured-grid" class="properties-grid" style="grid-template-columns: repeat(3, 1fr);"></div>
+    </div>
+  </section>
+  
+  <!-- Services Section -->
+  <section class="services-section">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 3rem;">Nuestros Servicios</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🏠</div>
+          <h3>Asesoría Inmobiliaria</h3>
+          <p>Encuentra la propiedad perfecta con nuestra guía experta en el mercado juarense.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📈</div>
+          <h3>Análisis de Inversión</h3>
+          <p>Identificamos oportunidades rentables con proyecciones precisas de ROI.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">💼</div>
+          <h3>Gestión de Propiedades</h3>
+          <p>Administramos tus inversiones inmobiliarias de forma profesional.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Calculators Section -->
+  <section class="calculator-section">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 2rem;">Herramientas de Cálculo</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem;">
+        <div id="mortgage-calc-container"></div>
+        <div id="investment-calc-container"></div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Testimonials Section -->
+  <section style="padding: var(--spacing-3xl) 0; background: var(--color-surface);">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 3rem;">Lo que Dicen Nuestros Clientes</h2>
+      <div id="testimonials-container"></div>
+    </div>
+  </section>
+  
+  <!-- Education Section -->
+  <section style="padding: var(--spacing-3xl) 0;">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 3rem;">Academia OHB - Aprende a Invertir</h2>
+      <div id="academy-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+        <!-- Populated by academy.js -->
+      </div>
+    </div>
+  </section>
+  
+  <!-- Newsletter Section -->
+  <section style="padding: var(--spacing-3xl) 0; background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);">
+    <div class="container text-center">
+      <h2 style="margin-bottom: 1rem; color: var(--color-text-primary);">Suscríbete a Nuestro Newsletter</h2>
+      <p style="color: var(--color-text-secondary); margin-bottom: 2rem;">Recibe tips de inversión y oportunidades exclusivas</p>
+      <form id="homepage-newsletter" style="display: flex; gap: var(--spacing-md); max-width: 500px; margin: 0 auto;">
+        <input type="email" placeholder="tu@email.com" required style="flex: 1; padding: var(--spacing-md); background: var(--color-bg-dark); border: 1px solid var(--color-secondary-light); border-radius: var(--radius-md); color: var(--color-text-primary);">
+        <button type="submit" class="btn btn-secondary">Suscribir</button>
+      </form>
+    </div>
+  </section>
+  
+  <!-- Footer (initialized by footer.js) -->
+  
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/526561327685?text=Hola, me interesa conocer más sobre OHB Asesorías" target="_blank" class="whatsapp-button" title="Contacta por WhatsApp">
+    💬
+  </a>
+  
+  <!-- Scripts -->
+  <script src="/assets/js/data.js"></script>
+  <script src="/assets/js/utils.js"></script>
+  <script src="/assets/js/storage.js"></script>
+  <script src="/assets/js/header.js"></script>
+  <script src="/assets/js/footer.js"></script>
+  <script src="/assets/js/cookie-consent.js"></script>
+  <script src="/assets/js/chatbot.js"></script>
+  <script src="/assets/js/counters.js"></script>
+  <script src="/assets/js/testimonials.js"></script>
+  <script src="/assets/js/mortgage-calc.js"></script>
+  <script src="/assets/js/investment-calc.js"></script>
+  
+  <script>
+    // Render featured properties (first 3)
+    const featuredGrid = document.getElementById('featured-grid');
+    if (featuredGrid) {
+      const featured = OHB_DATA.PROPERTIES.slice(0, 3);
+      featured.forEach(prop => {
+        if (window.OHB_PROPERTIES) {
+          featuredGrid.innerHTML += OHB_PROPERTIES.createPropertyCard(prop);
+        }
+      });
+    }
+    
+    // Render calculators
+    if (document.getElementById('mortgage-calc-container')) {
+      OHB_MORTGAGE.renderMortgageCalc('mortgage-calc-container');
+    }
+    if (document.getElementById('investment-calc-container')) {
+      OHB_INVESTMENT.renderInvestmentCalc('investment-calc-container');
+    }
+    
+    // Render academy courses
+    const academyGrid = document.getElementById('academy-grid');
+    if (academyGrid) {
+      OHB_DATA.COURSES.slice(0, 3).forEach(course => {
+        if (window.OHB_ACADEMY) {
+          academyGrid.innerHTML += OHB_ACADEMY.createCourseCard(course);
+        }
+      });
+    }
+    
+    // Newsletter form
+    document.getElementById('homepage-newsletter').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = e.target.querySelector('input[type="email"]').value;
+      OHB_STORAGE.saveLead({
+        email,
+        source: 'newsletter-homepage',
+        message: 'Suscripción newsletter',
+      });
+      alert('¡Gracias por suscribirte!');
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>

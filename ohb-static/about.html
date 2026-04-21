@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sobre OHB Asesorías - Nuestra historia, misión y equipo">
+  <title>Sobre Nosotros | OHB Asesorías</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/design.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/pages.css">
+</head>
+<body>
+  <!-- Header -->
+  
+  <!-- Hero -->
+  <section class="hero" style="min-height: 300px;">
+    <div class="hero-content">
+      <h1>Sobre OHB Asesorías</h1>
+      <p>15+ años de experiencia en bienes raíces e inversión inmobiliaria</p>
+    </div>
+  </section>
+  
+  <!-- About Content -->
+  <section class="about-section">
+    <div class="about-content">
+      <div class="about-intro">
+        <h2>Nuestra Historia</h2>
+        <p>OHB Asesorías nace de la pasión por conectar a las personas con sus propiedades ideales y oportunidades de inversión lucrativas. Durante más de 15 años, hemos construido una reputación sólida en el mercado inmobiliario juarense.</p>
+      </div>
+      
+      <div class="about-values">
+        <div class="value-card">
+          <div class="value-icon">🎯</div>
+          <h3>Nuestra Misión</h3>
+          <p>Ser el socio inmobiliario de confianza que transforma sueños en realidades y maximiza oportunidades de inversión.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">👁️</div>
+          <h3>Nuestra Visión</h3>
+          <p>Liderar el mercado inmobiliario en Juárez con integridad, profesionalismo e innovación.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">✨</div>
+          <h3>Nuestros Valores</h3>
+          <p>Transparencia, honestidad, excelencia y compromiso con el éxito de nuestros clientes.</p>
+        </div>
+      </div>
+      
+      <div class="team-section">
+        <h2>Nuestro Equipo</h2>
+        <div class="team-grid">
+          <div class="team-member">
+            <div class="team-member-image"></div>
+            <h4>Juan Yeskas</h4>
+            <div class="team-member-title">Fundador & Director General</div>
+          </div>
+          <div class="team-member">
+            <div class="team-member-image"></div>
+            <h4>Ana García</h4>
+            <div class="team-member-title">Asesor Inmobiliario Senior</div>
+          </div>
+          <div class="team-member">
+            <div class="team-member-image"></div>
+            <h4>Carlos López</h4>
+            <div class="team-member-title">Analista de Inversión</div>
+          </div>
+          <div class="team-member">
+            <div class="team-member-image"></div>
+            <h4>María Rodríguez</h4>
+            <div class="team-member-title">Gestora de Proyectos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Sell Form Section -->
+  <section style="padding: var(--spacing-3xl) 0; background: var(--color-surface);">
+    <div class="container">
+      <div id="sell-form-container"></div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  
+  <!-- WhatsApp -->
+  <a href="https://wa.me/526561327685" target="_blank" class="whatsapp-button">💬</a>
+  
+  <!-- Scripts -->
+  <script src="/assets/js/data.js"></script>
+  <script src="/assets/js/utils.js"></script>
+  <script src="/assets/js/storage.js"></script>
+  <script src="/assets/js/header.js"></script>
+  <script src="/assets/js/footer.js"></script>
+  <script src="/assets/js/cookie-consent.js"></script>
+  <script src="/assets/js/chatbot.js"></script>
+  <script src="/assets/js/sell-form.js"></script>
+  <script>
+    document.getElementById('sell-form-container') && OHB_SELL.renderSellForm('sell-form-container');
+  </script>
+</body>
+</html>
