@@ -1,38 +1,93 @@
-# Dependencies
-node_modules
+# ========== DEPENDENCIES ==========
+node_modules/
 /.pnp
 .pnp.js
+yarn.lock
+package-lock.json
 
-# Testing
-/coverage
-
-# Next.js
+# ========== NEXT.JS ==========
 /.next/
 /out/
+next-env.d.ts
 
-# Production
+# ========== BUILD & PRODUCTION ==========
 /build
+/dist
+.swc
+.vercel
 
-# Misc
-.DS_Store
-*.pem
+# ========== ENVIRONMENT VARIABLES ==========
 .env
-.env.local
+#.env.local
 .env.development.local
 .env.test.local
 .env.production.local
+.env*.local
 
-# Logs
+# ========== DEBUGGING ==========
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
+lerna-debug.log*
+*.log
 
-# IDE
+# ========== IDE & EDITOR ==========
 .vscode/
 .idea/
-*.swp
-*.swo
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.swp
+.swo
 *~
+*.swp
+*.iml
+.DS_Store
 
-# OS
+# ========== OS ==========
 Thumbs.db
+.DS_Store
+.AppleDouble
+.LSOverride
+*.sublime-workspace
+.history/
+
+# ========== TESTING ==========
+/coverage
+/.nyc_output
+/cypress/screenshots
+/cypress/videos
+
+# ========== TEMPORARY FILES ==========
+*.tmp
+*.temp
+*.bak
+*.old
+*.orig
+
+# ========== SENSITIVE DATA ==========
+# Never commit these
+*.pem
+*.key
+*.pfx
+*.p12
+
+# ========== PROJECT-SPECIFIC ==========
+# Local development databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Supabase local (if using supabase local)
+supabase/.branches
+supabase/.temp
+
+# Upload directories (use cloud storage instead)
+/public/uploads/
+
+# Cache files
+.cache/
+.turbo/

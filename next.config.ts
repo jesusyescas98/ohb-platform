@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   // Remove X-Powered-By header to avoid exposing server info
   poweredByHeader: false,
 
-  // Enable React strict mode for better performance
+  // Enable React strict mode for better performance and error detection
   reactStrictMode: true,
 
   // Image optimization settings
@@ -16,7 +16,22 @@ const nextConfig: NextConfig = {
         hostname: 'images.unsplash.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: '**.supabase.co',
+        pathname: '/storage/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'hcdjwrgisurjskzmypkh.supabase.co',
+        pathname: '/**',
+      },
     ],
+    // Optimize image loading
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // Cache optimized images for 1 year
+    minimumCacheTTL: 31536000,
   },
 
   // Redirect trailing slashes for SEO consistency
@@ -39,7 +54,7 @@ const nextConfig: NextConfig = {
           // Prevent clickjacking
           {
             key: 'X-Frame-Options',
-            value: 'DENY',
+            value: 'SAMEORIGIN',
           },
           // XSS Protection (legacy browsers)
           {
@@ -68,9 +83,9 @@ const nextConfig: NextConfig = {
               "default-src 'self'",
               "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com https://www.google.com https://tpc.googlesyndication.com",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-              "font-src 'self' https://fonts.gstatic.com",
-              "img-src 'self' data: blob: https: https://www.google-analytics.com https://www.googletagmanager.com https://pagead2.googlesyndication.com",
-              "connect-src 'self' https: https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com",
+              "font-src 'self' https://fonts.gstatic.com data:",
+              "img-src 'self' data: blob: https: https://www.google-analytics.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://hcdjwrgisurjskzmypkh.supabase.co",
+              "connect-src 'self' https: https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://hcdjwrgisurjskzmypkh.supabase.co",
               "frame-src https://www.google.com https://www.google.com/maps https://tpc.googlesyndication.com https://googleads.g.doubleclick.net",
               "object-src 'none'",
               "base-uri 'self'",
@@ -148,6 +163,37 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
     ];
+  },
+
+  // API rewrites (if needed in future)
+  async rewrites() {
+    return {
+      beforeFiles: [],
+      afterFiles: [],
+      fallback: [],
+    };
+  },
+
+  // Environment variable validation at build time
+  env: {
+    // Ensure critical env vars are present at build time
+    BUILD_ENV: process.env.NODE_ENV || 'development',
+  },
+
+  // TypeScript configuration
+  typescript: {
+    tsconfigPath: './tsconfig.json',
+  },
+
+  // ESLint configuration
+  eslint: {
+    ignoreDuringBuilds: false,
+  },
+
+  // Experimental features
+  experimental: {
+    // Enable new App Router features
+    esmExternals: true,
   },
 };
 

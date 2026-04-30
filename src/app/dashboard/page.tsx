@@ -51,10 +51,15 @@ export default function DashboardHome() {
   const quickAccessCards = [
     { icon: '🎯', title: 'Pipeline CRM', desc: 'Gestiona leads con campos técnicos inmobiliarios', stat: `${activeLeads.length} activos`, statColor: '#38bdf8', href: '/dashboard/leads', bgColor: 'rgba(56, 189, 248, 0.08)' },
     { icon: '🏠', title: 'Propiedades', desc: 'Inventario con imágenes y estadísticas reales', stat: `${activeProperties.length} disponibles`, statColor: '#4ade80', href: '/dashboard/properties', bgColor: 'rgba(74, 222, 128, 0.08)' },
+    { icon: '💼', title: 'Transacciones', desc: 'Registro de ventas, rentas y comisiones', stat: 'Seguimiento completo', statColor: '#06b6d4', href: '/dashboard/transacciones', bgColor: 'rgba(6, 182, 212, 0.08)' },
     { icon: '📅', title: 'Calendario', desc: 'Agenda citas, visitas y reuniones', stat: `${todayAppts.length} hoy`, statColor: '#f59e0b', href: '/dashboard/calendar', bgColor: 'rgba(245, 158, 11, 0.08)' },
+    { icon: '📈', title: 'Estadísticas', desc: 'Conversiones, fuentes y embudo de ventas', stat: 'Analytics en tiempo real', statColor: '#8b5cf6', href: '/dashboard/estadisticas', bgColor: 'rgba(139, 92, 246, 0.08)' },
     { icon: '🎓', title: 'Academia CMS', desc: 'Gestiona artículos, infografías y cursos', stat: 'Contenido educativo', statColor: '#a855f7', href: '/dashboard/academy', bgColor: 'rgba(168, 85, 247, 0.08)' },
     { icon: '📋', title: 'Reportes', desc: 'Genera reporte semanal de actividades', stat: 'Viernes ready', statColor: '#ec4899', href: '/dashboard/reports', bgColor: 'rgba(236, 72, 153, 0.08)' },
-    ...(role === 'admin' ? [{ icon: '✏️', title: 'Editor Nosotros', desc: 'Modifica la sección pública de la empresa', stat: 'Admin only', statColor: '#64748b', href: '/dashboard/about-editor', bgColor: 'rgba(100, 116, 139, 0.08)' }] : []),
+    ...(role === 'admin' ? [
+      { icon: '⚙️', title: 'Configuración', desc: 'Comisiones, equipo y preferencias', stat: 'Admin only', statColor: '#64748b', href: '/dashboard/configuracion', bgColor: 'rgba(100, 116, 139, 0.08)' },
+      { icon: '✏️', title: 'Editor Nosotros', desc: 'Modifica la sección pública de la empresa', stat: 'Admin only', statColor: '#64748b', href: '/dashboard/about-editor', bgColor: 'rgba(100, 116, 139, 0.08)' }
+    ] : []),
   ];
 
   const getGreeting = () => {

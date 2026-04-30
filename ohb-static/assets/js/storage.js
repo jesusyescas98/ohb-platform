@@ -10,6 +10,8 @@ const STORAGE_KEYS = {
   AUTH: 'ohb_auth',
   USER: 'ohb_user',
   DASHBOARD_STATE: 'ohb_dashboard_state',
+  SESSION: 'ohb_session',
+  REMEMBER_ME: 'ohb_remember_me',
 };
 
 // ===== LEADS =====
@@ -219,9 +221,10 @@ function deleteProperty(id) {
  * Login user
  * @param {string} email - User email
  * @param {string} password - User password
+ * @param {boolean} rememberMe - Save credentials for next login
  * @returns {object|null} Auth token and user data, or null if failed
  */
-function loginUser(email, password) {
+function loginUser(email, password, rememberMe = false) {
   // Simple demo authentication - in production use proper backend auth
   if (email === OHB_DATA.CONSTANTS.EMAIL && password === 'admin123') {
     const auth = {
@@ -234,7 +237,22 @@ function loginUser(email, password) {
       loginAt: new Date().toISOString(),
       expiresAt: new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString(), // 8 hours
     };
+
+    // Save to sessionStorage (expires on browser close)
+    sessionStorage.setItem(STORAGE_KEYS.SESSION, JSON.stringify(auth));
+
+    // Save to localStorage as well for convenience
     localStorage.setItem(STORAGE_KEYS.AUTH, JSON.stringify(auth));
+
+    // Save remember me preference
+    if (rememberMe) {
+      const remember = {
+        email,
+        timestamp: new Date().toISOString(),
+      };
+      localStorage.setItem(STORAGE_KEYS.REMEMBER_ME, JSON.stringify(remember));
+    }
+
     return auth;
   }
   return null;
@@ -245,26 +263,65 @@ function loginUser(email, password) {
  */
 function logoutUser() {
   localStorage.removeItem(STORAGE_KEYS.AUTH);
+  sessionStorage.removeItem(STORAGE_KEYS.SESSION);
 }
 
 /**
- * Get current auth state
+ * Get current auth state (checks sessionStorage first, then localStorage)
  * @returns {object|null} Auth object or null
  */
 function getAuth() {
-  const stored = localStorage.getItem(STORAGE_KEYS.AUTH);
+  // Check sessionStorage first
+  let stored = sessionStorage.getItem(STORAGE_KEYS.SESSION);
+  if (!stored) {
+    stored = localStorage.getItem(STORAGE_KEYS.AUTH);
+  }
   if (!stored) return null;
-  
+
   const auth = JSON.parse(stored);
   const now = new Date();
   const expiry = new Date(auth.expiresAt);
-  
+
   if (now > expiry) {
     logoutUser();
     return null;
   }
-  
+
   return auth;
+}
+
+/**
+ * Get remembered email for login form
+ * @returns {string|null} Remembered email or null
+ */
+function getRememberedEmail() {
+  const stored = localStorage.getItem(STORAGE_KEYS.REMEMBER_ME);
+  if (!stored) return null;
+
+  const remember = JSON.parse(stored);
+  return remember.email || null;
+}
+
+/**
+ * Clear remembered email
+ */
+function clearRememberedEmail() {
+  localStorage.removeItem(STORAGE_KEYS.REMEMBER_ME);
+}
+
+/**
+ * Get time until session expires (in minutes)
+ * @returns {number|null} Minutes until expiry or null if no session
+ */
+function getSessionTimeRemaining() {
+  const auth = getAuth();
+  if (!auth) return null;
+
+  const now = new Date();
+  const expiry = new Date(auth.expiresAt);
+  const diff = expiry.getTime() - now.getTime();
+
+  return Math.floor(diff / 60000); // Convert to minutes
 }
 
 /**
@@ -430,6 +487,9 @@ window.OHB_STORAGE = {
   getAuth,
   isAuthenticated,
   getCurrentUser,
+  getRememberedEmail,
+  clearRememberedEmail,
+  getSessionTimeRemaining,
   setCookieConsent,
   getCookieConsent,
   hasCookieConsent,

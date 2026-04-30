@@ -228,3 +228,100 @@ export const OHB_WHATSAPP = '526561327685';
 export const OHB_WHATSAPP_DISPLAY = '656-132-7685';
 export const OHB_DOMAIN = 'https://www.ohbasesoriasyconsultorias.com';
 export const OHB_SITE_NAME = 'OHB Asesorías y Consultorías';
+
+// ========== AUTHENTICATION & SESSION TYPES ==========
+
+export interface JWTPayload {
+  sub: string; // user ID
+  email: string;
+  role: 'admin' | 'asesor' | 'cliente';
+  iat: number; // issued at
+  exp: number; // expiration
+  fingerprint?: string;
+}
+
+export interface AuthToken {
+  accessToken: string;
+  refreshToken: string;
+  expiresIn: number;
+}
+
+export interface SessionData {
+  userId: string;
+  email: string;
+  name: string;
+  role: 'admin' | 'asesor' | 'cliente';
+  lastActivity: number;
+  fingerprint: string;
+}
+
+export interface RLSClaim {
+  user_id: string;
+  role: string;
+  email: string;
+}
+
+// ========== TRANSACTION TYPES ==========
+
+export interface Transaction {
+  id: string;
+  userId: string;
+  orderId: string;
+  type: 'payment' | 'refund' | 'transfer';
+  amount: number;
+  currency: 'MXN';
+  status: 'pending' | 'completed' | 'failed' | 'cancelled';
+  stripeTransactionId?: string;
+  description: string;
+  createdAt: number;
+  completedAt?: number;
+}
+
+// ========== API RESPONSE TYPES ==========
+
+export interface ApiResponse<T> {
+  success: boolean;
+  data?: T;
+  error?: {
+    code: string;
+    message: string;
+    details?: Record<string, any>;
+  };
+  meta?: {
+    timestamp: number;
+    version: string;
+  };
+}
+
+export interface PaginatedResponse<T> {
+  items: T[];
+  total: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+}
+
+// ========== DATABASE ROW TYPES (for raw Supabase responses) ==========
+
+export interface PropertyRow extends Property {
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface LeadRow extends Lead {
+  created_at?: string;
+  updated_at?: string;
+  assigned_to?: string;
+}
+
+export interface UserRow extends User {
+  created_at?: string;
+  updated_at?: string;
+  password_hash?: string; // only in DB, never in API
+}
+
+export interface OrderRow extends Order {
+  created_at?: string;
+  paid_at?: string;
+  user_id?: string;
+}

@@ -9,10 +9,19 @@
     <link rel="stylesheet" href="/assets/css/design.css">
     <link rel="stylesheet" href="/assets/css/components.css">
     <link rel="stylesheet" href="/assets/css/pages.css">
+    <link rel="stylesheet" href="/assets/css/property-detail.css">
 </head>
-<body data-prop-id="12">
+<body data-prop-id="prop-012">
     <div id="header-container"></div>
-    <div id="property-detail-container"></div>
+
+    <main class="property-detail-main">
+      <a href="/propiedades.html" class="btn-detail-back">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        <span>Volver a Propiedades</span>
+      </a>
+      <div id="property-detail-container"></div>
+    </main>
+
     <div id="footer-container"></div>
 
     <script src="/assets/js/data.js"></script>
@@ -23,5 +32,14 @@
     <script src="/assets/js/cookie-consent.js"></script>
     <script src="/assets/js/chatbot.js"></script>
     <script src="/assets/js/property-detail.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        renderHeader();
+        renderFooter();
+        initPropertyDetail();
+        initCookieConsent();
+        initChatbot();
+      });
+    </script>
 </body>
 </html>

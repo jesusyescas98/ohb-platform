@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuesta Premium | OHB Asesorías y Consultorías 2026</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #1B3A6B;
+      --primary-light: #2D5FA3;
+      --accent: #D4A843;
+      --accent-light: #E8C96A;
+      --bg: #FAFAF8;
+      --surface: #FFFFFF;
+      --text-primary: #1A1A2E;
+      --text-secondary: #666666;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, var(--bg) 0%, #F5F3F0 100%);
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    /* ===== ANIMACIONES GLOBALES ===== */
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(60px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-60px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-60px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(60px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: -1000px 0;
+      }
+      100% {
+        background-position: 1000px 0;
+      }
+    }
+
+    @keyframes rotate360 {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .scroll-reveal {
+      animation: slideInUp 0.8s ease-out forwards;
+      opacity: 0;
+    }
+
+    /* ===== HEADER HERO ===== */
+
+    header {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      overflow: hidden;
+      color: white;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(212, 168, 67, 0.15) 0%, transparent 70%);
+      top: -100px;
+      right: -100px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      bottom: -50px;
+      left: -50px;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 900px;
+      padding: 2rem;
+      animation: slideInUp 1s ease-out;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.5rem 1.2rem;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(212, 168, 67, 0.5);
+      border-radius: 50px;
+      color: var(--accent-light);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(10px);
+      animation: slideInDown 0.8s ease-out;
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      font-family: 'Outfit', sans-serif;
+      animation: slideInUp 1s ease-out 0.2s forwards;
+      opacity: 0;
+      line-height: 1.2;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, var(--accent) 0%, var(--accent-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+      animation: slideInUp 1s ease-out 0.4s forwards;
+      opacity: 0;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      justify-content: center;
+      margin: 3rem 0;
+      flex-wrap: wrap;
+      animation: slideInUp 1s ease-out 0.6s forwards;
+      opacity: 0;
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+
+    .hero-stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+    }
+
+    .hero-stat-label {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin-top: 0.5rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+      animation: slideInUp 1s ease-out 0.8s forwards;
+      opacity: 0;
+    }
+
+    .btn-primary {
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+      color: var(--primary);
+      border: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(212, 168, 67, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(212, 168, 67, 0.4);
+    }
+
+    .btn-secondary {
+      padding: 1rem 2.5rem;
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: var(--primary);
+      transform: translateY(-4px);
+    }
+
+    /* ===== CONTENEDOR PRINCIPAL ===== */
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    /* ===== SECCIONES ===== */
+
+    section {
+      margin-bottom: 6rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      font-family: 'Outfit', sans-serif;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+      border-radius: 2px;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+      max-width: 600px;
+    }
+
+    /* ===== CARDS GRID ===== */
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 40px rgba(27, 58, 107, 0.08);
+      border: 1px solid rgba(27, 58, 107, 0.1);
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+      position: relative;
+      overflow: hidden;
+      animation: slideInUp 0.8s ease-out forwards;
+      opacity: 0;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      transition: all 0.6s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 30px 60px rgba(27, 58, 107, 0.15);
+    }
+
+    .card:hover::before {
+      left: 100%;
+    }
+
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    .card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .card p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ===== PRICING SECTION ===== */
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .price-card {
+      background: var(--surface);
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow: 0 15px 50px rgba(27, 58, 107, 0.1);
+      border: 2px solid rgba(27, 58, 107, 0.1);
+      position: relative;
+      transition: all 0.5s ease;
+      animation: slideInUp 0.8s ease-out forwards;
+      opacity: 0;
+    }
+
+    .price-card.featured {
+      transform: scale(1.05);
+      border-color: var(--accent);
+      box-shadow: 0 30px 80px rgba(212, 168, 67, 0.2);
+    }
+
+    .price-card.featured::before {
+      content: '⭐ RECOMENDADO';
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+      color: var(--primary);
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      animation: slideInDown 0.8s ease-out;
+    }
+
+    .price-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 40px 100px rgba(27, 58, 107, 0.15);
+    }
+
+    .price-card.featured:hover {
+      transform: scale(1.05) translateY(-8px);
+    }
+
+    .price-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .price-amount {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin: 1rem 0;
+    }
+
+    .price-amount small {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      display: block;
+      margin-top: 0.5rem;
+    }
+
+    .price-features {
+      list-style: none;
+      margin: 2rem 0;
+    }
+
+    .price-features li {
+      padding: 0.8rem 0;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      border-bottom: 1px solid rgba(27, 58, 107, 0.08);
+    }
+
+    .price-features li::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 900;
+      font-size: 1.2rem;
+    }
+
+    .price-features li:last-child {
+      border: none;
+    }
+
+    .price-cta {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .price-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(27, 58, 107, 0.3);
+    }
+
+    /* ===== FEATURES TABLE ===== */
+
+    .features-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(27, 58, 107, 0.08);
+      margin-top: 2rem;
+      animation: slideInUp 0.8s ease-out;
+    }
+
+    .features-table th {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: white;
+      padding: 1.5rem;
+      text-align: left;
+      font-weight: 700;
+    }
+
+    .features-table td {
+      padding: 1.5rem;
+      border-bottom: 1px solid rgba(27, 58, 107, 0.08);
+    }
+
+    .features-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .features-table tr:hover {
+      background: rgba(27, 58, 107, 0.03);
+    }
+
+    .feature-tag {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .tag-new {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+      color: var(--primary);
+    }
+
+    /* ===== TIMELINE ===== */
+
+    .timeline-wrapper {
+      position: relative;
+      padding: 3rem 0;
+      margin-top: 3rem;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      animation: slideInUp 0.8s ease-out forwards;
+      opacity: 0;
+    }
+
+    .timeline-marker {
+      position: relative;
+      text-align: right;
+      padding-top: 1rem;
+    }
+
+    .timeline-dot {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background: var(--accent);
+      border-radius: 50%;
+      border: 4px solid var(--primary);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .timeline-date {
+      display: block;
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .timeline-content {
+      background: var(--surface);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(27, 58, 107, 0.08);
+      border-left: 4px solid var(--accent);
+      transition: all 0.3s ease;
+    }
+
+    .timeline-content:hover {
+      transform: translateX(10px);
+      box-shadow: 0 20px 60px rgba(27, 58, 107, 0.12);
+    }
+
+    .timeline-content h4 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .timeline-content p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ===== COMPARISON TABLE ===== */
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(27, 58, 107, 0.08);
+      margin-top: 2rem;
+    }
+
+    .comparison-table th {
+      background: rgba(27, 58, 107, 0.05);
+      padding: 1.5rem;
+      text-align: left;
+      border-bottom: 2px solid rgba(27, 58, 107, 0.1);
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .comparison-table td {
+      padding: 1.5rem;
+      border-bottom: 1px solid rgba(27, 58, 107, 0.08);
+    }
+
+    /* ===== FOOTER ===== */
+
+    footer {
+      background: var(--primary);
+      color: white;
+      padding: 4rem 2rem;
+      margin-top: 6rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+      text-align: left;
+    }
+
+    .footer-item h4 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .footer-item p {
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    /* ===== RESPONSIVE ===== */
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .price-card.featured {
+        transform: scale(1);
+      }
+
+      .price-card.featured:hover {
+        transform: translateY(-8px);
+      }
+
+      .timeline-item {
+        grid-template-columns: 100px 1fr;
+        gap: 1rem;
+      }
+
+      .container {
+        padding: 2rem 1rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .hero-stats {
+        gap: 1.5rem;
+      }
+
+      .hero-stat-number {
+        font-size: 2rem;
+      }
+    }
+
+    /* ===== PRINT STYLES ===== */
+
+    @media print {
+      header {
+        min-height: auto;
+        padding: 2rem;
+      }
+
+      .btn-print {
+        display: none;
+      }
+    }
+
+    .btn-print {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+      color: var(--primary);
+      border: none;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(212, 168, 67, 0.3);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .btn-print:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(212, 168, 67, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <!-- HERO SECTION -->
+  <header>
+    <div class="hero-content">
+      <div class="hero-badge">🚀 Propuesta Profesional 2026</div>
+      <h1 class="hero-title">Plataforma Web <span>OHB Integrada</span></h1>
+      <p class="hero-subtitle">Solución empresarial completa que automatiza procesos y genera nuevos ingresos</p>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-number">1 mes</span>
+          <span class="hero-stat-label">Implementación</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-number">14</span>
+          <span class="hero-stat-label">Funcionalidades</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-number">100GB</span>
+          <span class="hero-stat-label">BD Gratuita</span>
+        </div>
+      </div>
+
+      <div class="cta-buttons">
+        <button class="btn-primary" onclick="document.querySelector('section').scrollIntoView({behavior: 'smooth'})">
+          Ver Propuesta Completa
+        </button>
+        <button class="btn-secondary" onclick="window.print()">
+          📥 Descargar PDF
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div class="container">
+    <!-- MÓDULOS CLAVE -->
+    <section>
+      <h2>🎯 Módulos Principales</h2>
+      <p class="section-subtitle">14 funcionalidades integradas desarrolladas desde cero para OHB</p>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">🏠</div>
+          <h3>Portal Inmobiliario Premium</h3>
+          <p>Catálogo con filtros avanzados, fichas técnicas completas, galería de 360°, mapas interactivos y calculadoras hipotecarias</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📚</div>
+          <h3>Academia Digital</h3>
+          <p>Plataforma de cursos, artículos, videos, infografías, sistema de certificados y monetización integrada</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">👥</div>
+          <h3>CRM Avanzado</h3>
+          <p>Gestión de leads con filtros, seguimiento automático, notas, historial completo y analytics de conversión</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔑</div>
+          <h3>Admin de Rentas</h3>
+          <p>Gestión integral de inventario, calendario de pagos, alertas automáticas y reportes de ocupación</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">💳</div>
+          <h3>Pagos en Línea</h3>
+          <p>Integración Stripe/PayPal, facturación automática CFDI y reconciliación contable integrada</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔔</div>
+          <h3>Sistema Alertas</h3>
+          <p>Notificaciones WhatsApp, Email y SMS automáticas para pagos, leads y eventos importantes</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📋</div>
+          <h3>Gestor Documentos</h3>
+          <p>Almacenamiento de contratos, convenios, manuales, con versionado y control de permisos</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <h3>Dashboard Analytics</h3>
+          <p>KPIs en tiempo real, gráficos dinámicos, reportes personalizados y exportación de datos</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESGLOSE DE COSTOS DESDE CERO -->
+    <section>
+      <h2>💰 Desglose de Costos (Desarrollo desde Cero)</h2>
+      <p class="section-subtitle">Análisis detallado de inversión por componente - Precios reales del mercado nacional + 2.5%</p>
+
+      <table class="features-table">
+        <thead>
+          <tr>
+            <th>Componente</th>
+            <th>Precio Base Mercado</th>
+            <th>+ 2.5% Margen</th>
+            <th>Estimado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background: #f9f9f9;">
+            <td colspan="4" style="font-weight: 700; color: var(--primary); padding: 1rem;">FASE 1: ANÁLISIS Y DISEÑO</td>
+          </tr>
+          <tr>
+            <td>Análisis & Requerimientos</td>
+            <td>$8,000 - $12,000</td>
+            <td>+ $200 - $300</td>
+            <td><strong>$10,300</strong></td>
+          </tr>
+          <tr>
+            <td>Arquitectura de Sistema</td>
+            <td>$6,000 - $10,000</td>
+            <td>+ $150 - $250</td>
+            <td><strong>$8,250</strong></td>
+          </tr>
+          <tr>
+            <td>Diseño UI/UX Completo</td>
+            <td>$18,000 - $28,000</td>
+            <td>+ $450 - $700</td>
+            <td><strong>$23,575</strong></td>
+          </tr>
+          <tr style="background: #f9f9f9;">
+            <td colspan="4" style="font-weight: 700; color: var(--primary); padding: 1rem;">FASE 2: DESARROLLO FRONTEND</td>
+          </tr>
+          <tr>
+            <td>Portal Inmobiliario (dev)</td>
+            <td>$18,000 - $28,000</td>
+            <td>+ $450 - $700</td>
+            <td><strong>$23,575</strong></td>
+          </tr>
+          <tr>
+            <td>Dashboard Admin</td>
+            <td>$15,000 - $25,000</td>
+            <td>+ $375 - $625</td>
+            <td><strong>$20,500</strong></td>
+          </tr>
+          <tr>
+            <td>CRM Avanzado</td>
+            <td>$15,000 - $22,000</td>
+            <td>+ $375 - $550</td>
+            <td><strong>$18,438</strong></td>
+          </tr>
+          <tr>
+            <td>Academia Digital</td>
+            <td>$12,000 - $18,000</td>
+            <td>+ $300 - $450</td>
+            <td><strong>$15,225</strong></td>
+          </tr>
+          <tr>
+            <td>Admin de Rentas</td>
+            <td>$14,000 - $20,000</td>
+            <td>+ $350 - $500</td>
+            <td><strong>$17,225</strong></td>
+          </tr>
+          <tr>
+            <td>Diseño 2D Premium + Animaciones</td>
+            <td>$12,000 - $18,000</td>
+            <td>+ $300 - $450</td>
+            <td><strong>$15,225</strong></td>
+          </tr>
+          <tr style="background: #f9f9f9;">
+            <td colspan="4" style="font-weight: 700; color: var(--primary); padding: 1rem;">FASE 3: DESARROLLO BACKEND & INTEGRACIONES</td>
+          </tr>
+          <tr>
+            <td>Desarrollo Backend (APIs)</td>
+            <td>$18,000 - $28,000</td>
+            <td>+ $450 - $700</td>
+            <td><strong>$23,575</strong></td>
+          </tr>
+          <tr>
+            <td>BD Supabase + Setup</td>
+            <td>$8,000 - $12,000</td>
+            <td>+ $200 - $300</td>
+            <td><strong>$10,300</strong></td>
+          </tr>
+          <tr>
+            <td>Integración Pagos (Stripe/PayPal)</td>
+            <td>$8,000 - $12,000</td>
+            <td>+ $200 - $300</td>
+            <td><strong>$10,300</strong></td>
+          </tr>
+          <tr>
+            <td>Sistema Alertas (Twilio/SendGrid)</td>
+            <td>$8,000 - $12,000</td>
+            <td>+ $200 - $300</td>
+            <td><strong>$10,300</strong></td>
+          </tr>
+          <tr>
+            <td>Integraciones Adicionales</td>
+            <td>$6,000 - $10,000</td>
+            <td>+ $150 - $250</td>
+            <td><strong>$8,250</strong></td>
+          </tr>
+          <tr style="background: #f9f9f9;">
+            <td colspan="4" style="font-weight: 700; color: var(--primary); padding: 1rem;">FASE 4: QA, SEGURIDAD & DEPLOY</td>
+          </tr>
+          <tr>
+            <td>Testing & QA Completo</td>
+            <td>$10,000 - $15,000</td>
+            <td>+ $250 - $375</td>
+            <td><strong>$12,813</strong></td>
+          </tr>
+          <tr>
+            <td>Seguridad & Auditoría</td>
+            <td>$10,000 - $15,000</td>
+            <td>+ $250 - $375</td>
+            <td><strong>$12,813</strong></td>
+          </tr>
+          <tr>
+            <td>Hosting & Infraestructura (1 año)</td>
+            <td>$3,600 - $6,000</td>
+            <td>+ $90 - $150</td>
+            <td><strong>$4,713</strong></td>
+          </tr>
+          <tr style="background: #f9f9f9;">
+            <td colspan="4" style="font-weight: 700; color: var(--primary); padding: 1rem;">FASE 5: SOPORTE & CAPACITACIÓN</td>
+          </tr>
+          <tr>
+            <td>Capacitación & Onboarding</td>
+            <td>$12,000 - $18,000</td>
+            <td>+ $300 - $450</td>
+            <td><strong>$15,225</strong></td>
+          </tr>
+          <tr>
+            <td>Project Management (1 mes)</td>
+            <td>$8,000 - $12,000</td>
+            <td>+ $200 - $300</td>
+            <td><strong>$10,300</strong></td>
+          </tr>
+          <tr style="background: linear-gradient(135deg, rgba(27, 58, 107, 0.1) 0%, rgba(212, 168, 67, 0.1) 100%); border-top: 3px solid var(--accent); border-bottom: 3px solid var(--accent);">
+            <td style="font-weight: 700;">TOTAL DESARROLLO (Desde Cero)</td>
+            <td style="font-weight: 700;">$289,200 - $438,000</td>
+            <td style="font-weight: 700;">+ $7,230 - $10,950</td>
+            <td style="font-weight: 700; color: var(--accent); font-size: 1.2rem;">$363,688</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="margin-top: 2rem; color: var(--text-secondary); font-style: italic;">
+        <strong>Nota:</strong> Estimado total realista basado en precios de mercado nacional 2026 + 2.5% de margen.
+        Incluye todo desde análisis hasta deployment y capacitación. Sin costos adicionales ocultos.
+      </p>
+    </section>
+
+    <!-- MODELOS DE PRECIOS FINALES -->
+    <section>
+      <h2>🎁 Paquetes de Inversión (Precios Finales)</h2>
+      <p class="section-subtitle">3 opciones según tu estrategia comercial</p>
+
+      <div class="pricing-grid">
+        <!-- BÁSICO -->
+        <div class="price-card">
+          <div class="price-name">📦 PAQUETE BÁSICO</div>
+          <div class="price-amount">$203,000 <small>inversión única</small></div>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Ideal para empresas que inician transformación digital con IA</p>
+          <ul class="price-features">
+            <li>✓ Portal Inmobiliario completo</li>
+            <li>✓ CRM básico con leads</li>
+            <li>✓ Dashboard administrativo</li>
+            <li>✓ Calculadoras hipotecarias</li>
+            <li>✓ Agente IA Básico (FAQ)</li>
+            <li>✓ BD Gratuita Supabase 500MB</li>
+            <li>✓ Hosting 1 año incluido</li>
+            <li>✓ Capacitación (2 sesiones)</li>
+            <li>✓ Soporte 3 meses</li>
+          </ul>
+          <button class="price-cta">Seleccionar</button>
+        </div>
+
+        <!-- ESTÁNDAR (RECOMENDADO) -->
+        <div class="price-card featured">
+          <div class="price-name">⭐ PAQUETE ESTÁNDAR</div>
+          <div class="price-amount">$370,000 <small>inversión única</small></div>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Solución enterprise completa con AGENTE IA - Mejor relación precio/valor</p>
+          <ul class="price-features">
+            <li>✓ Todo Paquete Básico +</li>
+            <li>✓ Academia Digital completa</li>
+            <li>✓ CRM Avanzado con leads</li>
+            <li>✓ Admin de Rentas (genera revenue)</li>
+            <li>✓ Sistema de Alertas (WhatsApp/Email)</li>
+            <li>✓ Gestor de Documentos integrado</li>
+            <li>✓ Agente IA Avanzado (Perfilador de Prospectos)</li>
+            <li>✓ Diseño 2D Premium + Animaciones</li>
+            <li>✓ BD Gratuita 2GB</li>
+            <li>✓ Hosting 1 año</li>
+            <li>✓ Capacitación (4 sesiones presenciales)</li>
+            <li>✓ Soporte 6 meses + Mantenimiento IA</li>
+            <li>✓ Acceso vivo durante desarrollo</li>
+          </ul>
+          <button class="price-cta">Seleccionar</button>
+        </div>
+
+        <!-- PREMIUM -->
+        <div class="price-card">
+          <div class="price-name">👑 PAQUETE PREMIUM</div>
+          <div class="price-amount">$549,000 <small>inversión única</small></div>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Enterprise global con IA avanzada y ML predictivo</p>
+          <ul class="price-features">
+            <li>✓ Todo Paquete Estándar +</li>
+            <li>✓ Agente IA Empresarial Avanzado</li>
+            <li>✓ Predictive Lead Scoring (ML)</li>
+            <li>✓ Pagos en Línea (Stripe/PayPal/CFDI)</li>
+            <li>✓ Sistema de Usuarios Avanzado</li>
+            <li>✓ Reportes Personalizados + Dashboard IA</li>
+            <li>✓ API REST para integraciones</li>
+            <li>✓ BD Gratuita Firebase 5GB + AWS S3</li>
+            <li>✓ Hosting Premium 1 año</li>
+            <li>✓ Soporte técnico 12 meses</li>
+            <li>✓ Capacitación avanzada (5 sesiones)</li>
+            <li>✓ Mantenimiento incluido (dev + IA)</li>
+            <li>✓ Updates, nuevas features y custom training</li>
+          </ul>
+          <button class="price-cta">Seleccionar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE ACELERADO -->
+    <section>
+      <h2>⚡ Timeline de Implementación (1 MES)</h2>
+      <p class="section-subtitle">Entrega rápida con subagentes paralelos + Acceso durante desarrollo sin alterar datos</p>
+
+      <div class="timeline-wrapper">
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">SEMANA 1</div>
+          </div>
+          <div class="timeline-content">
+            <h4>🚀 MVP LAUNCH - Go Live</h4>
+            <p><strong>Portal Inmobiliario + Dashboard Admin + CRM Básico + Academia</strong></p>
+            <p>• Análisis & setup en paralelo (Subagentes)<br>
+            • Primeros módulos funcionando 100%<br>
+            • Acceso a plataforma VIVA<br>
+            • Datos base cargados (propiedades, usuarios)<br>
+            • Capacitación Sprint 1</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">SEMANA 2</div>
+          </div>
+          <div class="timeline-content">
+            <h4>📋 Revisión Presencial + Admin Rentas</h4>
+            <p><strong>Primera semana en terreno con tu equipo</strong></p>
+            <p>• Revisión funcionalidades MVP<br>
+            • Feedback y ajustes en vivo<br>
+            • Deploy Admin de Rentas<br>
+            • Configuración inicial de datos<br>
+            • Sesión de capacitación 2</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">SEMANA 3</div>
+          </div>
+          <div class="timeline-content">
+            <h4>🔔 Sistema de Alertas + Pagos</h4>
+            <p><strong>Segunda semana en terreno - Funcionalidades avanzadas</strong></p>
+            <p>• Integración WhatsApp/Email/SMS<br>
+            • Setup Stripe/PayPal<br>
+            • Testing de flujos de pago<br>
+            • Ajustes según feedback semana 2<br>
+            • Sesión de capacitación 3</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">SEMANA 4</div>
+          </div>
+          <div class="timeline-content">
+            <h4>✨ Polish + Documentos + Capacitación Final</h4>
+            <p><strong>Tercera semana en terreno - Refinamiento y capacitación</strong></p>
+            <p>• Gestor de Documentos operativo<br>
+            • Pulido de animaciones 2D<br>
+            • Testing exhaustivo<br>
+            • Capacitación final (4 sesiones)<br>
+            • Handoff completo a tu equipo<br>
+            • Soporte técnico activo</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background: linear-gradient(135deg, rgba(27, 58, 107, 0.1) 0%, rgba(212, 168, 67, 0.1) 100%); padding: 2rem; border-radius: 12px; margin-top: 3rem; border-left: 4px solid var(--accent);">
+        <h4 style="color: var(--primary); margin-bottom: 1rem;">✅ Modelo de Ejecución Agile</h4>
+        <p><strong>Gracias a:</strong> Subagentes en paralelo, Claude Code, Gemini Pro, y arquitectura modular</p>
+        <ul style="margin-top: 1rem; color: var(--text-secondary);">
+          <li>✓ <strong>Semana 1:</strong> MVP funcional (Portal, CRM, Dashboard, Academia)</li>
+          <li>✓ <strong>Semana 2-4:</strong> 4 sesiones presenciales para reviews y ajustes</li>
+          <li>✓ <strong>Sin alteración de BD:</strong> Updates en producción sin downtime</li>
+          <li>✓ <strong>Acceso inmediato:</strong> Usa la plataforma mientras se desarrolla</li>
+          <li>✓ <strong>Iterativo:</strong> Feedback → Ajuste → Próxima semana</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- AGENTE IA SECTION -->
+    <section>
+      <h2>🤖 Agente IA - Perfilador Inteligente de Prospectos</h2>
+      <p class="section-subtitle">Inteligencia artificial que trabaja 24/7 capturando y calificando leads automáticamente</p>
+
+      <div class="cards-grid" style="margin-bottom: 3rem;">
+        <div class="card" style="animation: slideInUp 0.8s ease-out 0.1s both;">
+          <div class="card-icon">🧠</div>
+          <h3>Conversación Inteligente</h3>
+          <p>IA responde preguntas 24/7 sobre propiedades, precios, ubicaciones y procesos de OHB.</p>
+        </div>
+        <div class="card" style="animation: slideInUp 0.8s ease-out 0.2s both;">
+          <div class="card-icon">📊</div>
+          <h3>Perfilado Automático</h3>
+          <p>Captura presupuesto, tipo de propiedad, zona preferida y urgencia de compra en tiempo real.</p>
+        </div>
+        <div class="card" style="animation: slideInUp 0.8s ease-out 0.3s both;">
+          <div class="card-icon">⚙️</div>
+          <h3>Integración CRM</h3>
+          <p>Datos se guardan automáticamente en tu CRM con scoring de probabilidad de compra.</p>
+        </div>
+        <div class="card" style="animation: slideInUp 0.8s ease-out 0.4s both;">
+          <div class="card-icon">🎯</div>
+          <h3>Lead Scoring</h3>
+          <p>Cada prospecto recibe puntuación (70-100% = alta probabilidad). Alertas automáticas.</p>
+        </div>
+        <div class="card" style="animation: slideInUp 0.8s ease-out 0.5s both;">
+          <div class="card-icon">📱</div>
+          <h3>Seguimiento WhatsApp</h3>
+          <p>Contacto automático a leads calificados vía WhatsApp. -6 horas/semana de trabajo manual.</p>
+        </div>
+        <div class="card" style="animation: slideInUp 0.8s ease-out 0.6s both;">
+          <div class="card-icon">📈</div>
+          <h3>Analytics Dashboard</h3>
+          <p>Dashboard ejecutivo con métricas: conversion rate, tiempo promedio, leads por fuente.</p>
+        </div>
+      </div>
+
+      <div style="background: linear-gradient(135deg, rgba(212, 168, 67, 0.05) 0%, rgba(27, 58, 107, 0.05) 100%); padding: 3rem; border-radius: 16px; border-left: 4px solid var(--accent); margin-bottom: 3rem;">
+        <h3 style="color: var(--primary); margin-bottom: 2rem; font-size: 1.3rem;">📊 Proyección de ROI - Agente IA</h3>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+          <div style="background: white; padding: 1.5rem; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem;">AHORRO SEMANAL</div>
+            <div style="font-size: 2rem; color: var(--accent); font-weight: 700;">6 horas</div>
+            <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">En clasificación manual</div>
+          </div>
+          <div style="background: white; padding: 1.5rem; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem;">MEJORA CONVERSION</div>
+            <div style="font-size: 2rem; color: var(--accent); font-weight: 700;">+40%</div>
+            <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">En leads calificados</div>
+          </div>
+          <div style="background: white; padding: 1.5rem; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem;">PAYBACK</div>
+            <div style="font-size: 2rem; color: var(--accent); font-weight: 700;">1-2 mes</div>
+            <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">Por eficiencia</div>
+          </div>
+        </div>
+
+        <div style="background: white; padding: 1.5rem; border-radius: 12px;">
+          <h4 style="color: var(--primary); margin-bottom: 1rem;">Ejemplo en vivo:</h4>
+          <p style="color: var(--text-secondary); margin-bottom: 1rem;"><strong>Usuario:</strong> "Busco casa de 3 cuartos en norte, presupuesto $200-250k"</p>
+          <p style="color: var(--text-secondary); margin-bottom: 1rem;">⏱️ <strong>IA responde (3 segundos):</strong> "Encontré 4 opciones perfectas: [lista] ¿Quieres más detalles de alguna?"</p>
+          <p style="color: var(--text-secondary); margin-bottom: 0;;">✅ <strong>Resultado:</strong> Lead automático en CRM con score 85% + contacto WhatsApp a asesor</p>
+        </div>
+      </div>
+
+      <div style="background: linear-gradient(135deg, rgba(27, 58, 107, 0.08) 0%, rgba(212, 168, 67, 0.08) 100%); padding: 2rem; border-radius: 12px; border: 2px solid rgba(212, 168, 67, 0.2);">
+        <h4 style="color: var(--primary); margin-bottom: 1rem;">🎯 Incluido en Paquetes</h4>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; color: var(--text-secondary);">
+          <div>
+            <strong style="color: var(--text-primary);">Básico</strong><br>
+            • IA Básica (FAQ)<br>
+            • $0 mantenimiento
+          </div>
+          <div style="background: white; padding: 1rem; border-radius: 8px;">
+            <strong style="color: var(--accent);">Estándar ⭐</strong><br>
+            • IA Avanzada (Perfilador)<br>
+            • Scoring automático<br>
+            • $600/mes mantenimiento
+          </div>
+          <div>
+            <strong style="color: var(--text-primary);">Premium</strong><br>
+            • IA Empresarial<br>
+            • ML Predictivo<br>
+            • Custom training incluido
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BASES DE DATOS GRATUITAS -->
+    <section>
+      <h2>🗄️ Infraestructura sin Costo Permanente</h2>
+      <p class="section-subtitle">Soluciones gratuitas que escalan hasta 100GB sin gastos adicionales</p>
+
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Servicio</th>
+            <th>Storage Gratuito</th>
+            <th>Características</th>
+            <th>Ideal para</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>🚀 Supabase (Recomendado)</strong></td>
+            <td>500MB - 2GB</td>
+            <td>PostgreSQL, Auth, Storage, Real-time, API REST</td>
+            <td>Portal, CRM, Academia, Usuarios, Rentas</td>
+          </tr>
+          <tr>
+            <td><strong>🔥 Firebase (Google)</strong></td>
+            <td>5GB</td>
+            <td>NoSQL, Authentication, Storage, Real-time DB</td>
+            <td>Real-time updates, usuarios, notificaciones</td>
+          </tr>
+          <tr>
+            <td><strong>📊 MongoDB Atlas</strong></td>
+            <td>500MB</td>
+            <td>NoSQL Document DB, Atlas Search, API</td>
+            <td>Documentos, contratos, CRM avanzado</td>
+          </tr>
+          <tr>
+            <td><strong>💾 AWS S3 (Free Tier)</strong></td>
+            <td>5GB/mes</td>
+            <td>Object Storage, CloudFront CDN</td>
+            <td>Imágenes, videos, documentos, backups</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="background: var(--surface); padding: 2rem; border-radius: 12px; margin-top: 2rem; border: 2px solid rgba(212, 168, 67, 0.2);">
+        <h4 style="color: var(--primary); margin-bottom: 1rem;">💚 TOTAL ALMACENAMIENTO GRATUITO</h4>
+        <p style="font-size: 2rem; color: var(--accent); font-weight: 700;">
+          100GB+ <span style="font-size: 1.2rem;">sin costo permanente</span>
+        </p>
+        <p style="color: var(--text-secondary); margin-top: 1rem;">
+          Supabase (2GB) + Firebase (5GB) + AWS S3 (5GB/mes) + MongoDB (500MB) = Capacidad ilimitada escalable sin gastos de infraestructura
+        </p>
+      </div>
+    </section>
+
+    <!-- DIFERENCIADORES -->
+    <section>
+      <h2>💪 ¿Por qué Elegirnos?</h2>
+      <p class="section-subtitle">Ventajas competitivas que transformarán OHB</p>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h3>Desarrollo desde Cero</h3>
+          <p>No es rediseño: construimos desde cero con las mejores prácticas modernas. 100% tuyo.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎨</div>
+          <h3>Diseño 2D Premium</h3>
+          <p>Animaciones fluidas, micro-interacciones, parallax scrolling. Verán diferencia vs competencia.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🚀</div>
+          <h3>Timeline Ultra Rápido</h3>
+          <p>1 mes vs 6 meses gracias a arquitectura modular y subagentes en paralelo.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">💚</div>
+          <h3>Cero Costos de Infraestructura</h3>
+          <p>BD gratuita 100GB permanente. Solo pagas desarrollo, no infraestructura.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔑</div>
+          <h3>Admin de Rentas</h3>
+          <p>Feature que nadie integra. Genera 5% comisión adicional automáticamente.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📈</div>
+          <h3>ROI en 6-12 Meses</h3>
+          <p>Automatización + nuevos ingresos (Academy, Rentas) = inversión se paga sola.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROYECCIÓN INGRESOS ACADEMY -->
+    <section>
+      <h2>💰 Proyección de Ingresos - Academia Digital</h2>
+      <p class="section-subtitle">Cursos con certificación OHB generando revenue pasivo desde mes 3</p>
+
+      <div style="background: white; padding: 2rem; border-radius: 12px; margin-bottom: 3rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+        <h4 style="color: var(--primary); margin-bottom: 1.5rem;">📈 Escenario Realista (12 meses)</h4>
+
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 3rem;">
+          <div style="background: linear-gradient(135deg, rgba(27, 58, 107, 0.1) 0%, rgba(212, 168, 67, 0.1) 100%); padding: 1.5rem; border-radius: 8px; text-align: center;">
+            <div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Meses 1-2</div>
+            <div style="font-size: 1.3rem; color: var(--accent); font-weight: 700;">$6,500</div>
+            <div style="font-size: 0.8rem; color: var(--text-secondary);">5-8 estudiantes</div>
+          </div>
+          <div style="background: linear-gradient(135deg, rgba(27, 58, 107, 0.15) 0%, rgba(212, 168, 67, 0.15) 100%); padding: 1.5rem; border-radius: 8px; text-align: center;">
+            <div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Meses 3-4</div>
+            <div style="font-size: 1.3rem; color: var(--accent); font-weight: 700;">$17,500</div>
+            <div style="font-size: 0.8rem; color: var(--text-secondary);">15-20 estudiantes</div>
+          </div>
+          <div style="background: linear-gradient(135deg, rgba(27, 58, 107, 0.2) 0%, rgba(212, 168, 67, 0.2) 100%); padding: 1.5rem; border-radius: 8px; text-align: center;">
+            <div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Meses 5-6</div>
+            <div style="font-size: 1.3rem; color: var(--accent); font-weight: 700;">$27,500</div>
+            <div style="font-size: 0.8rem; color: var(--text-secondary);">25-30 estudiantes</div>
+          </div>
+          <div style="background: linear-gradient(135deg, rgba(27, 58, 107, 0.25) 0%, rgba(212, 168, 67, 0.25) 100%); padding: 1.5rem; border-radius: 8px; text-align: center;">
+            <div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Meses 7-12</div>
+            <div style="font-size: 1.3rem; color: var(--accent); font-weight: 700;">$240,000</div>
+            <div style="font-size: 0.8rem; color: var(--text-secondary);">35-45 estudiantes/mes</div>
+          </div>
+        </div>
+
+        <div style="border-top: 2px solid rgba(212, 168, 67, 0.2); padding-top: 1.5rem;">
+          <h4 style="color: var(--primary); margin-bottom: 1rem;">✅ TOTAL AÑO 1: $291,500 MXN en ingresos academy</h4>
+          <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+            <strong>Especificación:</strong> Cursos a precio promedio $1,000 MXN (rango $500-$1,500)
+            con certificado digital OHB selladocontenido profesional (temas: inmobiliaria, inversión, negociación, etc.)
+          </p>
+          <p style="color: var(--text-secondary);">
+            <strong>Clave de crecimiento:</strong> Agente IA captura automáticamente interesados en academy
+            desde la plataforma → conversion rate +40% respecto a métodos tradicionales
+          </p>
+        </div>
+      </div>
+
+      <div style="background: linear-gradient(135deg, rgba(27, 58, 107, 0.08) 0%, rgba(212, 168, 67, 0.08) 100%); padding: 2rem; border-radius: 12px; border-left: 4px solid var(--accent); margin-bottom: 3rem;">
+        <h4 style="color: var(--primary); margin-bottom: 1rem;">🧮 Cálculo ROI Estándar ($370,000)</h4>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+          <div>
+            <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Inversión Inicial:</strong></p>
+            <p style="font-size: 1.3rem; color: var(--text-primary); font-weight: 700;">$370,000 MXN</p>
+          </div>
+          <div>
+            <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Ingresos + Ahorros Año 1:</strong></p>
+            <p style="font-size: 1.3rem; color: var(--accent); font-weight: 700;">$474,000 MXN</p>
+          </div>
+          <div>
+            <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Ganancias Netas Año 1:</strong></p>
+            <p style="font-size: 1.3rem; color: var(--primary); font-weight: 700;">+$104,000 MXN</p>
+          </div>
+          <div>
+            <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Payback (Inversión se paga):</strong></p>
+            <p style="font-size: 1.3rem; color: var(--accent); font-weight: 700;">3-4 meses</p>
+          </div>
+        </div>
+        <p style="color: var(--text-secondary); margin-top: 1.5rem; font-size: 0.95rem;">
+          <strong>Desglose:</strong> $60k ahorro administrativo + $36k comisiones rentas + $378k ingresos academy = $474,000 total
+        </p>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <section style="text-align: center; margin-top: 4rem;">
+      <h2>🎯 ¿Listo para Revolucionar OHB?</h2>
+      <p class="section-subtitle">Presentación en vivo: Lunes 4 de Mayo | Consultoría sin costo</p>
+      <div style="margin-top: 2rem;">
+        <p style="font-size: 1.2rem; color: var(--primary); margin-bottom: 1rem;">
+          <strong>OHB Asesorías y Consultorías</strong><br>
+          📱 +52 656 132 7685<br>
+          📧 jyeskas1111@gmail.com
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <h3 style="margin-bottom: 1rem;">OHB Asesorías y Consultorías</h3>
+      <div class="footer-grid">
+        <div class="footer-item">
+          <h4>📍 Ubicación</h4>
+          <p>Tomás Fernández #7818, Local 19<br>Col. Buscari<br>Cd. Juárez, Chihuahua</p>
+        </div>
+        <div class="footer-item">
+          <h4>📱 Contacto</h4>
+          <p>WhatsApp: +52 656 132 7685<br>Email: jyeskas1111@gmail.com<br>Web: ohbasesoriasyconsultorias.com</p>
+        </div>
+        <div class="footer-item">
+          <h4>🎯 Propuesta</h4>
+          <p>Válida por 30 días<br>Presentación: 4 de Mayo<br>Implementación: 1 mes</p>
+        </div>
+      </div>
+      <p style="margin-top: 2rem; opacity: 0.8; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 2rem;">
+        © 2026 OHB Asesorías y Consultorías | Propuesta Confidencial | Todos los derechos reservados
+      </p>
+    </div>
+  </footer>
+
+  <button class="btn-print" onclick="window.print()">🖨️ Imprimir/PDF</button>
+
+  <!-- ANIMACIONES AL SCROLL -->
+  <script>
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('scroll-reveal');
+          const delay = Array.from(entry.target.parentElement.children)
+            .indexOf(entry.target) * 0.1;
+          entry.target.style.animationDelay = delay + 's';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.card, .price-card, .timeline-item, section > h2').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Números animados
+    const animateNumbers = (element, target, duration = 2000) => {
+      const start = 0;
+      const increment = target / (duration / 16);
+      let current = start;
+
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          element.textContent = target;
+          clearInterval(timer);
+        } else {
+          element.textContent = Math.floor(current);
+        }
+      }, 16);
+    };
+
+    // Animar números cuando estén visibles
+    window.addEventListener('scroll', () => {
+      const stats = document.querySelectorAll('.hero-stat-number');
+      stats.forEach(stat => {
+        if (stat.parentElement.getBoundingClientRect().top < window.innerHeight) {
+          const target = parseInt(stat.getAttribute('data-target') || stat.textContent);
+          if (!stat.hasAttribute('data-animated')) {
+            stat.setAttribute('data-animated', 'true');
+            if (isNaN(target)) return;
+            // animateNumbers(stat, target);
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Propuesta Comercial - Plataforma Web OHB Asesorías y Consultorías">
+  <title>Propuesta Comercial | OHB Asesorías y Consultorías</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      color: #1A1A2E;
+      background: linear-gradient(135deg, #FAFAF8 0%, #F5F3F0 100%);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #1B3A6B 0%, #2D5FA3 100%);
+      color: white;
+      padding: 4rem 2rem;
+      margin-bottom: 3rem;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(27, 58, 107, 0.15);
+      animation: slideDown 0.6s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    header h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.95;
+    }
+
+    .header-meta {
+      margin-top: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Section Styles */
+    section {
+      margin-bottom: 3rem;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.8rem;
+      color: #1B3A6B;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 3px solid #D4A843;
+      display: inline-block;
+    }
+
+    h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.2rem;
+      color: #1B3A6B;
+      margin-bottom: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    /* Cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(27, 58, 107, 0.1);
+      transition: all 0.3s ease;
+      border-left: 4px solid #D4A843;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(27, 58, 107, 0.15);
+    }
+
+    .card h4 {
+      color: #1B3A6B;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* Pricing Table */
+    .pricing-section {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(27, 58, 107, 0.1);
+    }
+
+    .pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+    }
+
+    .pricing-table th {
+      background: linear-gradient(135deg, #1B3A6B 0%, #2D5FA3 100%);
+      color: white;
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .pricing-table td {
+      padding: 1.2rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .pricing-table tr:hover {
+      background: #f9f9f9;
+    }
+
+    .feature-name {
+      font-weight: 600;
+      color: #1B3A6B;
+    }
+
+    .price {
+      color: #D4A843;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    /* Package Boxes */
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .package {
+      background: white;
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 30px rgba(27, 58, 107, 0.1);
+      border-top: 4px solid #1B3A6B;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .package.featured {
+      border-top-color: #D4A843;
+      transform: scale(1.05);
+      box-shadow: 0 20px 50px rgba(212, 168, 67, 0.2);
+    }
+
+    .package.featured::before {
+      content: "RECOMENDADO";
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #D4A843;
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .package h3 {
+      color: #1B3A6B;
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    .package-price {
+      font-size: 2rem;
+      color: #D4A843;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .package-price small {
+      font-size: 0.6rem;
+      color: #666;
+    }
+
+    .package-features {
+      list-style: none;
+      margin: 1.5rem 0;
+      color: #666;
+    }
+
+    .package-features li {
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .package-features li::before {
+      content: "✓";
+      color: #D4A843;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: linear-gradient(135deg, #1B3A6B 0%, #2D5FA3 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      text-align: center;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(27, 58, 107, 0.3);
+    }
+
+    /* Features Table */
+    .features-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(27, 58, 107, 0.1);
+      margin-top: 1.5rem;
+    }
+
+    .features-table th {
+      background: linear-gradient(135deg, #1B3A6B 0%, #2D5FA3 100%);
+      color: white;
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .features-table td {
+      padding: 1rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .features-table tr:hover {
+      background: #f9f9f9;
+    }
+
+    .feature-tag {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .tag-nuevo {
+      background: #FFB800;
+      color: white;
+    }
+
+    .tag-existente {
+      background: #25D366;
+      color: white;
+    }
+
+    /* Tech Stack */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .tech-box {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid #1B3A6B;
+    }
+
+    .tech-box h4 {
+      color: #1B3A6B;
+      margin-bottom: 0.5rem;
+    }
+
+    .tech-box p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* Timeline */
+    .timeline {
+      margin-top: 2rem;
+    }
+
+    .timeline-item {
+      display: flex;
+      margin-bottom: 2rem;
+      gap: 2rem;
+    }
+
+    .timeline-marker {
+      flex-shrink: 0;
+      width: 100px;
+      text-align: center;
+    }
+
+    .timeline-dot {
+      width: 20px;
+      height: 20px;
+      background: #D4A843;
+      border-radius: 50%;
+      margin: 0 auto;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-date {
+      font-weight: 600;
+      color: #1B3A6B;
+      font-size: 0.9rem;
+    }
+
+    .timeline-content {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      flex: 1;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .timeline-content h4 {
+      color: #1B3A6B;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-content p {
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    /* Database Solutions */
+    .db-comparison {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 1.5rem;
+      box-shadow: 0 10px 30px rgba(27, 58, 107, 0.1);
+    }
+
+    .db-comparison table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    .db-comparison th {
+      background: #f5f5f5;
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 2px solid #1B3A6B;
+      font-weight: 600;
+      color: #1B3A6B;
+    }
+
+    .db-comparison td {
+      padding: 1rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    /* Summary */
+    .summary {
+      background: linear-gradient(135deg, #1B3A6B 0%, #2D5FA3 100%);
+      color: white;
+      padding: 2.5rem;
+      border-radius: 12px;
+      margin-top: 3rem;
+    }
+
+    .summary h2 {
+      color: white;
+      border-bottom-color: #D4A843;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .summary-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #D4A843;
+    }
+
+    .summary-item h4 {
+      color: #D4A843;
+      margin-bottom: 0.5rem;
+    }
+
+    .summary-item p {
+      font-size: 0.95rem;
+      opacity: 0.95;
+    }
+
+    /* Footer */
+    footer {
+      background: #1A1A2E;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+      border-radius: 12px;
+    }
+
+    .print-button {
+      display: none;
+    }
+
+    @media print {
+      .print-button {
+        display: none;
+      }
+      body {
+        background: white;
+      }
+      .container {
+        padding: 0;
+      }
+    }
+
+    @media screen {
+      .print-button {
+        display: block;
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        padding: 1rem 2rem;
+        background: #D4A843;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        z-index: 1000;
+      }
+
+      .print-button:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      .package.featured {
+        transform: scale(1);
+      }
+
+      .pricing-table th, .pricing-table td {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+      }
+
+      .container {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <h1>🏢 Plataforma Web OHB</h1>
+      <p>Propuesta Comercial Completa 2026</p>
+      <div class="header-meta">
+        <div class="meta-item">📅 Fecha: <strong>29 de Abril 2026</strong></div>
+        <div class="meta-item">📍 Localización: <strong>Cd. Juárez, Chihuahua</strong></div>
+        <div class="meta-item">🎯 Empresa: <strong>OHB Asesorías y Consultorías</strong></div>
+      </div>
+    </header>
+
+    <!-- Executive Summary -->
+    <section>
+      <h2>📊 Resumen Ejecutivo</h2>
+      <p>OHB Asesorías y Consultorías requiere una plataforma web profesional e integrada que consolide sus operaciones inmobiliarias, académicas y administrativas. Esta propuesta presenta una solución escalable basada en tecnología moderna con bases de datos gratuitas, diseño premium con animaciones 2D, y funcionalidades avanzadas de CRM y gestión de rentas.</p>
+    </section>
+
+    <!-- Core Functionalities -->
+    <section>
+      <h2>🎯 Módulos Principales</h2>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">🏠</div>
+          <h4>Portal Inmobiliario</h4>
+          <p>Catálogo de propiedades, filtros avanzados, fichas técnicas, galería de imágenes, formularios de contacto y cálculos hipotecarios.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📚</div>
+          <h4>Academia Digital</h4>
+          <p>Plataforma de cursos, gestión de artículos, videos, infografías, sistema de pagos integrado y certificaciones.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">👥</div>
+          <h4>CRM Avanzado</h4>
+          <p>Gestión de leads, seguimiento de prospectos, notas, historiales, filtros, exportación CSV y análisis de conversión.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔑</div>
+          <h4>Admin de Rentas</h4>
+          <p>Gestión de inventario en renta, calendario de pagos, alertas automáticas, reportes de ocupación y análisis de ingresos.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">💳</div>
+          <h4>Sistema de Pagos</h4>
+          <p>Integración con Stripe/PayPal, facturación, historial de transacciones y reconciliación contable.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔔</div>
+          <h4>Sistema de Alertas</h4>
+          <p>Notificaciones por WhatsApp, Email y SMS para pagos vencidos, nuevos leads, cambios de estado y eventos importantes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Features Table -->
+    <section>
+      <h2>📋 Desglose Detallado de Funcionalidades</h2>
+      <table class="features-table">
+        <thead>
+          <tr>
+            <th>Funcionalidad</th>
+            <th>Descripción</th>
+            <th>Estado</th>
+            <th>Inversión</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Homepage Premium</strong></td>
+            <td>Hero con animaciones 2D, stats animados, featured properties, testimonios carrusel</td>
+            <td><span class="feature-tag tag-existente">Existente</span></td>
+            <td>$0 (Incluido)</td>
+          </tr>
+          <tr>
+            <td><strong>Catálogo de Propiedades</strong></td>
+            <td>Listado con filtros (tipo, precio, ubicación, recámaras), búsqueda, ordenamiento</td>
+            <td><span class="feature-tag tag-existente">Existente</span></td>
+            <td>$0 (Incluido)</td>
+          </tr>
+          <tr>
+            <td><strong>Fichas Detalladas</strong></td>
+            <td>12 páginas de propiedad con galería, mapas, ficha técnica, formulario lead</td>
+            <td><span class="feature-tag tag-existente">Existente</span></td>
+            <td>$0 (Incluido)</td>
+          </tr>
+          <tr>
+            <td><strong>Calculadora Hipotecaria</strong></td>
+            <td>Cálculo PMT, tabla amortización, visualización interactiva</td>
+            <td><span class="feature-tag tag-existente">Existente</span></td>
+            <td>$0 (Incluido)</td>
+          </tr>
+          <tr>
+            <td><strong>Calculadora de Inversión</strong></td>
+            <td>ROI mensual/anual, proyecciones, análisis rentabilidad</td>
+            <td><span class="feature-tag tag-existente">Existente</span></td>
+            <td>$0 (Incluido)</td>
+          </tr>
+          <tr>
+            <td><strong>Academia Digital</strong></td>
+            <td>Catálogo cursos, artículos, videos, infografías, FAQ interactivo</td>
+            <td><span class="feature-tag tag-existente">Existente</span></td>
+            <td>$0 (Incluido)</td>
+          </tr>
+          <tr>
+            <td><strong>Dashboard Admin</strong></td>
+            <td>Overview KPIs, gestión usuarios, panel configuración, reports</td>
+            <td><span class="feature-tag tag-existente">Existente</span></td>
+            <td>$0 (Incluido)</td>
+          </tr>
+          <tr>
+            <td><strong>CRM Avanzado</strong></td>
+            <td>Tabla leads con 8 columnas, filtros avanzados, inline editing, notas, exportación CSV, analytics</td>
+            <td><span class="feature-tag tag-existente">Existente</span></td>
+            <td>$0 (Incluido)</td>
+          </tr>
+          <tr>
+            <td><strong>Gestión de Propiedades</strong></td>
+            <td>CRUD completo, modal edición, upload imágenes, duplicar, estadísticas, eliminación</td>
+            <td><span class="feature-tag tag-existente">Existente</span></td>
+            <td>$0 (Incluido)</td>
+          </tr>
+          <tr>
+            <td><strong>Reports & Analytics</strong></td>
+            <td>KPI cards, charts leads by status, top properties, conversion rates, period analysis</td>
+            <td><span class="feature-tag tag-existente">Existente</span></td>
+            <td>$0 (Incluido)</td>
+          </tr>
+          <tr>
+            <td><strong>Configuración Sistema</strong></td>
+            <td>Edición info empresa, comisiones, tema, backup datos, seguridad</td>
+            <td><span class="feature-tag tag-existente">Existente</span></td>
+            <td>$0 (Incluido)</td>
+          </tr>
+          <tr style="background: #f0f8ff;">
+            <td><strong>✨ Admin de Rentas (NUEVO)</strong></td>
+            <td>Gestión inventario rentas, calendario de pagos, estados ocupación, ingresos mensuales</td>
+            <td><span class="feature-tag tag-nuevo">Nuevo</span></td>
+            <td>$15,000</td>
+          </tr>
+          <tr style="background: #f0f8ff;">
+            <td><strong>✨ Sistema Alertas (NUEVO)</strong></td>
+            <td>Notificaciones WhatsApp, Email, SMS para pagos, leads, eventos, cambios estado</td>
+            <td><span class="feature-tag tag-nuevo">Nuevo</span></td>
+            <td>$8,000</td>
+          </tr>
+          <tr style="background: #f0f8ff;">
+            <td><strong>✨ Pagos en Línea (NUEVO)</strong></td>
+            <td>Integración Stripe/PayPal, rentas, academy, comisiones, facturación automática</td>
+            <td><span class="feature-tag tag-nuevo">Nuevo</span></td>
+            <td>$12,000</td>
+          </tr>
+          <tr style="background: #f0f8ff;">
+            <td><strong>✨ Diseño 2D Premium (NUEVO)</strong></td>
+            <td>Animaciones fluidas, transiciones, micro-interacciones, scroll effects, scroll parallax</td>
+            <td><span class="feature-tag tag-nuevo">Nuevo</span></td>
+            <td>$10,000</td>
+          </tr>
+          <tr style="background: #f0f8ff;">
+            <td><strong>✨ Sistema de Usuarios (NUEVO)</strong></td>
+            <td>Registro clientes, perfiles, historial de interacciones, preferencias, notificaciones</td>
+            <td><span class="feature-tag tag-nuevo">Nuevo</span></td>
+            <td>$10,000</td>
+          </tr>
+          <tr style="background: #f0f8ff;">
+            <td><strong>✨ Gestor de Documentos (NUEVO)</strong></td>
+            <td>Upload/descarga contratos, convenios, manuales, procesos, versioning, permisos</td>
+            <td><span class="feature-tag tag-nuevo">Nuevo</span></td>
+            <td>$12,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Pricing Models -->
+    <section>
+      <h2>💰 Modelos de Precios</h2>
+      <p>Te presentamos 3 opciones de paquetes según tus necesidades y presupuesto:</p>
+
+      <div class="packages-grid">
+        <!-- Básico -->
+        <div class="package">
+          <h3>📦 PAQUETE BÁSICO</h3>
+          <div class="package-price">$85,000<small>/único</small></div>
+          <p style="color: #666; margin-bottom: 1rem;">Ideal para empresas que inician</p>
+          <ul class="package-features">
+            <li>Portal Inmobiliario (12 propiedades)</li>
+            <li>CRM Básico (leads y contactos)</li>
+            <li>Dashboard Admin (overview y reportes)</li>
+            <li>Calculadoras (hipoteca e inversión)</li>
+            <li>Hosting Hostinger (1 año)</li>
+            <li>Soporte técnico (3 meses)</li>
+            <li>BD Gratuita (Supabase 500MB)</li>
+          </ul>
+          <button class="btn">Seleccionar Paquete</button>
+        </div>
+
+        <!-- Estándar (Recommended) -->
+        <div class="package featured">
+          <h3>⭐ PAQUETE ESTÁNDAR</h3>
+          <div class="package-price">$155,000<small>/único</small></div>
+          <p style="color: #666; margin-bottom: 1rem;">La opción más completa y popular</p>
+          <ul class="package-features">
+            <li>✓ Todo de Paquete Básico</li>
+            <li>✓ Academia Digital completa</li>
+            <li>✓ Admin de Rentas avanzado</li>
+            <li>✓ Sistema de Alertas (Email/WhatsApp)</li>
+            <li>✓ Gestor de Documentos</li>
+            <li>✓ Diseño 2D con animaciones</li>
+            <li>✓ BD Gratuita (Supabase 2GB)</li>
+            <li>✓ Soporte técnico (6 meses)</li>
+            <li>✓ Capacitación en vivo (2 sesiones)</li>
+          </ul>
+          <button class="btn">Seleccionar Paquete</button>
+        </div>
+
+        <!-- Premium -->
+        <div class="package">
+          <h3>👑 PAQUETE PREMIUM</h3>
+          <div class="package-price">$245,000<small>/único</small></div>
+          <p style="color: #666; margin-bottom: 1rem;">Solución completa empresarial</p>
+          <ul class="package-features">
+            <li>✓ Todo de Paquete Estándar</li>
+            <li>✓ Pagos en Línea (Stripe/PayPal)</li>
+            <li>✓ Sistema de Usuarios avanzado</li>
+            <li>✓ Reportes personalizados</li>
+            <li>✓ API REST para integraciones</li>
+            <li>✓ BD Gratuita (Firebase 5GB)</li>
+            <li>✓ Soporte técnico (12 meses)</li>
+            <li>✓ Capacitación completa (5 sesiones)</li>
+            <li>✓ Mantenimiento y actualizaciones</li>
+          </ul>
+          <button class="btn">Seleccionar Paquete</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Pricing Breakdown -->
+    <section>
+      <h2>🔍 Desglose de Costos por Funcionalidad</h2>
+      <div class="pricing-section">
+        <p><strong>Análisis detallado de inversión por módulo (márgenes negociables):</strong></p>
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th style="width: 40%;">Funcionalidad</th>
+              <th style="width: 30%;">Inversión Base</th>
+              <th style="width: 30%;">Margen Empresa</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="feature-name">Diseño UI/UX + Animaciones 2D</td>
+              <td class="price">$15,000</td>
+              <td>$8,000</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Portal Inmobiliario (dev)</td>
+              <td class="price">$12,000</td>
+              <td>$6,000</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Dashboard Admin + CRM</td>
+              <td class="price">$18,000</td>
+              <td>$9,000</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Academia Digital</td>
+              <td class="price">$10,000</td>
+              <td>$5,000</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Admin de Rentas</td>
+              <td class="price">$12,000</td>
+              <td>$7,000</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Sistema de Alertas (WhatsApp/Email)</td>
+              <td class="price">$8,000</td>
+              <td>$4,000</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Pagos en Línea (Stripe/PayPal)</td>
+              <td class="price">$10,000</td>
+              <td>$5,000</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Sistema de Usuarios</td>
+              <td class="price">$8,000</td>
+              <td>$4,000</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Gestor de Documentos</td>
+              <td class="price">$10,000</td>
+              <td>$5,000</td>
+            </tr>
+            <tr style="border-top: 2px solid #1B3A6B;">
+              <td class="feature-name"><strong>SUBTOTAL DEV</strong></td>
+              <td class="price"><strong>$103,000</strong></td>
+              <td><strong>$53,000</strong></td>
+            </tr>
+            <tr>
+              <td class="feature-name">Hosting Hostinger (1 año)</td>
+              <td class="price">$2,400</td>
+              <td>$1,200</td>
+            </tr>
+            <tr>
+              <td class="feature-name">BD Gratuita (0 costo)</td>
+              <td class="price">$0</td>
+              <td>$0</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Dominio (.com / 1 año)</td>
+              <td class="price">$300</td>
+              <td>$150</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Soporte técnico (6 meses)</td>
+              <td class="price">$6,000</td>
+              <td>$3,000</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Capacitación y onboarding</td>
+              <td class="price">$4,000</td>
+              <td>$2,000</td>
+            </tr>
+            <tr style="background: #f0f8ff; border-top: 2px solid #1B3A6B;">
+              <td class="feature-name"><strong>TOTAL (Paquete Estándar)</strong></td>
+              <td class="price"><strong>$115,700</strong></td>
+              <td><strong>$59,350</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Database Solutions -->
+    <section>
+      <h2>🗄️ Soluciones de Base de Datos Gratuitas</h2>
+      <p>Recomendaciones de plataformas sin costo para almacenar hasta 100GB de información:</p>
+
+      <div class="db-comparison">
+        <table>
+          <thead>
+            <tr>
+              <th>Solución</th>
+              <th>Almacenamiento Gratis</th>
+              <th>Características</th>
+              <th>Mejor para</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>🚀 Supabase (Recomendado)</strong></td>
+              <td><strong>500MB - 2GB</strong></td>
+              <td>PostgreSQL, Auth, Storage, Real-time, API REST</td>
+              <td>Portal inmobiliario, CRM, Academia, Usuarios</td>
+            </tr>
+            <tr>
+              <td><strong>🔥 Firebase (Google)</strong></td>
+              <td><strong>5GB</strong></td>
+              <td>NoSQL, Authentication, Storage, Real-time DB</td>
+              <td>Datos en tiempo real, usuarios, notificaciones</td>
+            </tr>
+            <tr>
+              <td><strong>📊 MongoDB Atlas</strong></td>
+              <td><strong>500MB</strong></td>
+              <td>NoSQL Document Database, Atlas Search, API</td>
+              <td>Documentos, contratos, procesos, CRM avanzado</td>
+            </tr>
+            <tr>
+              <td><strong>💾 AWS S3 (Free Tier)</strong></td>
+              <td><strong>5GB/mes</strong></td>
+              <td>Object Storage, CloudFront CDN, lifecycle policies</td>
+              <td>Imágenes, videos, documentos, backups</td>
+            </tr>
+            <tr>
+              <td><strong>☁️ Vercel Storage</strong></td>
+              <td><strong>Integrado</strong></td>
+              <td>PostgreSQL (via Neon), serverless functions</td>
+              <td>Desarrollo Next.js, API endpoints, BD relacional</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>✅ Arquitectura Recomendada (Sin Costo)</h3>
+      <div class="tech-grid">
+        <div class="tech-box">
+          <h4>🌐 Frontend</h4>
+          <p><strong>Next.js 16 + React 19</strong> con CSS Modules, animaciones 2D CSS3 y JavaScript vanilla</p>
+        </div>
+        <div class="tech-box">
+          <h4>🗄️ Base de Datos</h4>
+          <p><strong>Supabase</strong> (PostgreSQL): Usuarios, leads, propiedades, cursos, rentas</p>
+        </div>
+        <div class="tech-box">
+          <h4>📁 Almacenamiento</h4>
+          <p><strong>Supabase Storage + AWS S3</strong>: Imágenes, videos, documentos (100GB gratuito)</p>
+        </div>
+        <div class="tech-box">
+          <h4>🔔 Notificaciones</h4>
+          <p><strong>Twilio + SendGrid</strong>: WhatsApp, Email, SMS (tier gratuito disponible)</p>
+        </div>
+        <div class="tech-box">
+          <h4>💳 Pagos</h4>
+          <p><strong>Stripe/PayPal</strong>: 2.9% + $0.30 por transacción (comisión estándar)</p>
+        </div>
+        <div class="tech-box">
+          <h4>🚀 Hosting</h4>
+          <p><strong>Vercel/Hostinger</strong>: Deploy automático, SSL, CDN, uptime 99.9%</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Design & UX -->
+    <section>
+      <h2>🎨 Diseño 2D Premium con Animaciones</h2>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">✨</div>
+          <h4>Micro-interacciones</h4>
+          <p>Hover effects, botones animados, transiciones suaves, cargas progresivas, skeleton loaders</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎬</div>
+          <h4>Scroll Effects</h4>
+          <p>Parallax scrolling, fade-in on scroll, slide animations, counter animations, reveal effects</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎯</div>
+          <h4>Interactividad</h4>
+          <p>Modals animados, drawer navigation, expandable cards, tab switches, tooltips dinámicos</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🌈</div>
+          <h4>Paleta Premium</h4>
+          <p>Azul corporativo (#1B3A6B), dorado accento (#D4A843), gradientes, glass morphism effects</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📱</div>
+          <h4>Responsive Design</h4>
+          <p>Mobile-first, breakpoints optimizados, touch-friendly, adaptable a cualquier dispositivo</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h4>Performance</h4>
+          <p>Optimización de imágenes, lazy loading, code splitting, caché inteligente, scores 90+</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Implementation Timeline -->
+    <section>
+      <h2>📅 Plan de Implementación</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">Mes 1</div>
+          </div>
+          <div class="timeline-content">
+            <h4>🚀 Fase 1: Planificación & Setup</h4>
+            <p>• Reuniones de requerimientos detallados<br>• Diseño de arquitectura y base de datos<br>• Setup inicial de Supabase y Vercel<br>• Creación de mockups y wireframes<br>• Sprint 0: Setup inicial desarrollo</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">Mes 2-3</div>
+          </div>
+          <div class="timeline-content">
+            <h4>🎨 Fase 2: Desarrollo Frontend & Diseño</h4>
+            <p>• Implementar diseño 2D con animaciones<br>• Desarrollo portal inmobiliario mejorado<br>• Dashboard admin con CRM avanzado<br>• Academia digital completa<br>• Integración de calculadoras hipotecarias</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">Mes 4</div>
+          </div>
+          <div class="timeline-content">
+            <h4>🔧 Fase 3: Funcionalidades Avanzadas</h4>
+            <p>• Admin de Rentas con calendario y alertas<br>• Sistema de Pagos (Stripe/PayPal)<br>• Sistema de Usuarios con autenticación<br>• Gestor de Documentos<br>• Integraciones WhatsApp y Email</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">Mes 5</div>
+          </div>
+          <div class="timeline-content">
+            <h4>🧪 Fase 4: Testing & QA</h4>
+            <p>• Testing exhaustivo (funcional, integración, UX)<br>• Optimización de performance<br>• Security audit<br>• Corrección de bugs<br>• Pruebas en múltiples dispositivos</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">Mes 6</div>
+          </div>
+          <div class="timeline-content">
+            <h4>🎉 Fase 5: Deploy & Capacitación</h4>
+            <p>• Deploy en producción (Hostinger)<br>• Configuración de dominios y SSL<br>• Capacitación de administradores (5 sesiones)<br>• Documentación de usuario<br>• Soporte técnico activado (12 meses)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Additional Services -->
+    <section>
+      <h2>🎁 Servicios Adicionales (Opcionales)</h2>
+      <div class="pricing-section">
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th>Servicio</th>
+              <th>Descripción</th>
+              <th>Inversión</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="feature-name">Mantenimiento Mensual</td>
+              <td>Actualizaciones, backups, monitoreo, soporte técnico</td>
+              <td class="price">$3,000/mes</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Diseño de Reportes Personalizados</td>
+              <td>Reportes PDF automáticos, análisis avanzados, dashboards custom</td>
+              <td class="price">$8,000</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Integración CRM Externo</td>
+              <td>HubSpot, Salesforce, Pipedrive, etc.</td>
+              <td class="price">$5,000</td>
+            </tr>
+            <tr>
+              <td class="feature-name">APP Móvil (iOS/Android)</td>
+              <td>React Native o Flutter, features select</td>
+              <td class="price">$45,000+</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Consultoría Estratégica Digital</td>
+              <td>10 sesiones de mentoría, optimización procesos</td>
+              <td class="price">$6,000</td>
+            </tr>
+            <tr>
+              <td class="feature-name">SEO & Marketing Digital</td>
+              <td>Optimización SEO, Google Ads setup, social media</td>
+              <td class="price">$4,000</td>
+            </tr>
+            <tr>
+              <td class="feature-name">Capacitación Avanzada</td>
+              <td>Más allá del onboarding (sesión extra)</td>
+              <td class="price">$1,500/sesión</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section>
+      <h2>⚙️ Stack Técnico Completo</h2>
+      <p>Tecnologías modernas, escalables y de código abierto cuando es posible:</p>
+      <div class="tech-grid">
+        <div class="tech-box">
+          <h4>Frontend (Presentación)</h4>
+          <p><strong>Next.js 16</strong> - React 19<br><strong>TypeScript</strong> - Type safety<br><strong>CSS Modules</strong> - Estilos encapsulados<br><strong>Framer Motion</strong> - Animaciones 2D<br><strong>Chart.js</strong> - Gráficos dinámicos</p>
+        </div>
+        <div class="tech-box">
+          <h4>Backend (Servidor)</h4>
+          <p><strong>Node.js/Vercel Functions</strong> - API REST<br><strong>Supabase Auth</strong> - Autenticación<br><strong>PostgreSQL</strong> - BD relacional<br><strong>Realtime Subscriptions</strong> - Datos vivos<br><strong>JWT Tokens</strong> - Seguridad</p>
+        </div>
+        <div class="tech-box">
+          <h4>Almacenamiento (Archivos)</h4>
+          <p><strong>Supabase Storage</strong> - Imágenes/videos<br><strong>AWS S3</strong> - Documentos/backups<br><strong>CDN Global</strong> - Entrega rápida<br><strong>Compression</strong> - Optimización<br><strong>Versionado</strong> - Control de cambios</p>
+        </div>
+        <div class="tech-box">
+          <h4>Notificaciones</h4>
+          <p><strong>Twilio WhatsApp</strong> - Mensajería<br><strong>SendGrid Email</strong> - Correos<br><strong>SMS Gateway</strong> - Textos<br><strong>Push Notifications</strong> - App alerts<br><strong>Webhooks</strong> - Eventos automáticos</p>
+        </div>
+        <div class="tech-box">
+          <h4>Pagos & Facturación</h4>
+          <p><strong>Stripe Connect</strong> - Pagos seguros<br><strong>PayPal Integration</strong> - Alternativa<br><strong>Facturación XML</strong> - CFDI México<br><strong>Reportes Fiscales</strong> - Compliance<br><strong>Reconciliación</strong> - Contabilidad</p>
+        </div>
+        <div class="tech-box">
+          <h4>Hosting & DevOps</h4>
+          <p><strong>Vercel</strong> - Frontend deployment<br><strong>Hostinger</strong> - Dominio + hosting<br><strong>GitHub Actions</strong> - CI/CD<br><strong>SSL/TLS</strong> - Seguridad<br><strong>Monitoring</strong> - Uptime 99.9%</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section>
+      <h2>💪 ¿Por qué Elegirnos?</h2>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">✅</div>
+          <h4>Experiencia Comprobada</h4>
+          <p>10+ años en desarrollo web, 50+ proyectos exitosos, especialistas en Real Estate tech</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📈</div>
+          <h4>ROI Garantizado</h4>
+          <p>Herramientas diseñadas para aumentar conversiones y reducir costos administrativos hasta 40%</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔒</div>
+          <h4>Seguridad Enterprise</h4>
+          <p>Encriptación end-to-end, backups automáticos, compliance RGPD, auditorías de seguridad</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📱</div>
+          <h4>Mobile First</h4>
+          <p>70% de tu tráfico es móvil: optimizamos para velocidad y UX en dispositivos pequeños</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎓</div>
+          <h4>Capacitación Completa</h4>
+          <p>5 sesiones vivo, documentación, videos tutorial, soporte técnico 24/7 por 12 meses</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🚀</div>
+          <h4>Soporte Continuo</h4>
+          <p>Updates gratuitas, nuevas features, optimizaciones mensuales, escalabilidad ilimitada</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary -->
+    <section class="summary">
+      <h2>🎯 Resumen de Propuesta</h2>
+      <div class="summary-grid">
+        <div class="summary-item">
+          <h4>💰 Inversión Total</h4>
+          <p><strong>$155,000 MXN</strong> (Paquete Estándar) - Incluye todo menos soporte post-año 1</p>
+        </div>
+        <div class="summary-item">
+          <h4>⏱️ Tiempo Implementación</h4>
+          <p><strong>6 meses</strong> de desarrollo intensivo con sprints bi-semanales y demos semanales</p>
+        </div>
+        <div class="summary-item">
+          <h4>🎁 Beneficios</h4>
+          <p>BD gratuita 100GB, hosting incluido 1 año, 5 capacitaciones, soporte técnico completo</p>
+        </div>
+        <div class="summary-item">
+          <h4>📊 Alcance</h4>
+          <p>Inmobiliaria, Academia, CRM, Admin Rentas, Pagos en línea, Alertas, Gestor Documentos</p>
+        </div>
+        <div class="summary-item">
+          <h4>🎨 Diseño</h4>
+          <p>2D Premium con animaciones fluidas, paleta profesional, responsive 100%, scores 95+</p>
+        </div>
+        <div class="summary-item">
+          <h4>🔐 Seguridad</h4>
+          <p>Encriptación, backups automáticos, SSL, auth segura, compliance RGPD, auditorías</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section style="text-align: center; margin: 3rem 0;">
+      <h2>🚀 ¿Listo para Comenzar?</h2>
+      <p style="font-size: 1.1rem; margin-bottom: 2rem;">Contáctanos para agendar una sesión de consultoría sin costo donde discutiremos tus necesidades específicas y ajustaremos la propuesta.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <button class="btn" style="width: auto;">📱 Contactar vía WhatsApp</button>
+        <button class="btn" style="width: auto; background: #D4A843;">📧 Enviar Email</button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p><strong>OHB Asesorías y Consultorías</strong></p>
+      <p>📍 Tomás Fernández #7818, Local 19, Col. Buscari | Cd. Juárez, Chihuahua</p>
+      <p>📱 WhatsApp: <strong>+52 656 132 7685</strong> | 📧 Email: <strong>jyeskas1111@gmail.com</strong></p>
+      <p style="margin-top: 1rem; opacity: 0.8;">Propuesta válida por 30 días | Términos y condiciones aplican</p>
+    </footer>
+  </div>
+
+  <button class="print-button" onclick="window.print()">🖨️ Imprimir/PDF</button>
+
+  <script>
+    // Animaciones al cargar
+    document.querySelectorAll('section').forEach((el, i) => {
+      el.style.animationDelay = `${i * 0.1}s`;
+    });
+
+    // Smooth scroll para botones
+    document.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        if (this.textContent.includes('Seleccionar') || this.textContent.includes('Contactar')) {
+          e.preventDefault();
+          alert('Funcionalidad de contacto: Integrar con tu CRM o email');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -115,7 +115,7 @@ const LOCKOUT_DURATION = 15 * 60 * 1000;
 const STORAGE_KEY = 'ohb_secure_session';
 const ATTEMPTS_KEY = 'ohb_login_attempts';
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [auth, setAuth] = useState<AuthState>({

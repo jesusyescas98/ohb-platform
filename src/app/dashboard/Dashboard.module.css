@@ -954,3 +954,147 @@
   .header h1 { font-size: 1.4rem; }
   .leadsPanel, .aiAlerts { padding: 1rem; }
 }
+
+/* ═══════════════════════════════════════════
+   ENHANCED DATA TABLE STYLES
+   ═══════════════════════════════════════════ */
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.dataTable thead tr {
+  border-bottom: 2px solid var(--glass-border);
+}
+
+.dataTable th {
+  padding: 0.8rem;
+  text-align: left;
+  color: var(--text-secondary);
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.dataTable tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background-color 0.2s ease;
+}
+
+.dataTable tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.dataTable td {
+  padding: 0.8rem;
+}
+
+.dataTable strong {
+  color: var(--text-primary);
+}
+
+/* Status badges */
+.statusBadge {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.statusBadgeClosed {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.statusBadgeNegotiation {
+  background: rgba(249, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.statusBadgePending {
+  background: rgba(59, 130, 246, 0.2);
+  color: #3b82f6;
+}
+
+.statusBadgeWarning {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+/* Color-coded sections */
+.colorCard {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  border: 1px solid var(--glass-border);
+  transition: all 0.2s ease;
+}
+
+.colorCard:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Progress indicators */
+.progressBar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 0.8rem;
+}
+
+.progressBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-silver), #E2E8F0);
+  border-radius: 2px;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Advisor cards enhancement */
+.advisorCard {
+  padding: 1.5rem;
+  background: var(--glass-bg);
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.advisorCard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(192, 198, 204, 0.25);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* KPI comparison grid */
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.8rem;
+}
+
+.kpiItem {
+  padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  border: 1px solid var(--glass-border);
+  text-align: center;
+}
+
+.kpiLabel {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.kpiValue {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--accent-silver);
+}

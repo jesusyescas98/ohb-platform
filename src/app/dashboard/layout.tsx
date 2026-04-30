@@ -21,6 +21,7 @@ const navSections = [
       { href: '/dashboard/properties', label: 'Propiedades', sublabel: 'Inventario + imágenes', icon: '🏠', badge: null },
       { href: '/dashboard/contacts', label: 'Contactos', sublabel: 'Clientes y prospectos', icon: '👥', badge: null },
       { href: '/dashboard/calendar', label: 'Calendario', sublabel: 'Citas y agenda', icon: '📅', badge: null },
+      { href: '/dashboard/transacciones', label: 'Transacciones', sublabel: 'Ventas y comisiones', icon: '💼', badge: null },
     ]
   },
   {
@@ -35,6 +36,7 @@ const navSections = [
     items: [
       { href: '/dashboard/files', label: 'Archivos', sublabel: 'Documentos compartidos', icon: '📁', badge: null },
       { href: '/dashboard/reports', label: 'Reportes', sublabel: 'Semanal de actividades', icon: '📋', badge: null },
+      { href: '/dashboard/estadisticas', label: 'Estadísticas', sublabel: 'Conversiones y analítica', icon: '📈', badge: null },
       { href: '/dashboard/keys', label: 'Control de Llaves', sublabel: 'Préstamos y devoluciones', icon: '🔑', badge: null },
       { href: '/dashboard/ai-chat', label: 'Asistente AVA', sublabel: 'IA Copilot para asesores', icon: '🧠', badge: null },
     ]
@@ -44,6 +46,7 @@ const navSections = [
     items: [
       { href: '/dashboard/asesores', label: 'Asesores', sublabel: 'Control de KPIs', icon: '👔', badge: null },
       { href: '/dashboard/usuarios', label: 'Usuarios', sublabel: 'Roles y permisos', icon: '👤', badge: null },
+      { href: '/dashboard/configuracion', label: 'Configuración', sublabel: 'Comisiones y equipo', icon: '⚙️', badge: null },
     ]
   }
 ];
@@ -142,7 +145,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         {navSections.map((section, sectionIdx) => {
           // Filter admin-only items
           const filteredItems = section.items.filter(item => {
-            if ((item.href === '/dashboard/about-editor' || item.href === '/dashboard/asesores' || item.href === '/dashboard/usuarios') && !isAdmin) return false;
+            if ((item.href === '/dashboard/about-editor' || item.href === '/dashboard/asesores' || item.href === '/dashboard/usuarios' || item.href === '/dashboard/configuracion') && !isAdmin) return false;
             return true;
           });
           if (filteredItems.length === 0) return null;

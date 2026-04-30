@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diseño Web Profesional Ciudad Juárez | Terra Studio | Páginas Web desde $3,500 MXN</title>
+<meta name="description" content="Agencia de diseño web en Ciudad Juárez. Creamos páginas web profesionales, landing pages y tiendas e-commerce con IA. Entrega en 72 horas desde $3,500 MXN.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://terrastudio.com.mx/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Diseño Web Profesional Ciudad Juárez | Terra Studio">
+<meta property="og:description" content="Páginas web profesionales desde $3,500 MXN. Entrega en 72 horas.">
+<meta name="theme-color" content="#CFA67A">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Terra Studio","url":"https://terrastudio.com.mx","telephone":"+52-656-526-3725","email":"gerenciadeventas@terrastudio.com.mx","address":{"@type":"PostalAddress","addressLocality":"Ciudad Juárez","addressRegion":"Chihuahua","addressCountry":"MX"},"priceRange":"$$"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ══ RESET ══ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+/* ══ DESIGN SYSTEM ══ */
+:root{
+  --charcoal:#1A1A1A;
+  --charcoal2:#222222;
+  --charcoal3:#2A2A2A;
+  --gold:#CFA67A;
+  --gold-light:#DDB98E;
+  --gold-dark:#B8895F;
+  --cream:#F1EDE4;
+  --cream2:#E8E0D4;
+  --cream3:#D4C9B8;
+  --muted:#888888;
+  --border:rgba(207,166,122,0.15);
+  --border2:rgba(207,166,122,0.25);
+}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--charcoal);
+  color:var(--cream);
+  overflow-x:hidden;
+}
+
+/* ══ SCROLLBAR ══ */
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--charcoal)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+/* ══ REVEAL SYSTEM — FIX PRINCIPAL ══
+   Los elementos son VISIBLES por defecto.
+   Solo se ocultan cuando JS confirma que
+   el IntersectionObserver está activo.
+   Esto evita la pantalla en blanco.
+*/
+.reveal{
+  transition:opacity 0.7s ease, transform 0.7s ease;
+  opacity:1;
+  transform:none;
+}
+.d1{transition-delay:0.1s}
+.d2{transition-delay:0.2s}
+.d3{transition-delay:0.3s}
+.d4{transition-delay:0.4s}
+
+/* Solo ocultar cuando JS está listo */
+html.anim-ready .reveal{
+  opacity:0;
+  transform:translateY(28px);
+}
+html.anim-ready .reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ══ KEYFRAMES ══ */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes waPop{
+  from{opacity:0;transform:scale(0.7) translateY(10px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+
+/* ══ COOKIE BANNER ══ */
+#cookie-banner{
+  position:fixed;bottom:0;left:0;right:0;z-index:9999;
+  background:#1A1A1A;
+  border-top:1px solid rgba(207,166,122,0.3);
+  padding:20px 32px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:20px;flex-wrap:wrap;
+  transform:translateY(100%);
+  transition:transform 0.4s ease;
+  box-shadow:0 -8px 30px rgba(0,0,0,0.4);
+}
+#cookie-banner.show{transform:translateY(0)}
+.cb-text{font-size:0.83rem;color:#D4C9B8;line-height:1.6;flex:1;min-width:240px}
+.cb-text a{color:#CFA67A;text-decoration:none}
+.cb-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.cb-btn{padding:9px 20px;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:0.08em;cursor:pointer;transition:all 0.2s;border:none;white-space:nowrap}
+.cb-accept{background:#CFA67A;color:#1A1A1A}
+.cb-accept:hover{background:#DDB98E}
+.cb-reject{background:transparent;color:#888;border:1px solid rgba(207,166,122,0.2)}
+.cb-reject:hover{color:#F1EDE4;border-color:rgba(207,166,122,0.4)}
+.cb-settings{background:transparent;color:#CFA67A;border:1px solid rgba(207,166,122,0.3);font-size:0.75rem}
+.cb-settings:hover{background:rgba(207,166,122,0.08)}
+
+/* ══ COOKIE MODAL ══ */
+#cookie-modal{
+  position:fixed;inset:0;background:rgba(0,0,0,0.85);
+  z-index:10000;display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity 0.3s;
+  backdrop-filter:blur(8px);
+}
+#cookie-modal.open{opacity:1;pointer-events:all}
+.cm-box{background:#222;border:1px solid rgba(207,166,122,0.25);max-width:520px;width:92%;position:relative}
+.cm-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#B8895F,#CFA67A,#DDB98E)}
+.cm-header{padding:28px 28px 0;font-family:'Playfair Display',serif;font-size:1.3rem;color:#F1EDE4}
+.cm-body{padding:20px 28px}
+.cm-item{display:flex;align-items:flex-start;justify-content:space-between;padding:16px 0;border-bottom:1px solid rgba(207,166,122,0.08);gap:16px}
+.cm-item:last-child{border-bottom:none}
+.cm-info h4{font-size:0.88rem;font-weight:500;color:#F1EDE4;margin-bottom:4px}
+.cm-info p{font-size:0.78rem;color:#888;line-height:1.5}
+.toggle{position:relative;width:44px;height:24px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;inset:0;background:#333;border-radius:24px;cursor:pointer;transition:0.3s}
+.toggle-slider:before{content:'';position:absolute;width:18px;height:18px;left:3px;bottom:3px;background:#666;border-radius:50%;transition:0.3s}
+.toggle input:checked + .toggle-slider{background:#CFA67A}
+.toggle input:checked + .toggle-slider:before{transform:translateX(20px);background:#1A1A1A}
+.toggle input:disabled + .toggle-slider{opacity:0.6;cursor:not-allowed}
+.cm-footer{padding:16px 28px 24px;display:flex;gap:10px;justify-content:flex-end}
+
+/* ══ LANG SWITCHER ══ */
+.lang-switcher{display:flex;gap:4px;align-items:center}
+.lang-btn{background:none;border:1px solid transparent;color:#888;font-size:0.75rem;padding:4px 8px;cursor:pointer;border-radius:2px;font-family:'DM Sans',sans-serif;transition:all 0.2s}
+.lang-btn:hover,.lang-btn.active{border-color:rgba(207,166,122,0.3);color:#CFA67A}
+
+/* ══ NAV ══ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:20px 64px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:all 0.4s ease;
+}
+nav.scrolled{
+  padding:14px 64px;
+  background:rgba(26,26,26,0.97);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:var(--gold);letter-spacing:0.04em}
+.nav-logo em{font-style:normal;color:var(--cream)}
+.nav-links{display:flex;gap:36px;list-style:none;align-items:center}
+.nav-links a{color:var(--cream3);font-size:0.8rem;text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-cta{
+  background:transparent;border:1px solid var(--gold);color:var(--gold);
+  padding:9px 22px;border-radius:2px;font-family:'DM Sans',sans-serif;
+  font-size:0.76rem;font-weight:500;cursor:pointer;
+  letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;
+  transition:all 0.3s;
+}
+.nav-cta:hover{background:var(--gold);color:var(--charcoal)}
+
+/* ══ S1: HERO ══ */
+.hero{
+  min-height:100vh;position:relative;
+  display:flex;align-items:center;justify-content:center;
+  padding:140px 64px 100px;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(207,166,122,0.08) 0%,transparent 60%),var(--charcoal);
+}
+.hero-content{position:relative;z-index:1;text-align:center;max-width:860px;margin:0 auto}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:12px;
+  font-size:0.72rem;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:36px;
+  animation:fadeUp 0.9s ease both;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';display:block;width:32px;height:1px;background:var(--gold);opacity:0.5}
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3rem,7.5vw,6.5rem);
+  font-weight:500;line-height:1;letter-spacing:-0.01em;
+  margin-bottom:28px;
+  animation:fadeUp 0.9s 0.1s ease both;
+}
+.hero-title .l1{display:block;color:var(--cream)}
+.hero-title .l2{display:block;color:var(--gold);font-weight:400;font-style:italic}
+.hero-sub{
+  font-size:1.05rem;font-weight:300;color:var(--muted);
+  max-width:500px;margin:0 auto 52px;line-height:1.8;
+  animation:fadeUp 0.9s 0.2s ease both;
+}
+.hero-actions{
+  display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+  animation:fadeUp 0.9s 0.3s ease both;
+}
+.hero-divider{
+  width:1px;height:80px;
+  background:linear-gradient(180deg,transparent,var(--gold),transparent);
+  margin:60px auto 0;opacity:0.4;
+}
+
+/* ══ BUTTONS ══ */
+.btn-gold{
+  background:var(--gold);color:var(--charcoal);
+  padding:14px 40px;border:none;border-radius:2px;
+  font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;
+  cursor:pointer;letter-spacing:0.12em;text-transform:uppercase;
+  text-decoration:none;transition:all 0.3s;display:inline-block;
+}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-outline{
+  background:transparent;color:var(--cream);
+  padding:14px 40px;border:1px solid rgba(241,237,228,0.25);border-radius:2px;
+  font-family:'DM Sans',sans-serif;font-size:0.82rem;cursor:pointer;
+  letter-spacing:0.12em;text-transform:uppercase;
+  text-decoration:none;transition:all 0.3s;display:inline-block;
+}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ══ S2: STATS BAND ══ */
+.stats-band{
+  background:var(--charcoal2);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:40px 64px;
+}
+.stats-inner{
+  max-width:1000px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+.stat-item{text-align:center;padding:0 32px;border-right:1px solid var(--border)}
+.stat-item:last-child{border-right:none}
+.stat-num{
+  font-family:'Playfair Display',serif;font-size:2.8rem;
+  font-weight:500;color:var(--gold);display:block;line-height:1;
+}
+.stat-lbl{font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.15em;margin-top:6px}
+
+/* ══ SECTION BASE ══ */
+.section{padding:100px 64px}
+.section-header{text-align:center;max-width:640px;margin:0 auto 70px}
+.section-eyebrow{
+  font-size:0.7rem;font-weight:600;letter-spacing:0.28em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:block;
+}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.2rem,4vw,3.2rem);
+  font-weight:500;color:var(--cream);line-height:1.15;margin-bottom:16px;
+}
+.section-sub{font-size:0.95rem;color:var(--muted);line-height:1.8}
+
+/* ══ S3: SERVICIOS ══ */
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;max-width:1100px;margin:0 auto}
+.svc-card{
+  background:var(--charcoal2);padding:48px 40px;
+  border:1px solid var(--border);
+  transition:border-color 0.3s,background 0.3s;
+  position:relative;overflow:hidden;
+}
+.svc-card::before{
+  content:'';position:absolute;top:0;left:0;
+  width:3px;height:0;background:var(--gold);transition:height 0.4s;
+}
+.svc-card:hover{border-color:var(--border2);background:var(--charcoal3)}
+.svc-card:hover::before{height:100%}
+.svc-icon{font-size:1.8rem;margin-bottom:20px;display:block}
+.svc-name{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:500;color:var(--cream);margin-bottom:10px}
+.svc-desc{font-size:0.86rem;color:var(--muted);line-height:1.75;margin-bottom:20px}
+.svc-feats{list-style:none}
+.svc-feats li{font-size:0.8rem;color:var(--cream3);padding:4px 0;display:flex;align-items:center;gap:8px}
+.svc-feats li::before{content:'✦';color:var(--gold);font-size:0.6rem;flex-shrink:0}
+.svc-price-tag{display:inline-block;margin-top:20px;font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold)}
+.svc-price-tag small{font-family:'DM Sans',sans-serif;font-size:0.72rem;color:var(--muted);margin-left:4px}
+
+/* ══ S4: PORTAFOLIO ══ */
+.portfolio{background:var(--charcoal2)}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto}
+.port-card{
+  background:var(--charcoal3);border:1px solid var(--border);
+  overflow:hidden;transition:border-color 0.3s,transform 0.3s;cursor:pointer;
+}
+.port-card:hover{border-color:var(--border2);transform:translateY(-4px)}
+.port-visual{aspect-ratio:16/10;position:relative;overflow:hidden;background:var(--charcoal3)}
+.port-visual svg{width:100%;height:100%;display:block}
+.port-tag{
+  position:absolute;top:12px;left:12px;
+  background:rgba(26,26,26,0.9);border:1px solid var(--border2);
+  color:var(--gold);font-size:0.65rem;font-weight:600;
+  letter-spacing:0.18em;text-transform:uppercase;padding:4px 10px;
+}
+.port-body{padding:20px 22px}
+.port-client{font-size:0.72rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px}
+.port-name{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:500;color:var(--cream);margin-bottom:8px}
+.port-result{font-size:0.78rem;color:var(--gold);display:flex;align-items:center;gap:6px}
+.port-result::before{content:'↑';font-size:0.85rem}
+
+/* ══ S5: PROCESO ══ */
+.process{background:var(--charcoal)}
+.process-steps{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;max-width:1100px;margin:0 auto;position:relative;
+}
+.process-steps::before{
+  content:'';position:absolute;top:32px;left:12.5%;right:12.5%;
+  height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:0.3;
+}
+.step{padding:0 32px;text-align:center;position:relative}
+.step-num{
+  width:64px;height:64px;border-radius:50%;
+  border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 28px;
+  font-family:'Playfair Display',serif;font-size:1.3rem;
+  color:var(--gold);background:var(--charcoal);
+  position:relative;z-index:1;
+}
+.step-title{font-size:0.95rem;font-weight:500;color:var(--cream);margin-bottom:10px}
+.step-desc{font-size:0.82rem;color:var(--muted);line-height:1.7}
+.step-time{
+  display:inline-block;margin-top:12px;
+  font-size:0.7rem;color:var(--gold);
+  border:1px solid var(--border);padding:3px 10px;letter-spacing:0.08em;
+}
+
+/* ══ S6: PRECIOS ══ */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:0 auto}
+.price-card{
+  background:var(--charcoal2);border:1px solid var(--border);
+  padding:44px 36px;position:relative;
+  transition:border-color 0.3s,transform 0.3s;
+}
+.price-card:hover{border-color:var(--border2);transform:translateY(-4px)}
+.price-card.featured{
+  border-color:var(--gold);
+  background:linear-gradient(135deg,var(--charcoal2),rgba(207,166,122,0.04));
+}
+.price-card.featured::before{
+  content:'MÁS POPULAR';
+  position:absolute;top:-1px;left:50%;transform:translateX(-50%);
+  background:var(--gold);color:var(--charcoal);
+  font-size:0.62rem;font-weight:700;letter-spacing:0.2em;padding:5px 16px;
+}
+.price-plan{font-size:0.72rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:block}
+.price-name{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:500;color:var(--cream);margin-bottom:24px}
+.price-amount{margin-bottom:28px}
+.price-currency{font-size:0.9rem;color:var(--gold);vertical-align:top;line-height:2}
+.price-num{font-family:'Playfair Display',serif;font-size:3rem;font-weight:500;color:var(--cream);line-height:1}
+.price-period{font-size:0.75rem;color:var(--muted);margin-top:4px;display:block}
+.price-feats{list-style:none;margin-bottom:32px}
+.price-feats li{font-size:0.84rem;color:var(--cream3);padding:8px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.price-feats li:last-child{border-bottom:none}
+.price-feats li::before{content:'✦';color:var(--gold);font-size:0.6rem;flex-shrink:0}
+.price-cta{
+  width:100%;padding:13px;border-radius:2px;
+  font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;
+  letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;
+  transition:all 0.3s;border:1px solid var(--gold);background:transparent;color:var(--gold);
+}
+.price-card.featured .price-cta{background:var(--gold);color:var(--charcoal)}
+.price-card.featured .price-cta:hover{background:var(--gold-light)}
+.price-cta:hover{background:var(--gold);color:var(--charcoal)}
+.price-guarantee{text-align:center;margin-top:36px;font-size:0.82rem;color:var(--muted)}
+.price-guarantee span{color:var(--gold)}
+
+/* ══ S7: TESTIMONIOS ══ */
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto}
+.testi-card{
+  background:var(--charcoal3);border:1px solid var(--border);
+  padding:36px 32px;position:relative;transition:border-color 0.3s;
+}
+.testi-card:hover{border-color:var(--border2)}
+.testi-card::before{
+  content:'"';position:absolute;top:20px;right:24px;
+  font-family:'Playfair Display',serif;font-size:5rem;
+  color:var(--gold);opacity:0.12;line-height:1;
+}
+.testi-stars{display:flex;gap:4px;margin-bottom:20px}
+.testi-stars span{color:var(--gold);font-size:0.85rem}
+.testi-text{font-size:0.88rem;color:var(--cream3);line-height:1.8;margin-bottom:28px;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:14px}
+.testi-avatar{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--charcoal2);border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold);flex-shrink:0;
+}
+.testi-name{font-size:0.88rem;font-weight:500;color:var(--cream);margin-bottom:2px}
+.testi-biz{font-size:0.75rem;color:var(--muted);letter-spacing:0.05em}
+.testi-featured{border-color:var(--gold);background:linear-gradient(135deg,var(--charcoal3),rgba(207,166,122,0.04))}
+
+/* ══ S8: NOSOTROS ══ */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1100px;margin:0 auto;align-items:center}
+.why-visual{position:relative}
+.why-img-wrap{aspect-ratio:4/3;display:block;position:relative;overflow:hidden}
+.why-svg{width:100%;height:100%;display:block}
+.why-badge{
+  position:absolute;bottom:-20px;right:-20px;
+  background:var(--gold);color:var(--charcoal);
+  padding:20px 24px;font-family:'Playfair Display',serif;
+}
+.why-badge strong{display:block;font-size:2rem;font-weight:600;line-height:1}
+.why-badge span{font-size:0.72rem;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;opacity:0.8}
+.why-items{display:grid;gap:28px;margin-top:32px}
+.why-item{display:flex;gap:16px;align-items:flex-start}
+.why-icon{
+  width:42px;height:42px;border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;color:var(--gold);font-size:1.1rem;
+}
+.why-item-text h4{font-size:0.9rem;font-weight:500;color:var(--cream);margin-bottom:4px}
+.why-item-text p{font-size:0.82rem;color:var(--muted);line-height:1.7}
+
+/* ══ S9: EXTRAS ══ */
+.extras{background:var(--charcoal2);padding:100px 64px}
+.extras-track-wrap{overflow:hidden;position:relative;max-width:1100px;margin:0 auto}
+.extras-track{display:flex;gap:24px;transition:transform 0.6s cubic-bezier(.4,0,.2,1)}
+.extra-card{
+  flex:0 0 calc(25% - 18px);min-width:0;
+  background:var(--charcoal3);border:1px solid var(--border);
+  padding:28px 24px;transition:border-color 0.3s,transform 0.3s;cursor:pointer;
+}
+.extra-card:hover{border-color:var(--gold);transform:translateY(-3px)}
+.extra-icon{font-size:1.6rem;margin-bottom:14px;display:block}
+.extra-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:500;color:var(--cream);margin-bottom:6px}
+.extra-desc{font-size:0.78rem;color:var(--muted);line-height:1.6;margin-bottom:16px}
+.extra-price{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--gold);margin-bottom:16px;display:block}
+.extra-price small{font-size:0.65rem;font-family:'DM Sans',sans-serif;color:var(--muted);font-weight:400;vertical-align:middle;margin-left:4px}
+.extra-btn{
+  width:100%;padding:9px;
+  border:1px solid var(--border2);background:transparent;color:var(--gold);
+  font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;
+  letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;
+}
+.extra-btn:hover{background:var(--gold);color:var(--charcoal)}
+.extras-nav{display:flex;justify-content:center;gap:8px;margin-top:32px}
+.extras-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--border2);border:none;cursor:pointer;
+  transition:background 0.3s,transform 0.3s;padding:0;
+}
+.extras-dot.active{background:var(--gold);transform:scale(1.4)}
+
+/* ══ S10: CTA FINAL ══ */
+.cta-final{
+  background:var(--charcoal);border-top:1px solid var(--border);
+  padding:120px 64px;text-align:center;position:relative;overflow:hidden;
+}
+.cta-final::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 100%,rgba(207,166,122,0.07) 0%,transparent 65%);
+  pointer-events:none;
+}
+.cta-final-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+.cta-final-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.6rem,5vw,4rem);
+  font-weight:500;color:var(--cream);line-height:1.1;margin-bottom:20px;
+}
+.cta-final-title em{font-style:italic;color:var(--gold)}
+.cta-final-sub{
+  font-size:0.98rem;color:var(--muted);line-height:1.8;
+  margin:0 auto 44px;max-width:480px;
+}
+.cta-final-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:36px}
+.cta-trust{display:flex;gap:28px;justify-content:center;flex-wrap:wrap}
+.cta-trust-item{display:flex;align-items:center;gap:8px;font-size:0.78rem;color:var(--muted)}
+.cta-trust-item::before{content:'✦';color:var(--gold);font-size:0.6rem}
+
+/* ══ FOOTER ══ */
+footer{background:var(--charcoal);border-top:1px solid var(--border);padding:48px 64px 28px}
+.footer-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;
+  max-width:1200px;margin:0 auto;
+  padding-bottom:40px;border-bottom:1px solid var(--border);
+}
+.footer-brand-name{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:600;color:var(--gold);margin-bottom:14px;display:block}
+.footer-tagline{font-size:0.85rem;color:var(--muted);line-height:1.7;max-width:240px;margin-bottom:20px}
+.footer-social{display:flex;gap:10px;margin-top:4px}
+.footer-social a{
+  width:32px;height:32px;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--muted);font-size:0.85rem;text-decoration:none;
+  font-family:'DM Sans',sans-serif;transition:all 0.2s;
+}
+.footer-social a:hover{border-color:var(--gold);color:var(--gold)}
+.footer-col h4{font-size:0.68rem;font-weight:600;color:var(--cream);text-transform:uppercase;letter-spacing:0.18em;margin-bottom:18px}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:10px}
+.footer-col a{font-size:0.84rem;color:var(--muted);text-decoration:none;transition:color 0.2s}
+.footer-col a:hover{color:var(--gold)}
+.footer-bottom{
+  max-width:1200px;margin:24px auto 0;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:0.76rem;color:var(--muted);flex-wrap:wrap;gap:12px;
+}
+.footer-legal{display:flex;gap:20px;flex-wrap:wrap}
+.footer-legal a{color:var(--muted);text-decoration:none;font-size:0.76rem;transition:color 0.2s}
+.footer-legal a:hover{color:var(--gold)}
+
+/* ══ MODAL ══ */
+.modal-overlay{
+  position:fixed;inset:0;z-index:1000;
+  background:rgba(10,10,10,0.92);backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity 0.35s;
+}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{
+  background:var(--charcoal2);border:1px solid var(--border2);
+  max-width:540px;width:92%;padding:52px 44px;
+  position:relative;transform:translateY(20px);transition:transform 0.35s;
+}
+.modal-overlay.open .modal{transform:translateY(0)}
+.modal::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-light))}
+.modal-close{
+  position:absolute;top:20px;right:20px;
+  background:none;border:none;color:var(--muted);font-size:1rem;
+  cursor:pointer;width:30px;height:30px;
+  display:flex;align-items:center;justify-content:center;transition:color 0.2s;
+}
+.modal-close:hover{color:var(--cream)}
+.modal-eyebrow{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.modal-title{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:500;color:var(--cream);margin-bottom:8px}
+.modal-sub{font-size:0.86rem;color:var(--muted);margin-bottom:32px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group{margin-bottom:16px}
+.form-label{font-size:0.72rem;font-weight:500;color:var(--cream3);display:block;margin-bottom:7px;letter-spacing:0.08em;text-transform:uppercase}
+.form-input{
+  width:100%;background:rgba(26,26,26,0.8);
+  border:1px solid rgba(207,166,122,0.2);
+  padding:11px 14px;color:var(--cream);
+  font-family:'DM Sans',sans-serif;font-size:0.88rem;
+  transition:border-color 0.2s;outline:none;border-radius:1px;
+}
+.form-input:focus{border-color:var(--gold)}
+.form-input::placeholder{color:var(--muted)}
+select.form-input{cursor:pointer}
+select.form-input option{background:var(--charcoal2)}
+.form-success{text-align:center;padding:32px 0;display:none}
+.success-icon{font-size:2.5rem;margin-bottom:16px}
+.success-title{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--cream);margin-bottom:8px}
+.success-msg{font-size:0.88rem;color:var(--muted);line-height:1.7}
+
+/* ══ WHATSAPP ══ */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:999;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.wa-bubble{
+  background:#fff;border-radius:12px 12px 0 12px;
+  padding:12px 16px;max-width:240px;position:relative;
+  box-shadow:0 4px 20px rgba(0,0,0,0.3);
+  font-size:0.82rem;color:#333;line-height:1.5;
+  animation:waPop 0.4s ease both;transform-origin:bottom right;
+}
+.wa-bubble strong{display:block;color:#128c7e;margin-bottom:4px;font-size:0.85rem}
+.wa-btn{
+  width:58px;height:58px;border-radius:50%;background:#25d366;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,0.4);
+  cursor:pointer;border:none;transition:transform 0.2s,box-shadow 0.2s;text-decoration:none;
+}
+.wa-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,0.5)}
+.wa-btn svg{width:32px;height:32px;fill:#fff}
+.wa-bubble-close{position:absolute;top:6px;right:8px;background:none;border:none;color:#999;cursor:pointer;font-size:0.9rem;line-height:1;padding:0}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:960px){
+  nav{padding:16px 24px}
+  nav.scrolled{padding:12px 24px}
+  .nav-links{display:none}
+  .hero{padding:120px 24px 80px}
+  .section{padding:70px 24px}
+  .extras{padding:70px 24px}
+  .cta-final{padding:80px 24px}
+  .stats-band{padding:32px 24px}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .stat-item{border-right:none;border-bottom:1px solid var(--border);padding:20px 0}
+  .stat-item:nth-child(odd){border-right:1px solid var(--border)}
+  .stat-item:nth-child(3),.stat-item:nth-child(4){border-bottom:none}
+  .services-grid{grid-template-columns:1fr}
+  .portfolio-grid{grid-template-columns:1fr}
+  .process-steps{grid-template-columns:1fr 1fr;gap:40px}
+  .process-steps::before{display:none}
+  .pricing-grid{grid-template-columns:1fr}
+  .testimonials-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr;gap:50px}
+  .why-badge{bottom:-10px;right:0}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+  .form-row{grid-template-columns:1fr}
+  .modal{padding:36px 24px}
+  .extra-card{flex:0 0 calc(50% - 12px)}
+  .extras-track{gap:16px}
+  .wa-float{bottom:18px;right:16px}
+  .wa-bubble{max-width:200px}
+}
+@media(max-width:480px){
+  .stats-inner{grid-template-columns:1fr}
+  .stat-item{border-right:none !important}
+  .footer-top{grid-template-columns:1fr}
+  .cta-trust{flex-direction:column;align-items:center;gap:12px}
+}
+</style>
+</head>
+<body>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner">
+  <div class="cb-text">
+    🍪 Usamos cookies para mejorar tu experiencia y mostrarte anuncios relevantes.
+    Al aceptar, consientes el uso de Google Analytics y Google Ads.
+    <a href="/legal.html">Más información</a>
+  </div>
+  <div class="cb-actions">
+    <button class="cb-btn cb-settings" onclick="openCookieModal()">⚙ Gestionar</button>
+    <button class="cb-btn cb-reject" onclick="rejectCookies()">Solo esenciales</button>
+    <button class="cb-btn cb-accept" onclick="acceptAllCookies()">Aceptar todas</button>
+  </div>
+</div>
+
+<!-- COOKIE MODAL -->
+<div id="cookie-modal">
+  <div class="cm-box">
+    <div class="cm-header">Preferencias de Cookies</div>
+    <div class="cm-body">
+      <div class="cm-item">
+        <div class="cm-info"><h4>Esenciales</h4><p>Necesarias para el funcionamiento básico. No se pueden desactivar.</p></div>
+        <label class="toggle"><input type="checkbox" checked disabled><span class="toggle-slider"></span></label>
+      </div>
+      <div class="cm-item">
+        <div class="cm-info"><h4>Analíticas (Google Analytics)</h4><p>Nos ayudan a entender cómo usas el sitio.</p></div>
+        <label class="toggle"><input type="checkbox" id="ck-analytics"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="cm-item">
+        <div class="cm-info"><h4>Publicidad (Google Ads)</h4><p>Permiten mostrarte anuncios relevantes.</p></div>
+        <label class="toggle"><input type="checkbox" id="ck-ads"><span class="toggle-slider"></span></label>
+      </div>
+    </div>
+    <div class="cm-footer">
+      <button class="cb-btn cb-reject" onclick="closeCookieModal()">Cancelar</button>
+      <button class="cb-btn cb-accept" onclick="saveCustomCookies()">Guardar preferencias</button>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <span class="nav-logo">Terra <em>Studio</em></span>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#portafolio">Portafolio</a></li>
+    <li><a href="#precios">Precios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('es',event)">🇲🇽 ES</button>
+      <button class="lang-btn" onclick="setLang('en',event)">🇺🇸 EN</button>
+      <button class="lang-btn" onclick="setLang('fr',event)">🇫🇷 FR</button>
+      <button class="lang-btn" onclick="setLang('pt',event)">🇧🇷 PT</button>
+    </div>
+    <a href="#" class="nav-cta" onclick="openModal(event)">Agendar Cita</a>
+  </div>
+</nav>
+
+<!-- S1: HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Impulso Digital con IA — Ciudad Juárez</div>
+    <h1 class="hero-title">
+      <span class="l1">Tu Negocio Merece</span>
+      <span class="l2">Presencia Real</span>
+    </h1>
+    <p class="hero-sub">Diseñamos páginas web profesionales que generan confianza, atraen clientes y hacen crecer tu negocio. Entrega en 72 horas.</p>
+    <div class="hero-actions">
+      <a href="#precios" class="btn-gold">Ver Planes</a>
+      <a href="#" class="btn-outline" onclick="openModal(event)">Consulta Gratuita</a>
+    </div>
+    <div class="hero-divider"></div>
+  </div>
+</section>
+
+<!-- S2: STATS -->
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <span class="stat-num">72h</span>
+      <span class="stat-lbl">Entrega Express</span>
+    </div>
+    <div class="stat-item reveal d1">
+      <span class="stat-num">+50</span>
+      <span class="stat-lbl">Proyectos Entregados</span>
+    </div>
+    <div class="stat-item reveal d2">
+      <span class="stat-num">100%</span>
+      <span class="stat-lbl">Diseño a Medida</span>
+    </div>
+    <div class="stat-item reveal d3">
+      <span class="stat-num">IA</span>
+      <span class="stat-lbl">Potenciado</span>
+    </div>
+  </div>
+</div>
+
+<!-- S3: SERVICIOS -->
+<section class="section" id="servicios">
+  <div class="section-header">
+    <span class="section-eyebrow reveal">Nuestros Servicios</span>
+    <h2 class="section-title reveal d1">Soluciones Web Para Cada Negocio</h2>
+    <p class="section-sub reveal d2">Desde una landing page efectiva hasta una tienda online completa, tenemos el plan correcto para ti.</p>
+  </div>
+  <div class="services-grid">
+    <div class="svc-card reveal">
+      <span class="svc-icon">🏁</span>
+      <div class="svc-name">Landing Page</div>
+      <p class="svc-desc">Una sola página de alta conversión diseñada para capturar leads, promocionar un servicio o lanzar un producto.</p>
+      <ul class="svc-feats">
+        <li>Diseño responsive mobile-first</li>
+        <li>Formulario de contacto integrado</li>
+        <li>Optimización SEO básica</li>
+        <li>Entrega en 72 horas</li>
+      </ul>
+      <span class="svc-price-tag">$3,500 <small>MXN · pago único</small></span>
+    </div>
+    <div class="svc-card reveal d1">
+      <span class="svc-icon">🛒</span>
+      <div class="svc-name">Tienda E-Commerce</div>
+      <p class="svc-desc">Vende en línea con una tienda completa: catálogo, carrito de compras, pagos y gestión de pedidos.</p>
+      <ul class="svc-feats">
+        <li>Catálogo de productos ilimitado</li>
+        <li>Pasarela de pagos integrada</li>
+        <li>Panel de administración</li>
+        <li>Integración con redes sociales</li>
+      </ul>
+      <span class="svc-price-tag">$15,000 <small>MXN · pago único</small></span>
+    </div>
+    <div class="svc-card reveal">
+      <span class="svc-icon">✦</span>
+      <div class="svc-name">Portafolio Profesional</div>
+      <p class="svc-desc">Muestra tu trabajo de forma elegante y atrae clientes de mayor valor con un portafolio que impresiona.</p>
+      <ul class="svc-feats">
+        <li>Galería de proyectos animada</li>
+        <li>Página de servicios y proceso</li>
+        <li>Integración con Instagram</li>
+        <li>Formulario de contacto avanzado</li>
+      </ul>
+      <span class="svc-price-tag">$5,500 <small>MXN · pago único</small></span>
+    </div>
+    <div class="svc-card reveal d1">
+      <span class="svc-icon">🏢</span>
+      <div class="svc-name">Sitio Corporativo</div>
+      <p class="svc-desc">Presencia digital completa para empresas: múltiples páginas, blog, equipo, servicios y más.</p>
+      <ul class="svc-feats">
+        <li>Hasta 8 páginas interiores</li>
+        <li>Blog y noticias</li>
+        <li>Mapa y ubicación</li>
+        <li>Optimización SEO avanzada</li>
+      </ul>
+      <span class="svc-price-tag">$7,500 <small>MXN · pago único</small></span>
+    </div>
+  </div>
+</section>
+
+<!-- S4: PORTAFOLIO -->
+<section class="section portfolio" id="portafolio">
+  <div class="section-header">
+    <span class="section-eyebrow reveal">Proyectos Recientes</span>
+    <h2 class="section-title reveal d1">Trabajos que Hablan por Sí Solos</h2>
+    <p class="section-sub reveal d2">Cada proyecto es único. Aquí una muestra de lo que creamos para negocios en Ciudad Juárez y México.</p>
+  </div>
+  <div class="portfolio-grid">
+    <div class="port-card reveal">
+      <div class="port-visual">
+        <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="250" fill="#1E1A2E"/>
+          <rect x="0" y="0" width="400" height="44" fill="#16122A"/>
+          <circle cx="24" cy="22" r="6" fill="#FF5F57"/><circle cx="44" cy="22" r="6" fill="#FFBD2E"/><circle cx="64" cy="22" r="6" fill="#28CA41"/>
+          <rect x="140" y="14" width="120" height="16" rx="8" fill="#2A2545"/>
+          <rect x="24" y="68" width="160" height="18" rx="3" fill="#CFA67A" opacity="0.9"/>
+          <rect x="24" y="96" width="220" height="10" rx="2" fill="#4A4060" opacity="0.7"/>
+          <rect x="24" y="112" width="180" height="10" rx="2" fill="#4A4060" opacity="0.5"/>
+          <rect x="24" y="144" width="80" height="28" rx="2" fill="#CFA67A"/>
+          <rect x="116" y="144" width="80" height="28" rx="2" fill="none" stroke="#CFA67A" stroke-width="1.5"/>
+          <rect x="220" y="60" width="160" height="160" rx="4" fill="#2A2545"/>
+          <circle cx="300" cy="100" r="30" fill="#CFA67A" opacity="0.15"/>
+          <circle cx="300" cy="100" r="16" fill="#CFA67A" opacity="0.4"/>
+          <rect x="238" y="148" width="84" height="8" rx="2" fill="#4A4060"/>
+          <rect x="246" y="164" width="68" height="6" rx="2" fill="#4A4060" opacity="0.6"/>
+        </svg>
+        <span class="port-tag">Landing Page</span>
+      </div>
+      <div class="port-body">
+        <div class="port-client">Clínica Dental · Cd. Juárez</div>
+        <div class="port-name">Sonrisa Perfecta Dental</div>
+        <div class="port-result">+180% consultas en el primer mes</div>
+      </div>
+    </div>
+    <div class="port-card reveal d1">
+      <div class="port-visual">
+        <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="250" fill="#1A1F1A"/>
+          <rect x="0" y="0" width="400" height="44" fill="#141A14"/>
+          <circle cx="24" cy="22" r="6" fill="#FF5F57"/><circle cx="44" cy="22" r="6" fill="#FFBD2E"/><circle cx="64" cy="22" r="6" fill="#28CA41"/>
+          <rect x="20" y="60" width="170" height="170" rx="3" fill="#1F271F"/>
+          <rect x="28" y="68" width="154" height="90" rx="2" fill="#2A3A2A"/>
+          <circle cx="105" cy="113" r="28" fill="#CFA67A" opacity="0.2"/>
+          <circle cx="105" cy="113" r="14" fill="#CFA67A" opacity="0.5"/>
+          <rect x="28" y="170" width="100" height="8" rx="2" fill="#4A5A4A"/>
+          <rect x="28" y="198" width="120" height="20" rx="2" fill="#CFA67A" opacity="0.8"/>
+          <rect x="202" y="60" width="178" height="56" rx="3" fill="#1F271F"/>
+          <rect x="210" y="70" width="60" height="6" rx="2" fill="#CFA67A"/>
+          <rect x="210" y="82" width="100" height="5" rx="2" fill="#4A5A4A" opacity="0.7"/>
+          <rect x="202" y="124" width="85" height="50" rx="3" fill="#1F271F"/>
+          <rect x="295" y="124" width="85" height="50" rx="3" fill="#1F271F"/>
+          <rect x="202" y="182" width="178" height="48" rx="3" fill="#1F271F"/>
+        </svg>
+        <span class="port-tag">E-Commerce</span>
+      </div>
+      <div class="port-body">
+        <div class="port-client">Moda & Accesorios · Chihuahua</div>
+        <div class="port-name">Boutique Azul Añil</div>
+        <div class="port-result">$85,000 MXN en ventas el primer mes</div>
+      </div>
+    </div>
+    <div class="port-card reveal d2">
+      <div class="port-visual">
+        <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="250" fill="#1A1A22"/>
+          <rect x="0" y="0" width="400" height="44" fill="#14141C"/>
+          <circle cx="24" cy="22" r="6" fill="#FF5F57"/><circle cx="44" cy="22" r="6" fill="#FFBD2E"/><circle cx="64" cy="22" r="6" fill="#28CA41"/>
+          <rect x="0" y="44" width="90" height="206" fill="#16161E"/>
+          <rect x="14" y="60" width="62" height="22" rx="2" fill="#CFA67A" opacity="0.2"/>
+          <rect x="18" y="66" width="40" height="10" rx="2" fill="#CFA67A" opacity="0.8"/>
+          <rect x="14" y="90" width="62" height="10" rx="2" fill="#2E2E3E"/>
+          <rect x="14" y="106" width="62" height="10" rx="2" fill="#2E2E3E"/>
+          <rect x="14" y="122" width="62" height="10" rx="2" fill="#2E2E3E"/>
+          <rect x="104" y="56" width="275" height="36" rx="3" fill="#22223A"/>
+          <rect x="112" y="64" width="80" height="8" rx="2" fill="#CFA67A" opacity="0.7"/>
+          <rect x="104" y="100" width="130" height="76" rx="3" fill="#22223A"/>
+          <rect x="248" y="100" width="131" height="76" rx="3" fill="#22223A"/>
+          <rect x="112" y="112" width="60" height="8" rx="2" fill="#CFA67A" opacity="0.6"/>
+          <rect x="104" y="184" width="275" height="58" rx="3" fill="#22223A"/>
+        </svg>
+        <span class="port-tag">Sitio Corporativo</span>
+      </div>
+      <div class="port-body">
+        <div class="port-client">Construcción · Cd. Juárez</div>
+        <div class="port-name">Edificia Constructora</div>
+        <div class="port-result">+3 contratos cerrados vía web en 60 días</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S5: PROCESO -->
+<section class="section process" id="proceso">
+  <div class="section-header">
+    <span class="section-eyebrow reveal">Cómo Trabajamos</span>
+    <h2 class="section-title reveal d1">Tu Web Lista en 4 Pasos</h2>
+    <p class="section-sub reveal d2">Un proceso claro, rápido y sin complicaciones para que tengas tu presencia digital lista cuando la necesitas.</p>
+  </div>
+  <div class="process-steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-title">Consulta Inicial</div>
+      <p class="step-desc">Hablamos sobre tu negocio, objetivos y audiencia. Sin costo, sin compromisos.</p>
+      <span class="step-time">Día 1</span>
+    </div>
+    <div class="step reveal d1">
+      <div class="step-num">02</div>
+      <div class="step-title">Diseño &amp; Propuesta</div>
+      <p class="step-desc">Creamos un diseño personalizado y te presentamos la propuesta para tu aprobación.</p>
+      <span class="step-time">Día 1–2</span>
+    </div>
+    <div class="step reveal d2">
+      <div class="step-num">03</div>
+      <div class="step-title">Desarrollo con IA</div>
+      <p class="step-desc">Construimos tu sitio con las últimas tecnologías e inteligencia artificial.</p>
+      <span class="step-time">Día 2–3</span>
+    </div>
+    <div class="step reveal d3">
+      <div class="step-num">04</div>
+      <div class="step-title">Lanzamiento</div>
+      <p class="step-desc">Publicamos tu sitio, te entregamos todo y te damos soporte post-lanzamiento.</p>
+      <span class="step-time">Día 3</span>
+    </div>
+  </div>
+</section>
+
+<!-- S6: PRECIOS -->
+<section class="section" id="precios" style="background:var(--charcoal2)">
+  <div class="section-header">
+    <span class="section-eyebrow reveal">Planes y Precios</span>
+    <h2 class="section-title reveal d1">Inversión Transparente</h2>
+    <p class="section-sub reveal d2">Sin sorpresas. Elige el plan que mejor se adapte a tu negocio y presupuesto.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card reveal">
+      <span class="price-plan">Esencial</span>
+      <div class="price-name">Landing Page</div>
+      <div class="price-amount">
+        <span class="price-currency">$</span><span class="price-num">3,500</span>
+        <span class="price-period">MXN · pago único</span>
+      </div>
+      <ul class="price-feats">
+        <li>1 página de aterrizaje</li>
+        <li>Diseño responsive</li>
+        <li>Formulario de contacto</li>
+        <li>SEO básico</li>
+        <li>Entrega en 72 horas</li>
+        <li>1 ronda de revisiones</li>
+      </ul>
+      <button class="price-cta" onclick="openModal(event)">Comenzar Ahora</button>
+    </div>
+    <div class="price-card featured reveal d1">
+      <span class="price-plan">Profesional</span>
+      <div class="price-name">Sitio Completo</div>
+      <div class="price-amount">
+        <span class="price-currency">$</span><span class="price-num">7,500</span>
+        <span class="price-period">MXN · pago único</span>
+      </div>
+      <ul class="price-feats">
+        <li>Hasta 5 páginas</li>
+        <li>Diseño premium personalizado</li>
+        <li>Blog integrado</li>
+        <li>SEO avanzado</li>
+        <li>WhatsApp flotante</li>
+        <li>3 rondas de revisiones</li>
+      </ul>
+      <button class="price-cta" onclick="openModal(event)">Elegir Plan</button>
+    </div>
+    <div class="price-card reveal d2">
+      <span class="price-plan">Tienda Online</span>
+      <div class="price-name">E-Commerce</div>
+      <div class="price-amount">
+        <span class="price-currency">$</span><span class="price-num">15,000</span>
+        <span class="price-period">MXN · pago único</span>
+      </div>
+      <ul class="price-feats">
+        <li>Tienda completa</li>
+        <li>Catálogo ilimitado</li>
+        <li>Pagos en línea</li>
+        <li>Panel de administración</li>
+        <li>Integración con redes</li>
+        <li>Soporte 30 días</li>
+      </ul>
+      <button class="price-cta" onclick="openModal(event)">Solicitar Cotización</button>
+    </div>
+  </div>
+  <p class="price-guarantee">✦ <span>Todos los planes incluyen dominio .com.mx + hosting el primer año</span></p>
+</section>
+
+<!-- S7: TESTIMONIOS -->
+<section class="section" id="testimonios">
+  <div class="section-header">
+    <span class="section-eyebrow reveal">Lo Que Dicen Nuestros Clientes</span>
+    <h2 class="section-title reveal d1">Resultados que Importan</h2>
+    <p class="section-sub reveal d2">Más de 50 negocios en Ciudad Juárez ya confían en Terra Studio para su presencia digital.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testi-card testi-featured reveal">
+      <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="testi-text">"Tenía miedo de invertir en una página web porque pensé que era muy caro y complicado. Terra Studio me sorprendió: en 3 días ya tenía mi sitio listo y en el primer mes duplicé mis consultas."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">M</div>
+        <div>
+          <div class="testi-name">Dra. Marcela Fuentes</div>
+          <div class="testi-biz">Dentista · Clínica Sonrisa Perfecta</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal d1">
+      <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="testi-text">"Mi tienda online generó $85,000 pesos en el primer mes. El proceso fue súper profesional, el diseño quedó exactamente como lo imaginaba y el soporte post-entrega fue excelente."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">V</div>
+        <div>
+          <div class="testi-name">Valeria Ochoa</div>
+          <div class="testi-biz">Dueña · Boutique Azul Añil</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal d2">
+      <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="testi-text">"Necesitaba un sitio corporativo que transmitiera confianza a clientes grandes. Terra Studio entendió perfectamente. Cerramos 3 contratos nuevos gracias a nuestra presencia web."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">R</div>
+        <div>
+          <div class="testi-name">Ing. Roberto Palma</div>
+          <div class="testi-biz">Director · Edificia Constructora</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S8: NOSOTROS -->
+<section class="section" id="nosotros" style="background:var(--charcoal2)">
+  <div class="why-grid">
+    <div class="why-visual reveal">
+      <div class="why-img-wrap">
+        <svg class="why-svg" viewBox="0 0 420 315" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#2A2A2A"/>
+              <stop offset="100%" stop-color="#1A1A1A"/>
+            </radialGradient>
+            <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <rect width="420" height="315" fill="url(#bgGrad)"/>
+          <g stroke="rgba(207,166,122,0.06)" stroke-width="1">
+            <line x1="0" y1="52" x2="420" y2="52"/><line x1="0" y1="105" x2="420" y2="105"/>
+            <line x1="0" y1="157" x2="420" y2="157"/><line x1="0" y1="210" x2="420" y2="210"/>
+            <line x1="70" y1="0" x2="70" y2="315"/><line x1="140" y1="0" x2="140" y2="315"/>
+            <line x1="210" y1="0" x2="210" y2="315"/><line x1="280" y1="0" x2="280" y2="315"/>
+            <line x1="350" y1="0" x2="350" y2="315"/>
+          </g>
+          <g stroke="rgba(207,166,122,0.18)" stroke-width="1" fill="none">
+            <line x1="210" y1="157" x2="70" y2="70"/><line x1="210" y1="157" x2="350" y2="80"/>
+            <line x1="210" y1="157" x2="340" y2="240"/><line x1="210" y1="157" x2="80" y2="245"/>
+            <line x1="210" y1="157" x2="370" y2="157"/><line x1="210" y1="157" x2="50" y2="157"/>
+          </g>
+          <circle r="3" fill="#CFA67A"><animateMotion dur="3s" repeatCount="indefinite" path="M210,157 L70,70"/><animate attributeName="opacity" values="0;0.8;0" dur="3s" repeatCount="indefinite"/></circle>
+          <circle r="3" fill="#CFA67A"><animateMotion dur="4s" begin="1s" repeatCount="indefinite" path="M210,157 L350,80"/><animate attributeName="opacity" values="0;0.8;0" dur="4s" begin="1s" repeatCount="indefinite"/></circle>
+          <circle r="3" fill="#DDB98E"><animateMotion dur="3.5s" begin="0.5s" repeatCount="indefinite" path="M210,157 L80,245"/><animate attributeName="opacity" values="0;0.8;0" dur="3.5s" begin="0.5s" repeatCount="indefinite"/></circle>
+          <g filter="url(#glow)">
+            <circle cx="70" cy="70" r="7" fill="none" stroke="#CFA67A" stroke-width="1.5" opacity="0.7"/>
+            <circle cx="70" cy="70" r="3" fill="#CFA67A" opacity="0.7"/>
+            <circle cx="350" cy="80" r="7" fill="none" stroke="#CFA67A" stroke-width="1.5" opacity="0.7"/>
+            <circle cx="350" cy="80" r="3" fill="#CFA67A" opacity="0.7"/>
+            <circle cx="340" cy="240" r="7" fill="none" stroke="#CFA67A" stroke-width="1.5" opacity="0.7"/>
+            <circle cx="340" cy="240" r="3" fill="#CFA67A" opacity="0.7"/>
+            <circle cx="80" cy="245" r="7" fill="none" stroke="#CFA67A" stroke-width="1.5" opacity="0.7"/>
+            <circle cx="80" cy="245" r="3" fill="#CFA67A" opacity="0.7"/>
+          </g>
+          <circle cx="210" cy="157" r="28" fill="rgba(207,166,122,0.08)" stroke="rgba(207,166,122,0.3)" stroke-width="1">
+            <animate attributeName="r" values="28;36;28" dur="2.5s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="1;0.4;1" dur="2.5s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="210" cy="157" r="18" fill="rgba(207,166,122,0.15)" stroke="#CFA67A" stroke-width="1.5"/>
+          <circle cx="210" cy="157" r="8" fill="#CFA67A" filter="url(#glow)"/>
+          <text x="210" y="200" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="10" fill="rgba(207,166,122,0.6)" letter-spacing="3">TU NEGOCIO</text>
+          <text x="210" y="215" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="9" fill="rgba(207,166,122,0.4)" letter-spacing="2">EN EL CENTRO</text>
+        </svg>
+      </div>
+      <div class="why-badge"><strong>+50</strong><span>Proyectos</span></div>
+    </div>
+    <div class="reveal d1">
+      <span class="section-eyebrow">Por Qué Elegirnos</span>
+      <h2 class="section-title" style="text-align:left;margin-bottom:24px">Diseño con Propósito,<br>Tecnología con Alma</h2>
+      <p class="section-sub" style="text-align:left;margin-bottom:32px">En Terra Studio combinamos diseño de alto nivel con la potencia de la inteligencia artificial para entregar sitios web que no solo se ven bien, sino que generan resultados reales.</p>
+      <div class="why-items">
+        <div class="why-item">
+          <div class="why-icon">⚡</div>
+          <div class="why-item-text"><h4>Entrega en 72 Horas</h4><p>Sin esperas interminables. Tu sitio listo y publicado en tiempo récord.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">🎨</div>
+          <div class="why-item-text"><h4>Diseño 100% a Medida</h4><p>No usamos plantillas genéricas. Cada proyecto es único, igual que tu negocio.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">🤖</div>
+          <div class="why-item-text"><h4>Potenciado con IA</h4><p>Usamos inteligencia artificial para optimizar diseño, contenido y SEO.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">📍</div>
+          <div class="why-item-text"><h4>Expertos en Ciudad Juárez</h4><p>Conocemos el mercado local. Diseñamos para tu audiencia, en tu idioma.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S9: EXTRAS -->
+<section class="extras" id="extras">
+  <div class="section-header" style="max-width:640px;margin:0 auto 50px;text-align:center">
+    <span class="section-eyebrow reveal">Potencia Tu Sitio</span>
+    <h2 class="section-title reveal d1">Funciones Adicionales</h2>
+    <p class="section-sub reveal d2">Agrega extras a tu proyecto y maximiza el retorno de tu inversión digital.</p>
+  </div>
+  <div class="extras-track-wrap">
+    <div class="extras-track" id="extrasTrack">
+      <div class="extra-card"><span class="extra-icon">💬</span><div class="extra-name">Botón WhatsApp Flotante</div><p class="extra-desc">Botón verde fijo con mensaje de bienvenida personalizado. Más conversiones al instante.</p><span class="extra-price">$500 <small>MXN</small></span><button class="extra-btn" onclick="openModal(event)">Agregar →</button></div>
+      <div class="extra-card"><span class="extra-icon">🔄</span><div class="extra-name">1 Mes de Actualizaciones</div><p class="extra-desc">Cambios de texto, imágenes y precios ilimitados durante 30 días tras la entrega.</p><span class="extra-price">$1,500 <small>MXN</small></span><button class="extra-btn" onclick="openModal(event)">Agregar →</button></div>
+      <div class="extra-card"><span class="extra-icon">🔍</span><div class="extra-name">SEO Local en Google</div><p class="extra-desc">Optimización para aparecer en las primeras búsquedas de Google en tu ciudad.</p><span class="extra-price">$2,000 <small>MXN/mes</small></span><button class="extra-btn" onclick="openModal(event)">Agregar →</button></div>
+      <div class="extra-card"><span class="extra-icon">📅</span><div class="extra-name">Sistema de Citas Online</div><p class="extra-desc">Tus clientes agendan directamente desde tu web. Sincronizado con Google Calendar.</p><span class="extra-price">$3,500 <small>MXN</small></span><button class="extra-btn" onclick="openModal(event)">Agregar →</button></div>
+      <div class="extra-card"><span class="extra-icon">🌐</span><div class="extra-name">Dominio + Hosting 1 Año</div><p class="extra-desc">Todo lo que necesitas para publicar tu web. Dominio .com.mx y hosting gestionado.</p><span class="extra-price">$2,400 <small>MXN/año</small></span><button class="extra-btn" onclick="openModal(event)">Agregar →</button></div>
+      <div class="extra-card"><span class="extra-icon">📊</span><div class="extra-name">Google Analytics Setup</div><p class="extra-desc">Configuración completa con dashboard personalizado. Conoce a tus visitantes.</p><span class="extra-price">$1,200 <small>MXN</small></span><button class="extra-btn" onclick="openModal(event)">Agregar →</button></div>
+      <div class="extra-card"><span class="extra-icon">💬</span><div class="extra-name">Chat en Vivo</div><p class="extra-desc">Widget de chat en tiempo real. Atiende a visitantes en el momento justo.</p><span class="extra-price">$800 <small>MXN</small></span><button class="extra-btn" onclick="openModal(event)">Agregar →</button></div>
+      <div class="extra-card"><span class="extra-icon">🔧</span><div class="extra-name">Mantenimiento Mensual</div><p class="extra-desc">Tu web siempre actualizada, segura y funcionando al 100%. Soporte prioritario.</p><span class="extra-price">$1,800 <small>MXN/mes</small></span><button class="extra-btn" onclick="openModal(event)">Agregar →</button></div>
+    </div>
+  </div>
+  <div class="extras-nav" id="extrasNav"></div>
+</section>
+
+<!-- S10: CTA FINAL -->
+<section class="cta-final" id="contacto">
+  <div class="cta-final-inner">
+    <span class="section-eyebrow reveal">¿Listo para Empezar?</span>
+    <h2 class="cta-final-title reveal d1">Tu página web puede estar<br><em>lista en 72 horas</em></h2>
+    <p class="cta-final-sub reveal d2">Más de 50 negocios en Juárez ya están generando clientes con su presencia digital. La consulta inicial es completamente gratis.</p>
+    <div class="cta-final-actions reveal d3">
+      <a href="#" class="btn-gold" onclick="openModal(event)">Agendar Consulta Gratuita</a>
+      <a href="https://wa.me/526565263725?text=Hola%2C%20quiero%20información%20sobre%20páginas%20web." target="_blank" rel="noopener" class="btn-outline">Escribir por WhatsApp</a>
+    </div>
+    <div class="cta-trust reveal d4">
+      <span class="cta-trust-item">Sin contrato de permanencia</span>
+      <span class="cta-trust-item">Consulta inicial gratis</span>
+      <span class="cta-trust-item">Entrega en 72 horas</span>
+      <span class="cta-trust-item">Soporte post-entrega incluido</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <span class="footer-brand-name">Terra Studio</span>
+      <p class="footer-tagline">Creamos presencias digitales profesionales con inteligencia artificial. Ciudad Juárez, Chih. México.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">ig</a>
+        <a href="#" aria-label="Facebook">fb</a>
+        <a href="https://wa.me/526565263725" aria-label="WhatsApp">wa</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Servicios</h4>
+      <ul>
+        <li><a href="#servicios">Landing Pages</a></li>
+        <li><a href="#servicios">E-Commerce</a></li>
+        <li><a href="#servicios">Portafolios</a></li>
+        <li><a href="#servicios">Corporativos</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#portafolio">Portafolio</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#precios">Precios</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="mailto:gerenciadeventas@terrastudio.com.mx">gerenciadeventas@<br>terrastudio.com.mx</a></li>
+        <li><a href="https://wa.me/526565263725?text=Hola%2C%20me%20interesa%20una%20p%C3%A1gina%20web." target="_blank" rel="noopener">WhatsApp</a></li>
+        <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#" target="_blank" rel="noopener">Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Terra Studio · Todos los derechos reservados</span>
+    <div class="footer-legal">
+      <a href="legal.html">Privacidad</a>
+      <a href="legal.html#cookies">Cookies</a>
+      <a href="legal.html#reembolso">Reembolsos</a>
+      <a href="legal.html#terminos">Términos</a>
+      <a href="#" onclick="openCookieModal();return false;">Gestionar Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="formSection">
+      <p class="modal-eyebrow">Sin costo · 30 minutos</p>
+      <h2 class="modal-title">Hablemos</h2>
+      <p class="modal-sub">Cuéntanos sobre tu proyecto. Te contactamos en menos de 24 horas.</p>
+      <form id="contactForm" onsubmit="submitForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Nombre *</label>
+            <input type="text" class="form-input" name="nombre" required placeholder="Tu nombre">
+          </div>
+          <div class="form-group">
+            <label class="form-label">WhatsApp *</label>
+            <input type="tel" class="form-input" name="whatsapp" placeholder="+52 656 000 0000" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email *</label>
+          <input type="email" class="form-input" name="email" required placeholder="tu@correo.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tipo de proyecto</label>
+          <select class="form-input" name="proyecto">
+            <option value="">Selecciona una opción</option>
+            <option>Esencial — Landing Page ($3,500 MXN)</option>
+            <option>Profesional — Sitio Completo ($7,500 MXN)</option>
+            <option>Tienda Online — E-Commerce ($15,000 MXN)</option>
+            <option>Consulta gratuita primero</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Cuéntanos sobre tu negocio</label>
+          <textarea class="form-input" name="mensaje" rows="3" placeholder="¿A qué se dedica tu negocio? ¿Qué esperas de tu página web?"></textarea>
+        </div>
+        <p style="font-size:0.75rem;color:var(--muted);margin-bottom:16px;line-height:1.5">
+          Al enviar aceptas nuestra <a href="legal.html" style="color:var(--gold)">Política de Privacidad</a>.
+        </p>
+        <button type="submit" class="btn-gold" style="width:100%;border:none">Enviar Solicitud →</button>
+      </form>
+    </div>
+    <div class="form-success" id="successSection">
+      <div class="success-icon">✦</div>
+      <div class="success-title">¡Solicitud recibida!</div>
+      <p class="success-msg">Gracias. Te contactamos en las próximas <strong style="color:var(--gold)">24 horas</strong>.</p>
+      <button class="btn-outline" style="margin-top:24px" onclick="closeModal()">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<div class="wa-float">
+  <div class="wa-bubble" id="waBubble" style="display:none;position:relative">
+    <button class="wa-bubble-close" onclick="this.parentElement.style.display='none'" aria-label="Cerrar">✕</button>
+    <strong>¡Hola! 👋 Terra Studio</strong>
+    ¿Listo para tener tu página web? Escríbenos y te cotizamos gratis.
+  </div>
+  <a class="wa-btn" href="https://wa.me/526565263725?text=Hola%2C%20me%20interesa%20una%20página%20web%20profesional." target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</div>
+
+<script>
+// ══ COOKIE ══
+const COOKIE_KEY = 'ts_cookie_v1';
+function getCookiePrefs(){const d=localStorage.getItem(COOKIE_KEY);return d?JSON.parse(d):null}
+function showBannerIfNeeded(){if(!getCookiePrefs())setTimeout(()=>document.getElementById('cookie-banner').classList.add('show'),1200)}
+function hideBanner(){document.getElementById('cookie-banner').classList.remove('show')}
+function acceptAllCookies(){localStorage.setItem(COOKIE_KEY,JSON.stringify({analytics:true,ads:true,ts:Date.now()}));hideBanner();closeCookieModal()}
+function rejectCookies(){localStorage.setItem(COOKIE_KEY,JSON.stringify({analytics:false,ads:false,ts:Date.now()}));hideBanner()}
+function openCookieModal(){const p=getCookiePrefs();if(p){document.getElementById('ck-analytics').checked=p.analytics;document.getElementById('ck-ads').checked=p.ads}document.getElementById('cookie-modal').classList.add('open')}
+function closeCookieModal(){document.getElementById('cookie-modal').classList.remove('open')}
+function saveCustomCookies(){const prefs={analytics:document.getElementById('ck-analytics').checked,ads:document.getElementById('ck-ads').checked,ts:Date.now()};localStorage.setItem(COOKIE_KEY,JSON.stringify(prefs));hideBanner();closeCookieModal()}
+
+// ══ NAV ══
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ══ REVEAL — SISTEMA CORREGIDO ══
+// Los elementos son visibles por defecto (CSS sin opacity:0).
+// JS agrega 'anim-ready' al <html> para activar las animaciones,
+// SOLO después de confirmar que el Observer funcionará.
+// Un timeout de seguridad garantiza que todo sea visible a los 2s.
+function initReveal() {
+  var els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+
+  // Activar modo animación
+  document.documentElement.classList.add('anim-ready');
+
+  // Timeout de seguridad: si el Observer no dispara en 2s, mostrar todo
+  var safetyTimer = setTimeout(function() {
+    els.forEach(function(el) { el.classList.add('visible'); });
+  }, 2000);
+
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+      // Cancelar safety timer si el Observer está funcionando
+      var allVisible = Array.from(els).filter(function(el){ return !el.classList.contains('visible'); });
+      if (allVisible.length === 0) clearTimeout(safetyTimer);
+    }, { threshold: 0, rootMargin: '0px 0px -20px 0px' });
+
+    els.forEach(function(el) { obs.observe(el); });
+  } else {
+    // Sin soporte de Observer: mostrar todo inmediatamente
+    clearTimeout(safetyTimer);
+    els.forEach(function(el) { el.classList.add('visible'); });
+  }
+}
+
+// ══ MODAL ══
+function openModal(e) {
+  if (e) e.preventDefault();
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(function() {
+    document.getElementById('formSection').style.display = 'block';
+    document.getElementById('successSection').style.display = 'none';
+    document.getElementById('contactForm').reset();
+  }, 400);
+}
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modal')) closeModal();
+}
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+
+// ══ FORM ══
+function submitForm(e) {
+  e.preventDefault();
+  var form = e.target;
+  var data = new FormData(form);
+  var nombre = (data.get('nombre') || '').trim();
+  var email  = (data.get('email')  || '').trim();
+  var wa     = (data.get('whatsapp') || '').trim();
+  if (!nombre || !email || !wa) { alert('Por favor completa los campos obligatorios (*)'); return; }
+  var btn = form.querySelector('button[type="submit"]');
+  btn.textContent = 'Enviando...'; btn.disabled = true;
+  // Guardar en localStorage
+  var leads = JSON.parse(localStorage.getItem('ts_leads') || '[]');
+  leads.push({ id: Date.now().toString(), name: nombre, wa: wa, email: email, plan: data.get('proyecto') || 'Consulta', status: 'nuevo', date: new Date().toISOString() });
+  localStorage.setItem('ts_leads', JSON.stringify(leads));
+  // Enviar por FormSubmit
+  fetch('https://formsubmit.co/ajax/gerenciadeventas@terrastudio.com.mx', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    body: JSON.stringify({ nombre: nombre, email: email, whatsapp: wa, proyecto: data.get('proyecto') || 'No especificado', mensaje: data.get('mensaje') || '', _subject: 'Nueva solicitud de ' + nombre + ' — Terra Studio', _captcha: 'false' })
+  }).then(function(){ showSuccess(); }).catch(function(){ showSuccess(); });
+}
+function showSuccess() {
+  document.getElementById('formSection').style.display = 'none';
+  document.getElementById('successSection').style.display = 'block';
+}
+
+// ══ SMOOTH SCROLL ══
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var id = a.getAttribute('href');
+    if (id === '#') return;
+    var target = document.querySelector(id);
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+
+// ══ EXTRAS CAROUSEL ══
+(function() {
+  var track = document.getElementById('extrasTrack');
+  var navEl  = document.getElementById('extrasNav');
+  if (!track || !navEl) return;
+  var cards = track.querySelectorAll('.extra-card');
+  var total = cards.length;
+  var cur = 0, timer;
+
+  function getVisible() { return window.innerWidth <= 960 ? 2 : 4; }
+  function getPages()   { return Math.ceil(total / getVisible()); }
+
+  function buildDots() {
+    navEl.innerHTML = '';
+    for (var i = 0; i < getPages(); i++) {
+      (function(idx) {
+        var d = document.createElement('button');
+        d.className = 'extras-dot' + (idx === 0 ? ' active' : '');
+        d.setAttribute('aria-label', 'Página ' + (idx + 1));
+        d.onclick = function() { goTo(idx); };
+        navEl.appendChild(d);
+      })(i);
+    }
+  }
+
+  function goTo(p) {
+    cur = Math.max(0, Math.min(p, getPages() - 1));
+    var cardW = cards[0].offsetWidth + (window.innerWidth <= 960 ? 16 : 24);
+    track.style.transform = 'translateX(-' + (cur * getVisible() * cardW) + 'px)';
+    navEl.querySelectorAll('.extras-dot').forEach(function(d, i) {
+      d.classList.toggle('active', i === cur);
+    });
+  }
+
+  function next() { goTo((cur + 1) % getPages()); }
+  function startTimer() { timer = setInterval(next, 3200); }
+  function stopTimer()  { clearInterval(timer); }
+
+  buildDots();
+  startTimer();
+  track.parentElement.addEventListener('mouseenter', stopTimer);
+  track.parentElement.addEventListener('mouseleave', startTimer);
+  window.addEventListener('resize', function() { buildDots(); goTo(0); });
+})();
+
+// ══ WHATSAPP BUBBLE ══
+setTimeout(function() {
+  var b = document.getElementById('waBubble');
+  if (b) b.style.display = 'block';
+}, 4000);
+
+// ══ LANG (simplificado — sin i18n en elementos con HTML interno) ══
+var currentLang = 'es';
+function setLang(lang, e) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (e && e.target) e.target.classList.add('active');
+  document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang === 'es' ? 'es-MX' : lang;
+  localStorage.setItem('ts_lang', lang);
+}
+
+// ══ INIT ══
+document.addEventListener('DOMContentLoaded', function() {
+  // Iniciar reveal con un frame de delay para asegurar layout completo
+  requestAnimationFrame(function() {
+    requestAnimationFrame(initReveal);
+  });
+  showBannerIfNeeded();
+  // Restaurar idioma guardado
+  var saved = localStorage.getItem('ts_lang');
+  if (saved) {
+    var btn = document.querySelector('.lang-btn[onclick*="' + saved + '"]');
+    if (btn) { document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.remove('active')}); btn.classList.add('active'); }
+    currentLang = saved;
+    document.documentElement.lang = saved === 'pt' ? 'pt-BR' : saved === 'es' ? 'es-MX' : saved;
+  }
+});
+</script>
+</body>
+</html>
