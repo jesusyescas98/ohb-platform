@@ -35,7 +35,7 @@ export default function RouteGuard({ children, allowedRoles = ['admin', 'asesor'
       updateActivity();
       setIsAuthorized(true);
       setIsChecking(false);
-    }, 300); // Give AuthContext enough time to restore from localStorage
+    }, 1000); // Give AuthContext enough time to restore from localStorage (increased to 1s)
 
     return () => clearTimeout(timer);
   // eslint-disable-next-line react-hooks/exhaustive-deps

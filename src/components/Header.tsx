@@ -158,11 +158,9 @@ export default function Header() {
               )}
             </div>
           ) : (
-            isMounted && (
-              <button onClick={() => { setIsLoginOpen(true); setIsMobileOpen(false); }} className={styles.navCta}>
-                🔑 Ingresos / Registro
-              </button>
-            )
+            <button onClick={() => { setIsLoginOpen(true); setIsMobileOpen(false); }} className={styles.navCta}>
+              🔑 Ingresos / Registro
+            </button>
           )}
         </nav>
       </header>

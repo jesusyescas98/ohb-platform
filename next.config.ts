@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 
+// BUILD v2.1 — CSS & Auth fixes
 const nextConfig: NextConfig = {
   // Remove X-Powered-By header to avoid exposing server info
   poweredByHeader: false,
