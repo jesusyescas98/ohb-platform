@@ -76,17 +76,17 @@ const nextConfig: NextConfig = {
             key: 'Strict-Transport-Security',
             value: 'max-age=63072000; includeSubDomains; preload',
           },
-          // Content Security Policy - Updated for Google Ads & Analytics compatibility
+          // Content Security Policy - Permissive for development (v2)
           {
             key: 'Content-Security-Policy',
             value: [
-              "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com https://www.google.com https://tpc.googlesyndication.com",
-              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-              "font-src 'self' https://fonts.gstatic.com data:",
-              "img-src 'self' data: blob: https: https://www.google-analytics.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://hcdjwrgisurjskzmypkh.supabase.co",
-              "connect-src 'self' https: https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://hcdjwrgisurjskzmypkh.supabase.co",
-              "frame-src https://www.google.com https://www.google.com/maps https://tpc.googlesyndication.com https://googleads.g.doubleclick.net",
+              "default-src 'self' https:",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https: blob:",
+              "style-src 'self' 'unsafe-inline' https:",
+              "font-src 'self' https: data:",
+              "img-src 'self' data: blob: https:",
+              "connect-src 'self' https: ws: wss:",
+              "frame-src 'self' https:",
               "object-src 'none'",
               "base-uri 'self'",
               "form-action 'self'",
