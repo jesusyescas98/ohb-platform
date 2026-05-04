@@ -1,6 +1,5 @@
-import { Doc } from "./_generated/dataModel";
 import { auth } from "./auth";
-import { mutation, query, QueryCtx } from "./_generated/server";
+import type { QueryCtx } from "./_generated/server";
 
 /**
  * Checks if the current user has a specific role.

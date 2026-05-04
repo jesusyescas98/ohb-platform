@@ -1,5 +1,5 @@
 import { v } from "convex/values";
-import { mutation, query, internalMutation, internalQuery } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 import { auth } from "./auth";
 
 export const get = query({

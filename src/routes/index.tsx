@@ -42,8 +42,8 @@ function ChatBot({ sessionId }: { sessionId: string }) {
   const historyQuery = useSuspenseQuery(convexQuery(api.agent.getHistory, { sessionId }))
   const history = historyQuery.data
   const sendMessage = useAction(api.agent_actions.chat)
-  const whatsappConfig = useSuspenseQuery(convexQuery((api as any).config.get, { key: "whatsapp" })).data;
-  const whatsappNumber = whatsappConfig || "6561327685";
+  const whatsappConfig = useSuspenseQuery(convexQuery((api as any).config.get, { key: "whatsapp" }) as any).data;
+  const whatsappNumber = (whatsappConfig as any) || "6561327685";
 
   useEffect(() => {
     if (isOpen) chatEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -148,7 +148,7 @@ function ChatBot({ sessionId }: { sessionId: string }) {
 }
 
 function Home() {
-  const { isAuthenticated, isLoading: authLoading } = useConvexAuth()
+  const { isAuthenticated } = useConvexAuth()
   const { signOut } = useAuthActions()
   const navigate = useNavigate()
   const [scrolled, setScrolled] = useState(false)
@@ -158,8 +158,8 @@ function Home() {
   const [isClient, setIsClient] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
   const [currency, setCurrency] = useState<'MXN' | 'USD'>('MXN')
-  const { data: properties } = useSuspenseQuery(convexQuery((api as any).properties.list, {}))
-  const { data: interactionCount } = useSuspenseQuery(convexQuery((api as any).counters.get, { name: 'inventory_interactions' }))
+  const { data: properties } = useSuspenseQuery(convexQuery((api as any).properties.list, {}) as any)
+  const { data: interactionCount } = useSuspenseQuery(convexQuery((api as any).counters.get, { name: 'inventory_interactions' }) as any)
   const incrementInteractions = useMutation((api as any).counters.increment)
   const [showCookies, setShowCookies] = useState(false)
   const [toast, setToast] = useState({ visible: false, message: "" })
@@ -308,7 +308,7 @@ function Home() {
                   <div className="w-10 h-10 rounded-full border-4 border-white bg-blue-600 flex items-center justify-center text-[10px] text-white font-black shadow-lg">+</div>
                </div>
                <div className="flex flex-col">
-                  <span className="text-blue-950 font-black text-sm tracking-tighter leading-none">{interactionCount.toLocaleString()} interacciones</span>
+                  <span className="text-blue-950 font-black text-sm tracking-tighter leading-none">{(interactionCount as any)?.toLocaleString() || '0'} interacciones</span>
                   <span className="text-[9px] font-bold text-blue-400 uppercase tracking-widest mt-1">Analizando inventario en vivo</span>
                </div>
             </div>

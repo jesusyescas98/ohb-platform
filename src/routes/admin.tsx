@@ -11,13 +11,13 @@ export const Route = createFileRoute('/admin')({
 })
 
 function ConfigSection() {
-  const configs = useSuspenseQuery(convexQuery((api as any).config.listAll, {})).data as any[];
+  const configs = useSuspenseQuery(convexQuery((api as any).config.listAll, {}) as any).data as any[];
   const setConfig = useMutation((api as any).config.set);
   const [localConfig, setLocalConfig] = useState<Record<string, string>>({});
 
   useEffect(() => {
     const map: Record<string, string> = {};
-    configs.forEach(c => map[c.key] = c.value);
+    (configs as any[]).forEach((c: any) => map[c.key] = c.value);
     setLocalConfig(map);
   }, [configs]);
 
@@ -71,7 +71,7 @@ function ConfigSection() {
 }
 
 function AcademyAdminSection({ showModal, setShowModal }: { showModal: boolean, setShowModal: (s: boolean) => void }) {
-  const courses = useSuspenseQuery(convexQuery((api as any).academy.list, {})).data as any[];
+  const courses = useSuspenseQuery(convexQuery((api as any).academy.list, {}) as any).data as any[];
   const createCourse = useMutation((api as any).academy.create);
   const deleteCourse = useMutation((api as any).academy.remove);
   
@@ -184,10 +184,10 @@ function AcademyAdminSection({ showModal, setShowModal }: { showModal: boolean, 
 
 function AdminDashboard() {
   const { isAuthenticated, isLoading } = useConvexAuth()
-  const { data: viewer } = useSuspenseQuery(convexQuery((api as any).users.viewer, {}))
-  const { data: users } = useSuspenseQuery(convexQuery((api as any).users.listAll, {}))
-  const { data: properties } = useSuspenseQuery(convexQuery((api as any).properties.list, {}))
-  const { data: prospects } = useSuspenseQuery(convexQuery((api as any).admin.listAllProfiles, {}))
+  const { data: viewer } = useSuspenseQuery(convexQuery((api as any).users.viewer, {}) as any) as any
+  const { data: users } = useSuspenseQuery(convexQuery((api as any).users.listAll, {}) as any) as any
+  const { data: properties } = useSuspenseQuery(convexQuery((api as any).properties.list, {}) as any) as any
+  const { data: prospects } = useSuspenseQuery(convexQuery((api as any).admin.listAllProfiles, {}) as any) as any
   
   const updateRole = useMutation((api as any).users.updateRole)
   const addNote = useMutation((api as any).admin.addProspectNote)
@@ -207,11 +207,11 @@ function AdminDashboard() {
     }
   }, [showToast])
 
-  const totalBudget = useMemo(() => prospects.reduce((acc, p) => acc + (p.budget || 0), 0), [prospects])
-  const avgScore = useMemo(() => prospects.length ? (prospects.reduce((acc, p) => acc + (p.score || 0), 0) / prospects.length).toFixed(1) : 0, [prospects])
+  const totalBudget = useMemo(() => (prospects as any[]).reduce((acc: number, p: any) => acc + (p.budget || 0), 0), [prospects])
+  const avgScore = useMemo(() => (prospects as any[]).length ? ((prospects as any[]).reduce((acc: number, p: any) => acc + (p.score || 0), 0) / (prospects as any[]).length).toFixed(1) : 0, [prospects])
 
   const filteredProspects = useMemo(() => 
-    prospects.filter(p => (p.name || '').toLowerCase().includes(searchTerm.toLowerCase())),
+    (prospects as any[]).filter((p: any) => (p.name || '').toLowerCase().includes(searchTerm.toLowerCase())),
     [prospects, searchTerm]
   )
 
@@ -350,7 +350,7 @@ function AdminDashboard() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-50">
-                      {filteredProspects.map((p) => (
+                      {(filteredProspects as any[]).map((p: any) => (
                         <tr key={p._id} className="hover:bg-blue-50/20 transition-all group">
                           <td className="p-10">
                              <div className="flex items-center gap-6">
@@ -520,7 +520,7 @@ function AdminDashboard() {
                   Lead Bitácora
                 </h2>
                 <div className="space-y-8 max-h-[600px] overflow-y-auto pr-4 custom-scrollbar">
-                   {prospects.flatMap(p => (p.notes || []).map((n: any, idx: number) => (
+                   {(prospects as any[]).flatMap((p: any) => (p.notes || []).map((n: any, idx: number) => (
                       <div key={`${p._id}-${idx}`} className="p-8 bg-blue-50/50 rounded-3xl border border-blue-100 relative group animate-in fade-in duration-700">
                          <div className="flex justify-between items-start mb-4">
                             <p className="text-[10px] font-black text-blue-600 uppercase tracking-widest italic">{p.name || 'Anónimo'}</p>
@@ -530,7 +530,7 @@ function AdminDashboard() {
                          <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-1 h-12 bg-blue-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_15px_rgba(37,99,235,0.5)]"></div>
                       </div>
                    ))).reverse()}
-                   {prospects.every(p => !p.notes?.length) && (
+                   {(prospects as any[]).every((p: any) => !p.notes?.length) && (
                      <div className="text-center py-20 opacity-20 italic font-bold uppercase text-[10px] tracking-[0.4em] text-blue-900">Sin entradas operativas recientes</div>
                    )}
                 </div>
