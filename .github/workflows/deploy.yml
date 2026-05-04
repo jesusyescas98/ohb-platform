@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -26,18 +26,36 @@ jobs:
         env:
           VITE_CONVEX_URL: ${{ secrets.VITE_CONVEX_URL }}
 
-      - name: Deploy to Hostinger via SSH
+      - name: Deploy to Hostinger via SFTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.HOST_IP }}
+          username: ${{ secrets.HOST_USER }}
+          password: ${{ secrets.HOST_PASSWORD }}
+          local-dir: .output/
+          server-dir: public_html/.output/
+          state-name: .output-deploy-state.json
+
+      - name: Upload package files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.HOST_IP }}
+          username: ${{ secrets.HOST_USER }}
+          password: ${{ secrets.HOST_PASSWORD }}
+          local-dir: ./
+          server-dir: public_html/
+          exclude: |
+            **
+            !package.json
+            !package-lock.json
+
+      - name: Restart Node.js app
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST_IP }}
           username: ${{ secrets.HOST_USER }}
           password: ${{ secrets.HOST_PASSWORD }}
-          port: 22
           script: |
-            cd domains/${{ secrets.DOMAIN_PATH }} || cd public_html
-            git pull origin main
+            cd public_html
             npm install --production
-            # Reiniciar el proceso de Node.js en Hostinger
-            # Dependiendo de la configuración de Hostinger, esto puede ser automático
-            # al detectar cambios en el entry point, o mediante pm2 si está disponible.
             touch .output/server/index.mjs
