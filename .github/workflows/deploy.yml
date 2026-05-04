@@ -15,18 +15,18 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci || npm install
 
       - name: Build project
         run: npm run build
         env:
           VITE_CONVEX_URL: ${{ secrets.VITE_CONVEX_URL }}
 
-      - name: Deploy to Hostinger via SFTP
+      - name: Deploy to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.HOST_IP }}
@@ -36,7 +36,7 @@ jobs:
           server-dir: public_html/.output/
           state-name: .output-deploy-state.json
 
-      - name: Upload package files
+      - name: Sync Meta Files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.HOST_IP }}
@@ -48,14 +48,4 @@ jobs:
             **
             !package.json
             !package-lock.json
-
-      - name: Restart Node.js app
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST_IP }}
-          username: ${{ secrets.HOST_USER }}
-          password: ${{ secrets.HOST_PASSWORD }}
-          script: |
-            cd public_html
-            npm install --production
-            touch .output/server/index.mjs
+            !public/**
