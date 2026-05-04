@@ -184,13 +184,13 @@ function AcademyAdminSection({ showModal, setShowModal }: { showModal: boolean, 
 
 function AdminDashboard() {
   const { isAuthenticated, isLoading } = useConvexAuth()
-  const { data: viewer } = useSuspenseQuery(convexQuery(api.users.viewer, {}))
-  const { data: users } = useSuspenseQuery(convexQuery(api.users.listAll, {}))
-  const { data: properties } = useSuspenseQuery(convexQuery(api.properties.list, {}))
-  const { data: prospects } = useSuspenseQuery(convexQuery(api.admin.listAllProfiles, {}))
+  const { data: viewer } = useSuspenseQuery(convexQuery((api as any).users.viewer, {}))
+  const { data: users } = useSuspenseQuery(convexQuery((api as any).users.listAll, {}))
+  const { data: properties } = useSuspenseQuery(convexQuery((api as any).properties.list, {}))
+  const { data: prospects } = useSuspenseQuery(convexQuery((api as any).admin.listAllProfiles, {}))
   
-  const updateRole = useMutation(api.users.updateRole)
-  const addNote = useMutation(api.admin.addProspectNote)
+  const updateRole = useMutation((api as any).users.updateRole)
+  const addNote = useMutation((api as any).admin.addProspectNote)
   const navigate = useNavigate()
 
   const [searchTerm, setSearchTerm] = useState('')

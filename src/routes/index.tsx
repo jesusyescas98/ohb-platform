@@ -42,6 +42,8 @@ function ChatBot({ sessionId }: { sessionId: string }) {
   const historyQuery = useSuspenseQuery(convexQuery(api.agent.getHistory, { sessionId }))
   const history = historyQuery.data
   const sendMessage = useAction(api.agent_actions.chat)
+  const whatsappConfig = useSuspenseQuery(convexQuery((api as any).config.get, { key: "whatsapp" })).data;
+  const whatsappNumber = whatsappConfig || "6561327685";
 
   useEffect(() => {
     if (isOpen) chatEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -146,8 +148,6 @@ function ChatBot({ sessionId }: { sessionId: string }) {
 }
 
 function Home() {
-  const whatsappConfig = useSuspenseQuery(convexQuery((api as any).config.get, { key: "whatsapp" })).data;
-  const whatsappNumber = whatsappConfig || "6561327685";
   const { isAuthenticated, isLoading: authLoading } = useConvexAuth()
   const { signOut } = useAuthActions()
   const navigate = useNavigate()
@@ -158,9 +158,9 @@ function Home() {
   const [isClient, setIsClient] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
   const [currency, setCurrency] = useState<'MXN' | 'USD'>('MXN')
-  const { data: properties } = useSuspenseQuery(convexQuery(api.properties.list, {}))
-  const { data: interactionCount } = useSuspenseQuery(convexQuery(api.counters.get, { name: 'inventory_interactions' }))
-  const incrementInteractions = useMutation(api.counters.increment)
+  const { data: properties } = useSuspenseQuery(convexQuery((api as any).properties.list, {}))
+  const { data: interactionCount } = useSuspenseQuery(convexQuery((api as any).counters.get, { name: 'inventory_interactions' }))
+  const incrementInteractions = useMutation((api as any).counters.increment)
   const [showCookies, setShowCookies] = useState(false)
   const [toast, setToast] = useState({ visible: false, message: "" })
 
@@ -472,15 +472,6 @@ function Home() {
 
       <ChatBot sessionId={sessionId} />
 
-      <a 
-        href="https://wa.me/521?text=Hola,%20estoy%20interesado%20en%20las%20inversiones%20de%20OHB" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="fixed bottom-8 right-8 z-[200] bg-green-500 text-white w-16 h-16 rounded-full shadow-[0_20px_40px_-10px_rgba(34,197,94,0.5)] flex items-center justify-center hover:scale-110 active:scale-95 transition-all animate-bounce"
-      >
-        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.445 0 .081 5.363.079 11.966c0 2.112.553 4.174 1.605 6.023L0 24l6.163-1.617a11.83 11.83 0 005.883 1.554h.005c6.603 0 11.967-5.367 11.97-11.97 0-3.201-1.246-6.212-3.509-8.475z"/></svg>
-      </a>
-
       <footer className="bg-blue-950 text-white pt-40 pb-16 rounded-t-[6rem] relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,#1e40af_0%,transparent_50%)] opacity-30"></div>
         <div className="max-w-7xl mx-auto px-10 relative z-10">
@@ -498,32 +489,42 @@ function Home() {
             
             <div>
               <h5 className="font-black text-[12px] uppercase tracking-[0.4em] mb-12 text-blue-500">Inversiones</h5>
-              <ul className="space-y-6 text-sm font-black uppercase tracking-widest text-blue-100/60">
-                <li><a href="#" className="hover:text-white transition-all inline-block hover:translate-x-3">Propiedades Off-Market</a></li>
-                <li><a href="#" className="hover:text-white transition-all inline-block hover:translate-x-3">Consultoría Legal</a></li>
-                <li><a href="#" className="hover:text-white transition-all inline-block hover:translate-x-3">Membresía Academy</a></li>
+              <ul className="space-y-6 text-sm font-bold text-blue-200/40 uppercase tracking-widest">
+                <li className="hover:text-white transition-colors cursor-pointer">Capital Puro</li>
+                <li className="hover:text-white transition-colors cursor-pointer">Gestión de Rentas</li>
+                <li className="hover:text-white transition-colors cursor-pointer">Preventas Elite</li>
+                <li className="hover:text-white transition-colors cursor-pointer">Pool de Inversión</li>
               </ul>
             </div>
 
             <div>
-              <h5 className="font-black text-[12px] uppercase tracking-[0.4em] mb-12 text-blue-500">Legal Elite</h5>
-              <ul className="space-y-6 text-sm font-black uppercase tracking-widest text-blue-100/60">
-                <li><Link to="/legal" className="hover:text-white transition-all inline-block hover:translate-x-3">Protección de Datos</Link></li>
-                <li><Link to="/legal" className="hover:text-white transition-all inline-block hover:translate-x-3">Contratos Digitales</Link></li>
+              <h5 className="font-black text-[12px] uppercase tracking-[0.4em] mb-12 text-blue-500">Compañía</h5>
+              <ul className="space-y-6 text-sm font-bold text-blue-200/40 uppercase tracking-widest">
+                <li className="hover:text-white transition-colors cursor-pointer">Nuestra Misión</li>
+                <li className="hover:text-white transition-colors cursor-pointer">Sedes Físicas</li>
+                <li className="hover:text-white transition-colors cursor-pointer">OHB Academy</li>
+                <li className="hover:text-white transition-colors cursor-pointer">Legal / Compliance</li>
               </ul>
             </div>
 
-            <div className="space-y-12">
-              <h5 className="font-black text-[12px] uppercase tracking-[0.4em] text-blue-500">Capital Humano</h5>
+            <div>
+              <h5 className="font-black text-[12px] uppercase tracking-[0.4em] mb-12 text-blue-500">Newsletter Elite</h5>
               <div className="space-y-6">
-                <p className="text-xs font-bold text-blue-200/40 uppercase tracking-widest">¿Quieres ser asesor OHB?</p>
-                <button className="w-full bg-white text-blue-950 py-6 rounded-3xl font-black text-xs uppercase tracking-[0.3em] shadow-2xl hover:bg-blue-50 transition-all active:scale-95">Aplicar ahora</button>
+                <p className="text-xs text-blue-200/40 leading-relaxed">Recibe oportunidades exclusivas antes de que salgan al mercado abierto.</p>
+                <div className="flex gap-2">
+                  <input className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs outline-none focus:border-blue-500" placeholder="tu@email.com" />
+                  <button className="bg-blue-600 px-6 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-700 transition-all">OK</button>
+                </div>
               </div>
             </div>
           </div>
-          
-          <div className="mt-40 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10">
-            <div className="text-blue-100/10 text-[10px] font-black uppercase tracking-[0.6em]">© 2024 OHB ASESORÍAS Y CONSULTORÍAS MÉXICO. CERTIFICACIÓN CONOCER.</div>
+          <div className="mt-40 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+            <p className="text-[10px] font-black text-blue-200/20 uppercase tracking-[0.3em]">© 2024 OHB Asesorías & Consultorías. Todos los derechos reservados.</p>
+            <div className="flex gap-10 text-[10px] font-black text-blue-200/20 uppercase tracking-[0.3em]">
+              <span className="hover:text-blue-400 cursor-pointer transition-colors">Términos</span>
+              <span className="hover:text-blue-400 cursor-pointer transition-colors">Privacidad</span>
+              <span className="hover:text-blue-400 cursor-pointer transition-colors">Cookies</span>
+            </div>
           </div>
         </div>
       </footer>
