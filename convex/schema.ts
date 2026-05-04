@@ -74,11 +74,12 @@ export default defineSchema({
     completedAt: v.optional(v.number()),
   }).index("by_user", ["userId"]).index("by_course", ["courseId"]),
 
-
   site_config: defineTable({
     key: v.string(), // "whatsapp", "stripe_public", "stripe_secret", "billing_email"
     value: v.string(),
   }).index("by_key", ["key"]),
+
+  prospect_profiles: defineTable({
     sessionId: v.string(),
     name: v.optional(v.string()),
     budget: v.optional(v.number()),
@@ -87,6 +88,11 @@ export default defineSchema({
     score: v.optional(v.number()), // 1-5 qualification
     status: v.union(v.literal("new"), v.literal("qualified"), v.literal("assigned")),
     assignedTo: v.optional(v.id("users")),
+    notes: v.optional(v.array(v.object({
+      text: v.string(),
+      timestamp: v.number(),
+      author: v.optional(v.string()),
+    }))),
   }).index("by_session", ["sessionId"]),
 
   messages: defineTable({

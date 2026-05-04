@@ -12,8 +12,8 @@ export const Route = createFileRoute("/academy")({
 });
 
 function AcademyPage() {
-  const { data: courses } = useSuspenseQuery(convexQuery(api.academy.list, {}));
-  const enroll = useMutation(api.academy.enroll);
+  const { data: courses } = useSuspenseQuery(convexQuery((api as any).academy.list, {}));
+  const enroll = useMutation((api as any).academy.enroll);
   const [selectedCourse, setSelectedCourse] = useState<any>(null);
 
   const handleEnroll = async (courseId: any) => {

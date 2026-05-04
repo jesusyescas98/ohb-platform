@@ -11,8 +11,8 @@ export const Route = createFileRoute('/admin')({
 })
 
 function ConfigSection() {
-  const configs = useSuspenseQuery(convexQuery(api.config.listAll, {})).data;
-  const setConfig = useMutation(api.config.set);
+  const configs = useSuspenseQuery(convexQuery((api as any).config.listAll, {})).data as any[];
+  const setConfig = useMutation((api as any).config.set);
   const [localConfig, setLocalConfig] = useState<Record<string, string>>({});
 
   useEffect(() => {
@@ -71,9 +71,9 @@ function ConfigSection() {
 }
 
 function AcademyAdminSection({ showModal, setShowModal }: { showModal: boolean, setShowModal: (s: boolean) => void }) {
-  const courses = useSuspenseQuery(convexQuery(api.academy.list, {})).data;
-  const createCourse = useMutation(api.academy.create);
-  const deleteCourse = useMutation(api.academy.remove);
+  const courses = useSuspenseQuery(convexQuery((api as any).academy.list, {})).data as any[];
+  const createCourse = useMutation((api as any).academy.create);
+  const deleteCourse = useMutation((api as any).academy.remove);
   
   const [newCourse, setNewCourse] = useState({
     title: "",
@@ -569,7 +569,7 @@ function AdminDashboard() {
                      <button 
                        onClick={async () => {
                          if(!noteText) return
-                         await addNote({ prospectId: selectedLead as any, text: noteText })
+                         await addNote({ prospectId: selectedLead as any, note: noteText })
                          setSelectedLead(null)
                          setShowToast("Entrada registrada en la bitácora central")
                        }}

@@ -146,7 +146,7 @@ function ChatBot({ sessionId }: { sessionId: string }) {
 }
 
 function Home() {
-  const whatsappConfig = useSuspenseQuery(convexQuery(api.config.get, { key: "whatsapp" })).data;
+  const whatsappConfig = useSuspenseQuery(convexQuery((api as any).config.get, { key: "whatsapp" })).data;
   const whatsappNumber = whatsappConfig || "6561327685";
   const { isAuthenticated, isLoading: authLoading } = useConvexAuth()
   const { signOut } = useAuthActions()
@@ -333,7 +333,7 @@ function Home() {
               </button>
               <Link to="/academy" className="px-12 py-6 bg-white text-blue-700 rounded-[2rem] font-black text-sm uppercase tracking-[0.2em] border-2 border-blue-50 shadow-xl hover:bg-blue-50 transition-all hover:-translate-y-1 flex items-center justify-center">OHB Academy</Link>
             </div>
-
+          </div>
 
           <div className="relative group animate-in fade-in zoom-in duration-1000 delay-300 perspective-1000">
             <div className="absolute -inset-20 bg-blue-100/30 rounded-full blur-[150px] opacity-60 -z-10 group-hover:opacity-100 transition-opacity duration-[2s]"></div>
